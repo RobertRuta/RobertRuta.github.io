@@ -135,6 +135,29 @@ html.scroll-lock {
   animation: overshootClose 380ms cubic-bezier(.37,.01,.63,.99);
 }
 
+/* Flicker transitions */
+.flicker-out {
+  animation: flickerOut 400ms ease-in-out both;
+}
+
+.flicker-in {
+  animation: flickerIn 400ms ease-in-out both;
+}
+
+@keyframes flickerOut {
+  0% { opacity: 1; }
+  35% { opacity: 0.75; }
+  70% { opacity: 0.45; }
+  100% { opacity: 0; }
+}
+
+@keyframes flickerIn {
+  0% { opacity: 0; }
+  30% { opacity: 0.30; }
+  65% { opacity: 0.65; }
+  100% { opacity: 1; }
+}
+
 /* Glitch transition overlay */
 .glitch-overlay {
   background: #000;
