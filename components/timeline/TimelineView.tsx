@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { db } from '@/lib/normalised'
+import { db } from '@/lib/data-interface'
 
 const INCLUDED_TYPES = new Set(['work', 'education', 'project', 'notable_work'])
 

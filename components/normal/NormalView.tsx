@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { db } from '@/lib/normalised'
+import { db } from '@/lib/data-interface'
 import { contacts } from '@/lib/profile'
 
 function formatPeriod(it: ReturnType<typeof db.findById> extends infer T ? (T extends undefined ? never : T) : never): string {
