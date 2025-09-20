@@ -15,28 +15,57 @@ function formatPeriod(it: ReturnType<typeof db.findById> extends infer T ? (T ex
   return start || end
 }
 
+function ExpandableTags({ tags, collapsedCount = 3, noPad = false, className }: { tags: string[]; collapsedCount?: number; noPad?: boolean; className?: string }) {
+  const [expanded, setExpanded] = React.useState(false)
+  if (!tags || tags.length === 0) return null
+  const hiddenTotal = Math.max(0, tags.length - collapsedCount)
+  const visible = expanded ? tags : tags.slice(0, collapsedCount)
+  const classes: string[] = ['flex', 'flex-wrap', 'gap-2', 'items-center']
+  if (!noPad) classes.push('pt-1')
+  if (className) classes.push(className)
+  return (
+    <div className={classes.join(' ')}>
+      {visible.map((s) => (
+        <Badge key={s} variant="secondary">{s}</Badge>
+      ))}
+      {!expanded && hiddenTotal > 0 ? (
+        <button
+          type="button"
+          className="text-xs underline decoration-terminal-green/30 underline-offset-4"
+          onClick={() => setExpanded(true)}
+        >
+          Show all (+{hiddenTotal})
+        </button>
+      ) : null}
+      {expanded && hiddenTotal > 0 ? (
+        <button
+          type="button"
+          className="text-xs underline decoration-terminal-green/30 underline-offset-4"
+          onClick={() => setExpanded(false)}
+        >
+          Show less
+        </button>
+      ) : null}
+    </div>
+  )
+}
+
 export function NormalView() {
   const aboutItem = db.findById('about_me')
   const about = aboutItem?.note || ''
   const skills = db.skills()
-  const projects = db.items().ofTypes(['project']).sortByStart(true).toArray()
+  const projects = db.items().ofTypes(['project', 'notable_work']).sortByStart(true).toArray()
   const experience = db.items().ofTypes(['work']).sortByStart(true).toArray()
   const education = db.items().ofTypes(['education']).sortByStart(true).toArray()
-  const notable = db.items().ofTypes(['notable_work']).toArray()
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Robert Ruta — Software Engineer</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-2">
+        <CardContent className="space-y-3">
           <p className="opacity-90">{about}</p>
-          <div className="flex flex-wrap gap-2 pt-1">
-            {skills.map((s) => (
-              <Badge key={s}>{s}</Badge>
-            ))}
-          </div>
-          <div className="pt-2 text-sm">
+          <div className="pt-3 text-sm">
             <span>{contacts.phone}</span>
             {' · '}
             <a className="underline decoration-terminal-green/30 underline-offset-4" href={`mailto:${contacts.email}`}>{contacts.email}</a>
@@ -51,13 +80,19 @@ export function NormalView() {
       </Card>
 
       <Card>
+        <CardContent>
+          <ExpandableTags tags={skills} collapsedCount={12} />
+        </CardContent>
+      </Card>
+
+      <Card>
         <CardHeader>
           <CardTitle>Highlighted Projects</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-4">
           {projects.map((p) => (
-            <div key={p.id} className="space-y-1">
-              <div className="flex items-center justify-between gap-2">
+            <div key={p.id} className="space-y-2">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                 {p.link ? (
                   <a className="underline decoration-terminal-green/30 underline-offset-4" href={p.link} target="_blank" rel="noreferrer">
                     {p.label}
@@ -65,11 +100,9 @@ export function NormalView() {
                 ) : (
                   <span>{p.label}</span>
                 )}
-                <div className="flex flex-wrap gap-1">
-                  {p.skills.map((s) => (
-                    <Badge key={s} variant="secondary">{s}</Badge>
-                  ))}
-                </div>
+                {p.skills.length ? (
+                  <ExpandableTags tags={p.skills} noPad className="justify-start sm:justify-end" />
+                ) : null}
               </div>
               {p.description ? <p className="opacity-80 text-sm">{p.description}</p> : null}
             </div>
@@ -81,18 +114,21 @@ export function NormalView() {
         <CardHeader>
           <CardTitle>Experience</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-4">
           {experience.map((e) => (
             <div key={e.id}>
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                 <div className="font-semibold">{e.label}{e.institution ? ` — ${e.institution}` : ''}</div>
                 <div className="opacity-70 text-xs">{formatPeriod(e as any)}</div>
               </div>
               {e.description ? (
-                <p className="opacity-90 text-sm mt-1">{e.description}</p>
+                <p className="opacity-90 text-sm mt-2">{e.description}</p>
               ) : null}
               {e.note ? (
-                <div className="opacity-80 text-xs mt-1">{e.note}</div>
+                <div className="opacity-80 text-xs mt-2">{e.note}</div>
+              ) : null}
+              {e.skills.length ? (
+                <ExpandableTags tags={e.skills} noPad className="justify-start sm:justify-end" />
               ) : null}
             </div>
           ))}
@@ -103,36 +139,23 @@ export function NormalView() {
         <CardHeader>
           <CardTitle>Education</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-4">
           {education.map((ed) => (
             <div key={ed.id}>
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                 <div className="font-semibold">{ed.label}{ed.institution ? ` — ${ed.institution}` : ''}</div>
                 <div className="opacity-70 text-xs">{formatPeriod(ed as any)}</div>
               </div>
               {ed.note ? <div className="opacity-80 text-xs">{ed.note}</div> : null}
+              {ed.skills.length ? (
+                <ExpandableTags tags={ed.skills} noPad className="justify-start sm:justify-end" />
+              ) : null}
             </div>
           ))}
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Other Notable Work</CardTitle>
-        </CardHeader>
-        <CardContent className="grid grid-cols-1 gap-1 text-sm opacity-90">
-          {notable.map((n) => (
-            <div key={n.id}>
-              • {n.link ? (
-                <a className="underline decoration-terminal-green/30 underline-offset-4" href={n.link} target="_blank" rel="noreferrer">{n.label}</a>
-              ) : (
-                <span>{n.label}</span>
-              )}
-              {n.note ? ` | ${n.note}` : ''}
-            </div>
-          ))}
-        </CardContent>
-      </Card>
+      
 
       <div className="flex gap-2 justify-center">
         <Button asChild>
