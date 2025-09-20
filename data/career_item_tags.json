@@ -1,0 +1,27 @@
+{
+  "msc_cs": ["Python", "SQL", "Machine Learning", "Java", "Artificial Intelligence", "Software Engineering", "Git"],
+  "bsc_physics": ["Physics", "Matlab", "Mathematics", "Data Analysis", "Scientific Computing", "Calculus", "Statistics", "SciPy", "Git"],
+  "ib": ["Physics", "Mathematics", "English", "French", "Psychology", "Information Technology", "Git"],
+
+  "sport_alliance": [".NET", "C#", "NHibernate", "Entity Framework", "NUnit", "xUnit", "TeamCity", "CI/CD", "ETL", "REST", "SQL", "Agile", "Jira", "Git"],
+  "mbank": ["Python", "SQL", "Data Visualization", "Process Mining", "Analytics", "Public Speaking", "Presentation", "Apache Hive", "Apache Impala", "Agile", "Jira", "Git"],
+  "pzu": ["Python", "Pandas", "NumPy", "SQL", "Financial Modelling", "Risk Analysis", "Bloomberg API", "Power BI", "Data Analysis", "ETL", "Agile", "Jira", "Git"],
+
+  "bloingo_web": ["Next.js", "TypeScript", "React", "Vercel", "Frontend", "shadcn/ui", "Git"],
+  "just_snap": ["Unity", "C#", "Game Development", "Steamworks API", "Git"],
+  "fitnessbyalexandra": ["React", "Supabase", "Vercel", "Gumroad API", "Full-Stack Web Development", "Git"],
+  "terminal_portfolio": ["Next.js", "TailwindCSS", "React", "Frontend Development", "Git"],
+
+  "sketch_remesher": ["Blender API", "Python", "3D Modeling", "Computer Graphics", "TRELLIS", "3D Generative Models", "Git"],
+  "vicsek": ["Unity", "GPU Programming", "HLSL", "Parallel Simulation", "Unreal Engine", "Git"],
+  "shadow_weaver": ["Unity", "C#", "Game Jam Prototype", "Indie Game Dev", "Git"],
+  "todo_village": ["Unity", "C#", "Gamification", "App Development", "Agile", "Jira", "Git"],
+  "openai_manager": ["OpenAI API", "Discord API", "LLM Integration", "Node.js", "TypeScript", "Git"],
+
+  "ml_fedcsis": ["Machine Learning", "Research", "Python", "Keras", "PyTorch", "TensorFlow", "Public Speaking", "Presentation"],
+  "ml_bigdata": ["Machine Learning", "Data Science", "Python", "Big Data", "IEEE Research"],
+
+  "planetary_gravity": ["Unity", "C#", "Physics Simulation", "Music Production", "Unreal Engine", "Git"],
+  "steam_scrapy": ["Python", "Steam API", "Web Scraping", "Data Collection", "Pandas", "NumPy", "Git"],
+  "driven_pendulum": ["Python", "PyGame", "Physics Simulation", "Game Physics", "Git"]
+}

@@ -1,0 +1,89 @@
+.NET
+3D Generative Models
+3D Modeling
+Agile
+Analytics
+Apache Hive
+Apache Impala
+App Development
+Artificial Intelligence
+Big Data
+Blender API
+Bloomberg API
+C#
+CI/CD
+Calculus
+Computer Graphics
+Data Analysis
+Data Collection
+Data Science
+Data Visualization
+Discord API
+ETL
+English
+Entity Framework
+Financial Modelling
+French
+Frontend
+Frontend Development
+Full-Stack Web Development
+GPU Programming
+Game Development
+Game Jam Prototype
+Game Physics
+Gamification
+Git
+Gumroad API
+HLSL
+IEEE Research
+Indie Game Dev
+Information Technology
+Java
+Jira
+Keras
+LLM Integration
+Machine Learning
+Mathematics
+Matlab
+Music Production
+NHibernate
+NUnit
+Next.js
+Node.js
+NumPy
+OpenAI API
+Pandas
+Parallel Simulation
+Physics
+Physics Simulation
+Power BI
+Presentation
+Process Mining
+Psychology
+Public Speaking
+PyGame
+PyTorch
+Python
+REST
+React
+Research
+Risk Analysis
+SQL
+SciPy
+Scientific Computing
+Software Engineering
+Statistics
+Steam API
+Steamworks API
+Supabase
+TRELLIS
+TailwindCSS
+TeamCity
+TensorFlow
+TypeScript
+Unity
+Unreal Engine
+Vercel
+Web Scraping
+shadcn/ui
+xUnit

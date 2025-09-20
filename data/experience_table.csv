@@ -1,0 +1,27 @@
+id,label,start_date,end_date,experience_type,associated_institution,description,note,link
+about_me,About Me,,,,,,"I am a multi-disciplinary technologist with 6 years of IT experience, 3 years commercial, complemented by academic degrees in physics and computer science from elite academic institutions. Excited to be on the hunt for a long term employment position.",
+msc_cs_bath,MSc Computer Science,2024,2025,education,University of Bath,,,""
+bsc_physics_uw,BSc Physics,2018,2022,education,University of Warsaw,,,""
+ib_bis_ad,International Baccalaureate,2016,2018,education,BIS Abu Dhabi,,,""
+sport_alliance_perfectgym,Full Stack .NET Software Engineer,2024-04,2024-07,work,"Sport Alliance | PerfectGym S.A.","Bolstered core ETL functionality with optimisations in NHibernate, Entity and REST-driven data pipeline. Developed NUnit integration tests and integrated them into TeamCity CI/CD pipeline.",,
+pzu_data_scientist,Data Scientist,2023-07,2024-03,work,PZU S.A.,"Developed and maintained insurance risk models in Python, leveraging pandas, NumPy, and SQL to process large financial datasets. Built tools for projecting bond yield curves and stock prices. Automated our Bloomberg data retrieval pipeline. Acted as a primary point of contact for Moody’s, supervising the deployment and functioning of financial simulators.",Risk Assessment and Modelling,
+mbank_process_mining,Data Analyst,2022-08,2023-07,work,mBank S.A.,"Applied process mining techniques to large-scale banking event log data, using Python, SQL, and data visualisation tools to identify systemic bottlenecks in internal and user-facing processes. Presented findings to other teams, and collaborated on devising and implementing solutions.",Process Mining Specialist,
+ruebyte_dev_leadership,Development and Leadership,2025,,work,Ruebyte Software,,"Developed bloingo.com; Publishing game on Steam: Just Snap; Built fitnessbyalexandra.com; Won a game jam.",
+bloingo_web,Bloingo,2025,,project,Bloingo,,,"https://bloingo.com"
+just_snap_steam,Just Snap,2025,,project,Steam,,,"https://store.steampowered.com/app/3635700/Just_Snap"
+fitnessbyalexandra,Fitnessbyalexandra.com,2025,,project,Fitnessbyalexandra.com,,,"https://fitnessbyalexandra.com"
+terminal_portfolio,Terminal Portfolio,2025,,project,GitHub,,,"https://github.com/RobertRuta/RobertRuta.github.io"
+sketch_remesher_blender,Sketch Remesher,,,notable_work,Blender,,Blender Add‑On,
+shadow_weaver_jam,Shadow Weaver,,,notable_work,,,"Game Jam, 2nd Place",
+ml_fedcsis_2023,ML Paper Presentation,2023,,notable_work,FedCSIS 2023,,,
+ml_ieee_bigdata_2023,Published ML Research,2023,,notable_work,IEEE BigData Cup 2023,,,
+planetary_gravity_unity,Planetary Gravity Simulator,,,notable_work,Unity,,,
+million_particle_gpu_unity,Million Particle GPU Simulation,,,notable_work,Unity,,,
+openai_manager_discord,OpenAI Manager,,,notable_work,Discord,,LLM Discord Bot,
+gamified_productivity_unity,Gamified Productivity App,,,notable_work,Unity,,,
+steam_scrapy_py,Steam Scrapy,,,notable_work,Steam,,Python + Steam API,
+driven_pendulum_pygame,Driven Pendulum,,,notable_work,PyGame,,Python + PyGame,
+lang_english,English,,,language,,,native,
+lang_polish,Polish,,,language,,,native,
+lang_french,French,,,language,,,basic,
+lang_russian,Russian,,,language,,,basic,
