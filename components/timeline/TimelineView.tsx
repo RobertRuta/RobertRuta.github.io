@@ -8,7 +8,7 @@ import { db } from '@/lib/normalised'
 const INCLUDED_TYPES = new Set(['work', 'education', 'project', 'notable_work'])
 
 export function TimelineView() {
-  const items = React.useMemo(() => {
+  const baseItems = React.useMemo(() => {
     return db
       .items()
       .ofTypes(INCLUDED_TYPES)
@@ -17,11 +17,85 @@ export function TimelineView() {
       .toArray()
   }, [])
 
+  type TagState = 'include' | 'exclude' | 'neutral'
+  const allSkills = React.useMemo(() => db.skills(), [])
+  const [showFilters, setShowFilters] = React.useState(false)
+  const [tagState, setTagState] = React.useState<Record<string, TagState>>({})
+
+  const cycleTag = (tag: string) => {
+    setTagState((prev) => {
+      const cur: TagState = prev[tag] || 'neutral'
+      const next: TagState = cur === 'neutral' ? 'include' : cur === 'include' ? 'exclude' : 'neutral'
+      const copy = { ...prev }
+      copy[tag] = next
+      // prune neutral to keep state tidy
+      if (next === 'neutral') delete copy[tag]
+      return copy
+    })
+  }
+
+  const includes = React.useMemo(() => Object.entries(tagState).filter(([, s]) => s === 'include').map(([t]) => t), [tagState])
+  const excludes = React.useMemo(() => Object.entries(tagState).filter(([, s]) => s === 'exclude').map(([t]) => t), [tagState])
+
+  const items = React.useMemo(() => {
+    return baseItems.filter((it) => {
+      if (excludes.length && it.skills.some((s) => excludes.includes(s))) return false
+      if (includes.length && !it.skills.some((s) => includes.includes(s))) return false
+      return true
+    })
+  }, [baseItems, includes, excludes])
+
+  const tagClasses = (state: TagState): string => {
+    if (state === 'include') return 'bg-terminal-green/15 text-terminal-green border border-terminal-green/40'
+    if (state === 'exclude') return 'bg-red-500/10 text-red-400 border border-red-400/40'
+    return 'bg-terminal.dim text-terminal-green/60 border border-terminal-green/15'
+  }
+
   return (
     <div className="space-y-4">
       <Card>
         <CardHeader>
-          <CardTitle>Timeline</CardTitle>
+          <div className="flex items-center justify-between gap-3">
+            <CardTitle>Timeline</CardTitle>
+            <button
+              className="text-xs rounded-md px-2 py-1 border border-terminal-green/30 text-terminal-green hover:bg-terminal-green/10"
+              onClick={() => setShowFilters((v) => !v)}
+            >
+              {showFilters ? 'Hide Filters' : 'Filter'}
+            </button>
+          </div>
+          {showFilters ? (
+            <div className="mt-3">
+              <div className="flex flex-wrap gap-2">
+                {allSkills.map((tag) => {
+                  const state: TagState = tagState[tag] || 'neutral'
+                  return (
+                    <button
+                      key={tag}
+                      className={['text-[11px] px-2 py-1 rounded border transition-colors', tagClasses(state)].join(' ')}
+                      onClick={() => cycleTag(tag)}
+                      title={state === 'include' ? 'Included' : state === 'exclude' ? 'Excluded' : 'Neutral'}
+                    >
+                      {tag}
+                    </button>
+                  )
+                })}
+              </div>
+              <div className="mt-2 flex items-center justify-between text-[11px] opacity-70">
+                <div>
+                  <span className="inline-block rounded px-1 mr-2 border border-terminal-green/30 bg-terminal-green/10 text-terminal-green">include</span>
+                  <span className="inline-block rounded px-1 mr-2 border border-red-400/40 bg-red-500/10 text-red-400">exclude</span>
+                  <span className="inline-block rounded px-1 border border-terminal-green/15 bg-terminal.dim text-terminal-green/60">neutral</span>
+                </div>
+                <button
+                  className="underline decoration-terminal-green/30 underline-offset-4"
+                  onClick={() => setTagState({})}
+                >
+                  Clear
+                </button>
+              </div>
+            </div>
+          ) : null}
         </CardHeader>
         <CardContent>
           <div className="relative">
