@@ -43,7 +43,13 @@ export function Terminal() {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const [heightPx, setHeightPx] = React.useState<number>(420)
-  const resizeState = React.useRef<{ startY: number; startHeight: number } | null>(null)
+  const [widthPx, setWidthPx] = React.useState<number>(720)
+  const resizeState = React.useRef<{
+    startY: number
+    startX: number
+    startHeight: number
+    startWidth: number
+  } | null>(null)
 
   const [commandHistory, setCommandHistory] = React.useState<string[]>([])
   const [historyPointer, setHistoryPointer] = React.useState<number | null>(null)
@@ -374,15 +380,31 @@ export function Terminal() {
   }
 
   const onResizeMouseDown: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    resizeState.current = { startY: e.clientY, startHeight: heightPx }
+    e.preventDefault()
+    const prevBodySelect = document.body.style.userSelect
+    const prevDocSelect = document.documentElement.style.userSelect
+    document.body.style.userSelect = 'none'
+    document.documentElement.style.userSelect = 'none'
+    resizeState.current = {
+      startY: e.clientY,
+      startX: e.clientX,
+      startHeight: heightPx,
+      startWidth: widthPx,
+    }
     const onMove = (ev: MouseEvent) => {
-      const delta = ev.clientY - (resizeState.current?.startY || 0)
-      const next = Math.min(800, Math.max(240, (resizeState.current?.startHeight || heightPx) + delta))
-      setHeightPx(next)
+      ev.preventDefault()
+      const deltaY = ev.clientY - (resizeState.current?.startY || 0)
+      const deltaX = ev.clientX - (resizeState.current?.startX || 0)
+      const nextH = Math.min(800, Math.max(240, (resizeState.current?.startHeight || heightPx) + deltaY))
+      const nextW = Math.min(1024, Math.max(360, (resizeState.current?.startWidth || widthPx) + deltaX))
+      setHeightPx(nextH)
+      setWidthPx(nextW)
     }
     const onUp = () => {
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('mouseup', onUp)
+      document.body.style.userSelect = prevBodySelect
+      document.documentElement.style.userSelect = prevDocSelect
       resizeState.current = null
     }
     window.addEventListener('mousemove', onMove)
@@ -390,39 +412,47 @@ export function Terminal() {
   }
 
   return (
-    <Card>
+    <Card className="mx-auto" style={{ width: `${widthPx}px`, maxWidth: '100%' }}>
       <CardHeader>
         <CardTitle>$ robert@portfolio — {cwd}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div ref={scrollRef} style={{ height: `${heightPx}px` }} className="space-y-3 overflow-y-auto">
-          {history.map((node, idx) => (
-            <div key={idx}>{node}</div>
-          ))}
-          <Separator />
-          <form onSubmit={onSubmit} className="sticky bottom-0 flex items-center gap-2 bg-terminal/60 pt-2">
-            <span className="text-terminal-green">$</span>
-            <input
-              ref={inputRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={onKeyDown}
-              className="flex-1 bg-transparent outline-none placeholder:text-terminal-green/40"
-              placeholder="type a command (try: about, projects, experience, contact, help)"
-              aria-label="Terminal input"
-            />
-          </form>
-          {firstSuggestion && firstSuggestion !== input ? (
-            <div className="text-xs opacity-60">Suggestion: <span className="text-terminal-green">{firstSuggestion}</span> (Tab to complete)</div>
-          ) : null}
-          <div ref={setCursor} />
+        <div className="relative" style={{ height: `${heightPx}px` }}>
+          <div ref={scrollRef} className="space-y-3 overflow-y-auto h-full">
+            {history.map((node, idx) => (
+              <div key={idx}>{node}</div>
+            ))}
+            <Separator />
+            <form onSubmit={onSubmit} className="sticky bottom-0 flex items-center gap-2 bg-terminal/60 pt-2">
+              <span className="text-terminal-green">$</span>
+              <input
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={onKeyDown}
+                className="flex-1 bg-transparent outline-none placeholder:text-terminal-green/40"
+                placeholder="type a command (try: about, projects, experience, contact, help)"
+                aria-label="Terminal input"
+              />
+            </form>
+            {firstSuggestion && firstSuggestion !== input ? (
+              <div className="text-xs opacity-60">Suggestion: <span className="text-terminal-green">{firstSuggestion}</span> (Tab to complete)</div>
+            ) : null}
+            <div ref={setCursor} />
+          </div>
+          <div
+            aria-label="Resize terminal"
+            className="pointer-events-auto absolute bottom-1 right-1 h-5 w-5 cursor-move"
+            onMouseDown={onResizeMouseDown}
+          >
+            {/* First bar */}
+            <span className="pointer-events-none absolute bottom-3 right-3 h-[2px] w-3 -rotate-45 bg-terminal-green/30" />
+            {/* Second bar */}
+            <span className="pointer-events-none absolute bottom-2 right-2 h-[2px] w-3 -rotate-45 bg-terminal-green/50" />
+            {/* Third bar */}
+            <span className="pointer-events-none absolute bottom-1 right-1 h-[2px] w-3 -rotate-45 bg-terminal-green/70" />
+          </div>
         </div>
-        <div
-          role="separator"
-          aria-label="Resize terminal"
-          className="mt-1 h-2 cursor-ns-resize rounded bg-terminal-green/10 hover:bg-terminal-green/20"
-          onMouseDown={onResizeMouseDown}
-        />
       </CardContent>
     </Card>
   )
