@@ -64,6 +64,12 @@ html, body, :root {
   height: 100%;
 }
 
+/* Reserve scrollbar space to avoid layout shift when toggling overflow */
+html {
+  overflow-y: auto;
+  scrollbar-gutter: stable both-edges;
+}
+
 /* Terminal vibe is applied via body classes in layout */
 
 .caret-green::after {
