@@ -107,4 +107,32 @@ html.scroll-lock {
   background-color: rgba(0,255,156,0.6);
 }
 
+/* Filters trellis animation */
+@keyframes chipIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.filters-grid.show .filter-chip {
+  animation: chipIn 300ms ease-out forwards;
+  animation-fill-mode: both;
+}
+.filters-grid.reverse .filter-chip {
+  animation: chipIn 250ms ease-in reverse forwards;
+  animation-fill-mode: both;
+}
+.filters-grid.hidden .filter-chip {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+@keyframes overshootClose {
+  0% { transform: scaleY(1); }
+  50% { transform: scaleY(1.02); }
+  100% { transform: scaleY(1); }
+}
+.filters-wrapper.closing {
+  transform-origin: top;
+  animation: overshootClose 380ms cubic-bezier(.37,.01,.63,.99);
+}
+
 

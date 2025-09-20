@@ -20,7 +20,27 @@ export function TimelineView() {
   type TagState = 'include' | 'exclude' | 'neutral'
   const allSkills = React.useMemo(() => db.skills(), [])
   const [showFilters, setShowFilters] = React.useState(false)
+  const [closing, setClosing] = React.useState(false)
   const [tagState, setTagState] = React.useState<Record<string, TagState>>({})
+  const contentRef = React.useRef<HTMLDivElement>(null)
+  const [collapseHeight, setCollapseHeight] = React.useState(0)
+
+  const recalcHeight = React.useCallback(() => {
+    if (!contentRef.current) return
+    setCollapseHeight(contentRef.current.scrollHeight)
+  }, [])
+
+  React.useEffect(() => {
+    if (showFilters) recalcHeight()
+  }, [showFilters, allSkills, tagState, recalcHeight])
+
+  React.useEffect(() => {
+    const onResize = () => {
+      if (showFilters) recalcHeight()
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [showFilters, recalcHeight])
 
   const cycleTag = (tag: string) => {
     setTagState((prev) => {
@@ -59,44 +79,87 @@ export function TimelineView() {
             <CardTitle>Timeline</CardTitle>
             <button
               className="text-xs rounded-md px-2 py-1 border border-terminal-green/30 text-terminal-green hover:bg-terminal-green/10"
-              onClick={() => setShowFilters((v) => !v)}
+              onClick={() => { setShowFilters(!showFilters) }}
             >
               {showFilters ? 'Hide Filters' : 'Filter'}
             </button>
           </div>
-          {showFilters ? (
-            <div className="mt-3">
-              <div className="flex flex-wrap gap-2">
-                {allSkills.map((tag) => {
-                  const state: TagState = tagState[tag] || 'neutral'
-                  return (
-                    <button
-                      key={tag}
-                      className={['text-[11px] px-2 py-1 rounded border transition-colors', tagClasses(state)].join(' ')}
-                      onClick={() => cycleTag(tag)}
-                      title={state === 'include' ? 'Included' : state === 'exclude' ? 'Excluded' : 'Neutral'}
-                    >
-                      {tag}
-                    </button>
-                  )
-                })}
-              </div>
-              <div className="mt-2 flex items-center justify-between text-[11px] opacity-70">
-                <div>
-                  <span className="inline-block rounded px-1 mr-2 border border-terminal-green/30 bg-terminal-green/10 text-terminal-green">include</span>
-                  <span className="inline-block rounded px-1 mr-2 border border-red-400/40 bg-red-500/10 text-red-400">exclude</span>
-                  <span className="inline-block rounded px-1 border border-terminal-green/15 bg-terminal.dim text-terminal-green/60">neutral</span>
-                </div>
-                <button
-                  className="underline decoration-terminal-green/30 underline-offset-4"
-                  onClick={() => setTagState({})}
-                >
-                  Clear
-                </button>
-              </div>
+          {/* Active filter summary when filters are hidden */}
+          {!showFilters && (includes.length || excludes.length) ? (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {includes.map((tag) => (
+                <span key={`inc-${tag}`} className="text-[11px] px-2 py-1 rounded border border-terminal-green/40 bg-terminal-green/15 text-terminal-green">{tag}</span>
+              ))}
+              {excludes.map((tag) => (
+                <span key={`exc-${tag}`} className="text-[11px] px-2 py-1 rounded border border-red-400/40 bg-red-500/10 text-red-400">{tag}</span>
+              ))}
             </div>
           ) : null}
         </CardHeader>
+        <CardContent>
+          <div
+            className="overflow-hidden"
+            style={{
+              height: showFilters ? collapseHeight : 0,
+              transition: 'height 380ms cubic-bezier(.37,.01,.63,.99)',
+            }}
+          >
+            <div ref={contentRef} className="pt-3">
+              {showFilters ? (
+                <>
+                  <div className="filters-grid show flex flex-wrap gap-2">
+                    {allSkills.map((tag, idx) => {
+                      const state: TagState = tagState[tag] || 'neutral'
+                      return (
+                        <button
+                          key={tag}
+                          className={['filter-chip text-[11px] px-2 py-1 rounded border transition-colors', tagClasses(state)].join(' ')}
+                          style={{ animationDelay: `${(idx) * 4}ms` }}
+                          onClick={() => cycleTag(tag)}
+                          title={state === 'include' ? 'Included' : state === 'exclude' ? 'Excluded' : 'Neutral'}
+                        >
+                          {tag}
+                        </button>
+                      )
+                    })}
+                  </div>
+                  <div className="mt-2 flex items-center justify-between text-[11px] opacity-70">
+                    <div>
+                      <span className="inline-block rounded px-1 mr-2 border border-terminal-green/30 bg-terminal-green/10 text-terminal-green">include</span>
+                      <span className="inline-block rounded px-1 mr-2 border border-red-400/40 bg-red-500/10 text-red-400">exclude</span>
+                      <span className="inline-block rounded px-1 border border-terminal-green/15 bg-terminal.dim text-terminal-green/60">neutral</span>
+                    </div>
+                    <button
+                      className="underline decoration-terminal-green/30 underline-offset-4"
+                      onClick={() => setTagState({})}
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={["filters-grid flex flex-wrap gap-2", 'reverse'].join(' ')}>
+                    {allSkills.map((tag, idx) => {
+                      const state: TagState = tagState[tag] || 'neutral'
+                      return (
+                        <button
+                          key={`rev-${tag}`}
+                          className={['filter-chip text-[11px] px-2 py-1 rounded border transition-colors', tagClasses(state)].join(' ')}
+                          style={{ animationDelay: `${(idx % 12) * 10}ms` }}
+                          onClick={() => cycleTag(tag)}
+                          title={state === 'include' ? 'Included' : state === 'exclude' ? 'Excluded' : 'Neutral'}
+                        >
+                          {tag}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </CardContent>
         <CardContent>
           <div className="relative">
             {/* Vertical line spanning the whole timeline */}
