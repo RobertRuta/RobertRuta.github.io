@@ -4,6 +4,7 @@ import { Terminal } from '@/components/terminal/Terminal'
 import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import { NormalView } from '@/components/normal/NormalView'
+import { GlitchOverlay } from '@/components/effects/GlitchOverlay'
 import { TimelineView } from '@/components/timeline/TimelineView'
 
 export default function Page() {
@@ -31,7 +32,7 @@ export default function Page() {
     ;(switchMode as any)._t = window.setTimeout(() => {
       setAnimating(false)
       htmlEl.classList.remove('scroll-lock')
-    }, 520)
+    }, 820)
   }
 
   const isTerminalActive = mode === 'terminal'
@@ -71,7 +72,8 @@ export default function Page() {
             </Button>
           </div>
         </div>
-        <div className="relative min-h-[420px]">
+        <div className="relative min-h-[1020px]">
+          <GlitchOverlay active={animating} fullscreen={false} overscanX={1} />
           {showTimeline ? (
             <div
               className={[

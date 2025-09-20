@@ -43,12 +43,9 @@ export function Terminal() {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const [heightPx, setHeightPx] = React.useState<number>(420)
-  const [widthPx, setWidthPx] = React.useState<number>(720)
   const resizeState = React.useRef<{
     startY: number
-    startX: number
     startHeight: number
-    startWidth: number
   } | null>(null)
 
   const [commandHistory, setCommandHistory] = React.useState<string[]>([])
@@ -393,18 +390,13 @@ export function Terminal() {
     document.documentElement.style.userSelect = 'none'
     resizeState.current = {
       startY: e.clientY,
-      startX: e.clientX,
       startHeight: heightPx,
-      startWidth: widthPx,
     }
     const onMove = (ev: MouseEvent) => {
       ev.preventDefault()
       const deltaY = ev.clientY - (resizeState.current?.startY || 0)
-      const deltaX = ev.clientX - (resizeState.current?.startX || 0)
       const nextH = Math.min(800, Math.max(240, (resizeState.current?.startHeight || heightPx) + deltaY))
-      const nextW = Math.min(1024, Math.max(360, (resizeState.current?.startWidth || widthPx) + deltaX))
       setHeightPx(nextH)
-      setWidthPx(nextW)
     }
     const onUp = () => {
       window.removeEventListener('mousemove', onMove)
@@ -418,7 +410,7 @@ export function Terminal() {
   }
 
   return (
-    <Card className="mx-auto" style={{ width: `${widthPx}px`, maxWidth: '100%' }}>
+    <Card className="mx-auto w-full" style={{ width: '100%' }}>
       <CardHeader>
         <CardTitle>$ robert@portfolio — {cwd}</CardTitle>
       </CardHeader>
