@@ -23,6 +23,12 @@
       ],
       "@/lib/*": [
         "lib/*"
+      ],
+      "@/data/*": [
+        "data/*"
+      ],
+      "@/generated/*": [
+        "generated/*"
       ]
     },
     "types": [

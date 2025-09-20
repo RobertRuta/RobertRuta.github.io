@@ -1,0 +1,34 @@
+{
+  "msc_cs_bath": ["Python", "SQL", "Machine Learning", "Java", "Artificial Intelligence", "Software Engineering", "Git"],
+  "bsc_physics_uw": ["Physics", "Matlab", "Mathematics", "Data Analysis", "Scientific Computing", "Calculus", "Statistics", "SciPy", "Git"],
+  "ib_bis_ad": ["Physics", "Mathematics", "English", "French", "Psychology", "Information Technology", "Git"],
+
+  "perfectgym": [".NET", "C#", "NHibernate", "Entity Framework", "NUnit", "xUnit", "TeamCity", "CI/CD", "ETL", "REST", "SQL", "Agile", "Jira", "Git"],
+  "mbank_process_mining": ["Python", "SQL", "Data Visualization", "Process Mining", "Analytics", "Public Speaking", "Presentation", "Apache Hive", "Apache Impala", "Agile", "Jira", "Git"],
+  "pzu_data_scientist": ["Python", "Pandas", "NumPy", "SQL", "Financial Modelling", "Risk Analysis", "Bloomberg API", "Power BI", "Data Analysis", "ETL", "Agile", "Jira", "Git"],
+
+  "bloingo_web": ["Next.js", "TypeScript", "React", "Vercel", "Frontend", "shadcn/ui", "Git"],
+  "just_snap_steam": ["Unity", "C#", "Game Development", "Steamworks API", "Git"],
+  "fitnessbyalexandra": ["React", "Supabase", "Vercel", "Gumroad API", "Full-Stack Web Development", "Git"],
+  "terminal_portfolio": ["Next.js", "TailwindCSS", "React", "Frontend Development", "Git"],
+
+  "sketch_remesher_blender": ["Blender API", "Python", "3D Modeling", "Computer Graphics", "TRELLIS", "3D Generative Models", "Git"],
+  "vicsek": ["Unity", "GPU Programming", "HLSL", "Parallel Simulation", "Unreal Engine", "Git"],
+  "shadow_weaver_jam": ["Unity", "C#", "Game Jam Prototype", "Indie Game Dev", "Git"],
+  "todo_village": ["Unity", "C#", "Gamification", "App Development", "Agile", "Jira", "Git"],
+  "openai_manager_discord": ["OpenAI API", "Discord API", "LLM Integration", "Node.js", "TypeScript", "Git"],
+
+  "ml_fedcsis_2023": ["Machine Learning", "Research", "Python", "Keras", "PyTorch", "TensorFlow", "Public Speaking", "Presentation"],
+  "ml_ieee_bigdata_2023": ["Machine Learning", "Data Science", "Python", "Big Data", "IEEE Research"],
+
+  "planetary_gravity_unity": ["Unity", "C#", "Physics Simulation", "Music Production", "Unreal Engine", "Git"],
+  "steam_scrapy_py": ["Python", "Steam API", "Web Scraping", "Data Collection", "Pandas", "NumPy", "Git"],
+  "driven_pendulum_pygame": ["Python", "PyGame", "Physics Simulation", "Game Physics", "Git"],
+
+  "about_me": [],
+  "ruebyte_dev_leadership": [],
+  "lang_english": [],
+  "lang_polish": [],
+  "lang_french": [],
+  "lang_russian": []
+}

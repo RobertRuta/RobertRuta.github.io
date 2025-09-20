@@ -4,10 +4,13 @@
   "version": "0.1.0",
   "description": "Robert Ruta personal site - terminal themed (Next.js + Tailwind + shadcn/ui)",
   "scripts": {
+    "predev": "node scripts/run-normaliser.cjs",
     "dev": "next dev --turbo",
+    "prebuild": "node scripts/run-normaliser.cjs",
     "build": "next build",
     "start": "next start",
-    "lint": "echo 'No linter configured'"
+    "lint": "echo 'No linter configured'",
+    "validate:data": "node scripts/validate-ids.cjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -20,8 +23,10 @@
     "@types/node": "24.5.2",
     "@types/react": "19.1.13",
     "autoprefixer": "^10.4.20",
+    "csv-parse": "^5.5.6",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.10",
+    "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
   }
 }
