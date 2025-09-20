@@ -44,7 +44,7 @@ export class NormalisedItem {
   get description(): string | null { return this.raw.description }
   get note(): string | null { return this.raw.note }
   get link(): string | null { return this.raw.link }
-  get skills(): string[] { return this.raw.skills || [] }
+  get skills(): string[] { return [...(this.raw.skills || [])] }
   get start(): ParsedDate { return parsePartialDate(this.raw.startDate) }
   get end(): ParsedDate { return parsePartialDate(this.raw.endDate) }
 
@@ -118,7 +118,7 @@ export class NormalisedDB {
   items(): Query { return new Query(this.allItems) }
   all(): NormalisedItem[] { return this.allItems }
   findById(id: string): NormalisedItem | undefined { return this.indexById.get(id) }
-  skills(): string[] { return normalised.skills }
+  skills(): string[] { return [...normalised.skills] }
 }
 
 export const db = new NormalisedDB()
