@@ -55,6 +55,8 @@ export function Terminal() {
   const [historyPointer, setHistoryPointer] = React.useState<number | null>(null)
   const [theme, setTheme] = React.useState<'dark' | 'light'>('dark')
   const [cwd, setCwd] = React.useState<string>('/home')
+  const inputBarHeight = 44
+  const separatorOffset = 20
 
   React.useEffect(() => {
     inputRef.current?.focus()
@@ -418,12 +420,24 @@ export function Terminal() {
       </CardHeader>
       <CardContent>
         <div className="relative" style={{ height: `${heightPx}px` }}>
-          <div ref={scrollRef} className="space-y-3 overflow-y-auto h-full">
+          <div
+            ref={scrollRef}
+            className="terminal-scroll space-y-3 overflow-y-auto absolute inset-x-0 top-0"
+            style={{ bottom: `${inputBarHeight + separatorOffset}px` }}
+          >
             {history.map((node, idx) => (
               <div key={idx}>{node}</div>
             ))}
+            {firstSuggestion && firstSuggestion !== input ? (
+              <div className="text-xs opacity-60">Suggestion: <span className="text-terminal-green">{firstSuggestion}</span> (Tab to complete)</div>
+            ) : null}
+            <div ref={setCursor} />
+          </div>
+          <div className="absolute inset-x-0" style={{ bottom: `${inputBarHeight}px` }}>
             <Separator />
-            <form onSubmit={onSubmit} className="sticky bottom-0 flex items-center gap-2 bg-terminal/60 pt-2">
+          </div>
+          <div className="absolute inset-x-0 bottom-0" style={{ height: `${inputBarHeight}px` }}>
+            <form onSubmit={onSubmit} className="flex h-full items-center gap-2 bg-terminal/60 px-0">
               <span className="text-terminal-green">$</span>
               <input
                 ref={inputRef}
@@ -435,10 +449,6 @@ export function Terminal() {
                 aria-label="Terminal input"
               />
             </form>
-            {firstSuggestion && firstSuggestion !== input ? (
-              <div className="text-xs opacity-60">Suggestion: <span className="text-terminal-green">{firstSuggestion}</span> (Tab to complete)</div>
-            ) : null}
-            <div ref={setCursor} />
           </div>
           <div
             aria-label="Resize terminal"

@@ -82,4 +82,24 @@ html {
   animation: blink 1.2s step-end infinite;
 }
 
+/* Terminal scrollbars */
+.terminal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,255,156,0.4) rgba(0,255,156,0.08);
+}
+.terminal-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.terminal-scroll::-webkit-scrollbar-track {
+  background: rgba(0,255,156,0.06);
+}
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0,255,156,0.4);
+  border-radius: 8px;
+  border: 2px solid rgba(0,255,156,0.08);
+}
+.terminal-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,255,156,0.6);
+}
+
 
