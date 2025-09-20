@@ -9,6 +9,14 @@ export default function Page() {
   const [mode, setMode] = React.useState<'terminal' | 'normal'>('terminal')
   const [prevMode, setPrevMode] = React.useState<'terminal' | 'normal' | null>(null)
   const [animating, setAnimating] = React.useState(false)
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return
+    const prefersCoarse = window.matchMedia('(pointer: coarse)').matches
+    const smallViewport = window.matchMedia('(max-width: 640px)').matches
+    if (prefersCoarse || smallViewport) {
+      setMode('normal')
+    }
+  }, [])
 
   const switchMode = (next: 'terminal' | 'normal') => {
     if (next === mode) return

@@ -59,7 +59,11 @@ export function Terminal() {
   const separatorOffset = 20
 
   React.useEffect(() => {
-    inputRef.current?.focus()
+    if (typeof window === 'undefined') return
+    const prefersCoarse = window.matchMedia('(pointer: coarse)').matches
+    if (!prefersCoarse) {
+      inputRef.current?.focus()
+    }
   }, [])
 
   React.useEffect(() => {
@@ -452,7 +456,7 @@ export function Terminal() {
           </div>
           <div
             aria-label="Resize terminal"
-            className="pointer-events-auto absolute bottom-1 right-1 h-5 w-5 cursor-move"
+            className="pointer-events-auto absolute bottom-1 right-1 h-5 w-5 cursor-move hidden sm:block"
             onMouseDown={onResizeMouseDown}
           >
             {/* First bar */}
