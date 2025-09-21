@@ -4,6 +4,7 @@ import { NormalView } from './normal/NormalView'
 import { AboutView } from './normal/AboutView'
 import { Terminal } from './terminal/Terminal'
 import { TerminalNav } from './terminal/TerminalNav'
+import { ScrollLock } from './lib/ScrollLock'
 
 import Home from './content/Home'
 import Timeline from './content/Timeline'
@@ -63,8 +64,8 @@ export function Monitor() {
     const handleSelectSection = (key: string) => switchMode(key)
 
     return (
-        <main className="max-h-screen h-screen flex justify-center max-w-7xl mx-auto">
-            <div className={['max-w-6xl w-full my-10 crt-frame h-[calc(100vh-5rem)]', fadePhase === 'flicker-out' ? 'flicker-out' : fadePhase === 'flicker-in' ? 'flicker-in' : ''].join(' ')}>
+        <main className="max-h-screen h-[88vh] flex justify-center max-w-7xl mx-auto sm:px-4 px-2">
+            <div className={['max-w-6xl w-full h-full sm:my-10 crt-frame sm:h-[calc(100vh-5rem)]', fadePhase === 'flicker-out' ? 'flicker-out' : fadePhase === 'flicker-in' ? 'flicker-in' : ''].join(' ')}>
               
               <TerminalNav sections={sections} activeSection={activeSection} onSelectSection={(key) => handleSelectSection(key)} />
 
@@ -74,6 +75,7 @@ export function Monitor() {
                 
               <div className='crt-screen'></div>
             </div>
+            <ScrollLock isLocked={true} />
         </main>
     )
 }

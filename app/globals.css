@@ -125,6 +125,15 @@ html.scroll-lock {
   background: transparent;
 }
 
+/* Hide scrollbars (used for mobile nav reels) */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
 /* Filters trellis animation */
 @keyframes chipIn {
   from { opacity: 0; transform: translateY(6px); }
