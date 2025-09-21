@@ -9,12 +9,14 @@ import Home from './content/Home'
 import Timeline from './content/Timeline'
 import Projects from './content/Projects'
 import CV from './content/CV'
+import Contact from './content/Contact'
 
 
 const sections: { [key: string]: React.ReactNode } = {
   HOME: <Home />,
   PROJECTS: <Projects />,
   CV: <CV />,
+  CONTACT: <Contact />,
   TIMELINE: <Timeline />,
   TERMINAL: <Terminal />
 }
