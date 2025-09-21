@@ -162,24 +162,24 @@ export function TimelineView() {
         </CardContent>
         <CardContent>
           <div className="relative">
-            {/* Vertical line spanning the whole timeline */}
-            <div className="absolute top-0 bottom-0 w-px bg-terminal-green/30" style={{ left: '6rem' }} />
+            {/* Vertical line spanning the whole timeline (hidden on small screens) */}
+            <div className="absolute top-0 bottom-0 w-px bg-terminal-green/30 hidden sm:block" style={{ left: '6rem' }} />
             <div className="space-y-6">
               {items.map((it) => (
-                <div key={it.id} className="grid" style={{ gridTemplateColumns: '6rem 1fr' }}>
+                <div key={it.id} className="grid sm:[grid-template-columns:6rem_1fr]">
                   {/* Date (left column) */}
-                  <div className="text-right pr-3 text-xs opacity-70 leading-6 pt-1">
+                  <div className="text-left sm:text-right sm:pr-3 text-xs opacity-70 leading-6 pt-1 mb-1 sm:mb-0">
                     {it.displayDate}
                   </div>
                   {/* Content (right column) */}
-                  <div className="relative pl-6">
-                    {/* Node dot on the line */}
+                  <div className="relative sm:pl-6">
+                    {/* Node dot on the line (hidden on small screens) */}
                     <span
                       aria-hidden
-                      className="absolute top-2 h-2 w-2 rounded-full bg-terminal-green"
+                      className="hidden sm:block absolute top-2 h-2 w-2 rounded-full bg-terminal-green"
                       style={{ left: 0, transform: 'translateX(-50%)' }}
                     />
-                    <div className="flex items-baseline gap-2">
+                    <div className="flex flex-wrap items-baseline gap-2">
                       <div className="font-semibold">
                         {it.label}
                         {it.institution ? <span className="opacity-80"> — {it.institution}</span> : null}

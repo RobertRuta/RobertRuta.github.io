@@ -10,15 +10,15 @@ export default function Home() {
     const showcased = React.useMemo(() => db.showcased(), [])
     
     return (
-        <div className='w-full grid-rows-3 gap-6'>
+        <div className='w-full grid-rows-3 gap-4 sm:gap-6'>
             <div>
                 <h1 className='text-4xl font-bold'>Home</h1>
                 <h1 className='text-4xl font-bold'>-------------------------------------</h1>
             </div>
             
-            <div className="w-full relative grid grid-cols-[15%_1fr] gap-6 items-start mt-4">
+            <div className="w-full relative grid grid-cols-1 sm:grid-cols-[15%_1fr] gap-4 sm:gap-6 items-start mt-4">
                 {/* Profile Photo Box - 20% width */}
-                <div className="relative h-full w-full aspect-square max-w-xs mx-auto overflow-hidden rounded-sm border border-terminal-green/30 bg-terminal-dim/40 shadow-[0_0_20px_rgba(0,255,156,0.15)]">
+                <div className="relative h-full w-full aspect-square max-w-[12rem] sm:max-w-xs mx-auto overflow-hidden rounded-sm border border-terminal-green/30 bg-terminal-dim/40 shadow-[0_0_20px_rgba(0,255,156,0.15)]">
                     <Image
                     src={'https://github.com/RobertRuta.png?size=400'}
                     alt={'Robert Ruta profile photo'}
@@ -30,7 +30,7 @@ export default function Home() {
                 </div>
 
                 {/* Details Box - Takes remaining space (1fr = 1 fraction of available space) */}
-                <div className="h-full flex flex-col gap-2 p-4 bg-terminal/20 border border-terminal-green/20 rounded-lg">
+                <div className="h-full flex flex-col gap-2 p-3 sm:p-4 bg-terminal/20 border border-terminal-green/20 rounded-lg">
                     <h2 className="text-lg font-semibold text-terminal-green">Robert Ruta</h2>
                     <p className="text-sm opacity-80">Software Engineer | Physics Enthusiast | Avid Snowboarder | CLimber of Plastic Rocks </p>
                     <div className="text-xs opacity-60 mt-2">
@@ -44,7 +44,7 @@ export default function Home() {
                     <p><span className="font-mono">CLEARANCE:</span> Level 3</p> */}
                     </div>
                     <div className="mt-3 text-xs">
-                        <div className="flex flex-wrap gap-x-4 gap-y-1">
+                        <div className="flex flex-wrap gap-x-3 sm:gap-x-4 gap-y-1">
                             <a className="underline decoration-terminal-green/30 underline-offset-4" href={`mailto:${contacts.email}`}>{contacts.email}</a>
                             <span className="opacity-70">{contacts.phone}</span>
                             <a className="underline decoration-terminal-green/30 underline-offset-4" href={contacts.github} target="_blank" rel="noreferrer">GitHub</a>

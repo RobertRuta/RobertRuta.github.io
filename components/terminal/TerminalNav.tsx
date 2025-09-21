@@ -20,10 +20,10 @@ export function TerminalNav({
     <div className="space-y-3">
       {/* Navigation Bar */}
       <div className="rounded-md border border-terminal-green/40 bg-terminal/60 text-terminal-green">
-        <div className="flex items-stretch justify-between px-4 py-2 font-mono select-none" 
+        <div className="flex items-stretch justify-between px-2 sm:px-4 py-2 font-mono select-none"
              style={{ textShadow: '0 0 6px rgba(0,255,156,0.45)' }}>
           {/* Left cluster: indicators + id (static) */}
-          <div className="flex items-center gap-3 pr-4 border-r border-terminal-green/30">
+          <div className="hidden sm:flex items-center gap-3 pr-4 border-r border-terminal-green/30">
             <div className="flex items-center gap-1">
               <span className="h-2.5 w-2.5 rounded-sm bg-terminal-green/30" />
               <span className="h-2.5 w-2.5 rounded-sm bg-terminal-green/60" />
@@ -35,11 +35,11 @@ export function TerminalNav({
 
           {/* Center: bracketed menu (static mapping) */}
           <nav className="flex-1 flex items-center justify-center" role="tablist">
-            <ul className="flex items-center gap-6 text-xs tracking-wide">
+            <ul className="flex items-center gap-4 sm:gap-6 text-[10px] sm:text-xs tracking-wide overflow-x-auto no-scrollbar">
               {keys.map((key, index) => (
                 <li
                   key={key}
-                  className="cursor-pointer transition-all duration-200 opacity-80 hover:opacity-100 hover:underline"
+                  className="whitespace-nowrap cursor-pointer transition-all duration-200 opacity-80 hover:opacity-100 hover:underline"
                   onClick={() => onSelectSection?.(key, index)}
                   role="tab"
                 >
@@ -50,7 +50,7 @@ export function TerminalNav({
           </nav>
 
           {/* Right cluster: faux meters (static) */}
-          <div className="flex items-center gap-4 pl-4 border-l border-terminal-green/30 text-[10px]">
+          <div className="hidden sm:flex items-center gap-4 pl-4 border-l border-terminal-green/30 text-[10px]">
             <div className="flex items-center gap-2">
               <span className="opacity-70">SIG</span>
               <div className="flex items-end gap-0.5">

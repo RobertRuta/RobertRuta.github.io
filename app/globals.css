@@ -290,6 +290,13 @@ html.scroll-lock {
   z-index: 9;
 }
 
+@media (max-width: 640px) {
+  .crt-frame {
+    border-radius: 20px;
+    padding: 10px;
+  }
+}
+
 .crt-screen {
   content: '';
   position: absolute;
@@ -330,6 +337,12 @@ html.scroll-lock {
   position: relative;
   z-index: 3;
   padding: 24px;
+}
+
+@media (max-width: 640px) {
+  .crt-frame > .crt-content {
+    padding: 12px;
+  }
 }
 
 

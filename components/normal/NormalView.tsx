@@ -86,10 +86,10 @@ export function NormalView() {
         </CardContent>
       </Card>
 
-      <div className='flex flex-row gap-3 w-full'>
+      <div className='flex flex-col sm:flex-row gap-3 w-full'>
         
         {/* Projects */}
-        <Card className='w-[50%] min-w-[30%]'>
+        <Card className='sm:w-[50%] w-full min-w-0'>
           <CardHeader>
             <CardTitle>Projects</CardTitle>
           </CardHeader>
@@ -101,13 +101,12 @@ export function NormalView() {
             defaultValue="example-proj"
             >
               {projects.map((p) => (
-                <AccordionItem className='' value={p.id}>
+                  <AccordionItem className='' value={p.id}>
                   <AccordionTrigger className='w-full flex justify-center hover:bg-terminal-green/10 rounded py-1'>{p.label}</AccordionTrigger>
                   <AccordionContent className=''>
-                    <div className='flex bg-terminal-dim/30 border border-terminal-green/30 p-3 space-x-2'>
+                    <div className='flex flex-wrap bg-terminal-dim/30 border border-terminal-green/30 p-3 gap-2'>
                       {p.skills.map((tag) => (
-                        <Badge className='text-[11px] px-2 py-1 rounded bg-border-red'>{tag}</Badge>
-                        // <Button>{tag}</Button>
+                        <Badge key={tag} className='text-[11px] px-2 py-1 rounded bg-border-red'>{tag}</Badge>
                       ))}
                     </div>
                   </AccordionContent>
