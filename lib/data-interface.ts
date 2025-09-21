@@ -1,4 +1,5 @@
 import { normalised } from '@/generated/normalised_data'
+import { highlightedIds } from '@/generated/highlighted'
 
 // Derive precise item type from the generated data to avoid union mismatches
 export type RawItem = typeof normalised.items[number]
@@ -50,6 +51,8 @@ export class NormalisedItem {
 
   get isOngoing(): boolean { return !this.raw.endDate }
   get displayDate(): string { return this.start.isoLabel }
+
+  get isShowcased(): boolean { return showcasedIdSet.has(this.id) }
 
   hasSkill(skill: string): boolean { return this.skills.includes(skill) }
 
@@ -104,6 +107,8 @@ export class Query {
   }
 
   toArray(): NormalisedItem[] { return this.items }
+
+  showcased(): Query { return this.where((it) => it.isShowcased) }
 }
 
 export class NormalisedDB {
@@ -119,8 +124,14 @@ export class NormalisedDB {
   all(): NormalisedItem[] { return this.allItems }
   findById(id: string): NormalisedItem | undefined { return this.indexById.get(id) }
   skills(): string[] { return [...normalised.skills] }
+
+  showcased(): NormalisedItem[] {
+    return this.items().showcased().sortByStart(true).toArray()
+  }
 }
 
 export const db = new NormalisedDB()
+
+const showcasedIdSet: ReadonlySet<string> = new Set<string>(highlightedIds as readonly string[])
 
 

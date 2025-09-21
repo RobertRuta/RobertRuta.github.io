@@ -5,24 +5,52 @@ import { AboutView } from './normal/AboutView'
 import { Terminal } from './terminal/Terminal'
 import { TerminalNav } from './terminal/TerminalNav'
 
+import Home from './content/Home'
+import Timeline from './content/Timeline'
+import Projects from './content/Projects'
+import CV from './content/CV'
+
+
+const sections: { [key: string]: React.ReactNode } = {
+  HOME: <Home />,
+  PROJECTS: <Projects />,
+  CV: <CV />,
+  TIMELINE: <Timeline />,
+  TERMINAL: <Terminal />
+}
+
 
 export function Monitor() {
-    const [displayMode, setDisplayMode] = React.useState<'terminal' | 'about'>('terminal')
+    const [activeSection, setActiveSection] = React.useState<string>(() => {
+      const keys = Object.keys(sections)
+      return keys[0]
+    })
     const [fadePhase, setFadePhase] = React.useState<'flicker-out' | 'flicker-in' | null>(null)
     const [animating, setAnimating] = React.useState(false)
 
-    const switchMode = (next: 'terminal' | 'about') => {
-      if ((next === 'terminal' && displayMode === 'terminal') || (next === 'about' && displayMode === 'about')) return
+    const switchMode = (nextKey: string) => {
+      // Early return
+      if (nextKey === activeSection) return
+    
       setAnimating(true)
       setFadePhase('flicker-out')
       const htmlEl = document.documentElement
       htmlEl.classList.add('scroll-lock')
-      window.clearTimeout((switchMode as any)._t)
-      window.clearTimeout((switchMode as any)._half)
+      
+      // Clear existing timeouts (cleaner approach)
+      if ((switchMode as any)._t) {
+        window.clearTimeout((switchMode as any)._t)
+      }
+      if ((switchMode as any)._half) {
+        window.clearTimeout((switchMode as any)._half)
+      }
+      
+      // Store timeout IDs on the function itself (unconventional but works)
       ;(switchMode as any)._half = window.setTimeout(() => {
-        setDisplayMode(next)
+        setActiveSection(nextKey)
         setFadePhase('flicker-in')
       }, 200)
+      
       ;(switchMode as any)._t = window.setTimeout(() => {
         setAnimating(false)
         htmlEl.classList.remove('scroll-lock')
@@ -30,17 +58,16 @@ export function Monitor() {
       }, 400)
     }
 
-    const handleSelectSection = (section: 'ABOUT' | 'SKILLS' | 'PROJECTS' | 'EXPERIENCE' | 'TERMINAL') => {
-      if (section === 'ABOUT') { switchMode('about'); return }
-      if (section === 'TERMINAL') { switchMode('terminal'); return }
-    }
+    const handleSelectSection = (key: string) => switchMode(key)
 
     return (
         <main className="max-h-screen h-screen flex justify-center max-w-7xl mx-auto">
-            <div className='max-w-6xl w-full my-10 crt-frame h-[calc(100vh-5rem)]'>
-              <TerminalNav activeSection={displayMode === 'about' ? 'ABOUT' : 'TERMINAL'} onSelectSection={handleSelectSection} />
-              <div className={['crt-content h-[calc(100%-3rem)] overflow-y-auto [-webkit-overflow-scrolling:touch] terminal-scroll', fadePhase === 'flicker-out' ? 'flicker-out' : fadePhase === 'flicker-in' ? 'flicker-in' : ''].join(' ')}>
-                {displayMode === 'about' ? <AboutView /> : <Terminal />}
+            <div className={['max-w-6xl w-full my-10 crt-frame h-[calc(100vh-5rem)]', fadePhase === 'flicker-out' ? 'flicker-out' : fadePhase === 'flicker-in' ? 'flicker-in' : ''].join(' ')}>
+              
+              <TerminalNav sections={sections} activeSection={activeSection} onSelectSection={(key) => handleSelectSection(key)} />
+
+              <div className='crt-content h-[calc(100%-3rem)] overflow-y-auto [-webkit-overflow-scrolling:touch] terminal-scroll'>
+                {sections[activeSection] || null}
               </div>
                 
               <div className='crt-screen'></div>
