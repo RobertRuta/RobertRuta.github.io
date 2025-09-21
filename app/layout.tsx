@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="dark terminal-theme" suppressHydrationWarning>
       <body className={`${mono.variable} font-mono bg-terminal text-terminal-green touch-manipulation`}>{children}</body>
     </html>
   )

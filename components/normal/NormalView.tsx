@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { db } from '@/lib/data-interface'
 import { contacts } from '@/lib/profile'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 function formatPeriod(it: ReturnType<typeof db.findById> extends infer T ? (T extends undefined ? never : T) : never): string {
   const start = it.start.isoLabel
@@ -85,31 +86,38 @@ export function NormalView() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Highlighted Projects</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {projects.map((p) => (
-            <div key={p.id} className="space-y-2">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
-                {p.link ? (
-                  <a className="underline decoration-terminal-green/30 underline-offset-4" href={p.link} target="_blank" rel="noreferrer">
-                    {p.label}
-                  </a>
-                ) : (
-                  <span>{p.label}</span>
-                )}
-                {p.skills.length ? (
-                  <ExpandableTags tags={p.skills} noPad className="justify-start sm:justify-end" />
-                ) : null}
-              </div>
-              {p.description ? <p className="opacity-80 text-sm">{p.description}</p> : null}
-            </div>
-          ))}
-        </CardContent>
-      </Card>
-
+      <div className='flex flex-row gap-3 w-full'>
+        
+        {/* Projects */}
+        <Card className='w-[50%] min-w-[30%]'>
+          <CardHeader>
+            <CardTitle>Projects</CardTitle>
+          </CardHeader>
+          <CardContent className="w-full">
+            <Accordion
+            type="single"
+            collapsible
+            className="w-full space-y-0"
+            defaultValue="example-proj"
+            >
+              {projects.map((p) => (
+                <AccordionItem className='' value={p.id}>
+                  <AccordionTrigger className='w-full flex justify-center hover:bg-terminal-green/10 rounded py-1'>{p.label}</AccordionTrigger>
+                  <AccordionContent className=''>
+                    <div className='flex bg-terminal-dim/30 border border-terminal-green/30 p-3 space-x-2'>
+                      {p.skills.map((tag) => (
+                        <Badge className='text-[11px] px-2 py-1 rounded bg-border-red'>{tag}</Badge>
+                        // <Button>{tag}</Button>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+            ))}
+            </Accordion>
+          </CardContent>
+        </Card>
+      
+      {/* Experience */}
       <Card>
         <CardHeader>
           <CardTitle>Experience</CardTitle>
@@ -134,6 +142,7 @@ export function NormalView() {
           ))}
         </CardContent>
       </Card>
+    </div>
 
       <Card>
         <CardHeader>

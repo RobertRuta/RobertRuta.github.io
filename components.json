@@ -6,13 +6,17 @@
   "tailwind": {
     "config": "tailwind.config.ts",
     "css": "app/globals.css",
-    "baseColor": "zinc",
-    "cssVariables": true
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
   },
+  "iconLibrary": "lucide",
   "aliases": {
     "components": "@/components",
-    "utils": "@/lib/utils"
-  }
+    "utils": "@/components/lib/utils",
+    "ui": "@/components/ui/shadcn",
+    "lib": "@/components/lib",
+    "hooks": "@/components/hooks"
+  },
+  "registries": {}
 }
-
-

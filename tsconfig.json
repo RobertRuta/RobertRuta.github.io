@@ -46,7 +46,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "scripts/generate-color-theme.cjs"  ],
   "exclude": [
     "node_modules"
   ]

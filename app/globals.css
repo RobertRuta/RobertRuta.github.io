@@ -88,23 +88,41 @@ html.scroll-lock {
 }
 
 /* Terminal scrollbars */
-.terminal-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,255,156,0.4) rgba(0,255,156,0.08);
+.terminal-scroll::-webkit-scrollbar-button {
+  display: none; /* Remove arrow buttons entirely */
 }
+
 .terminal-scroll::-webkit-scrollbar {
   width: 10px;
+  height: 10px; /* For horizontal scrollbars */
 }
+
 .terminal-scroll::-webkit-scrollbar-track {
-  background: rgba(0,255,156,0.06);
+  background: #0f2018;
+  border-radius: 8px; /* Round the track corners */
+  /* Visually inset the scrollbar from the right edge */
+  border-right: 4px solid transparent;
+  background-clip: content-box;
 }
+
 .terminal-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(0,255,156,0.4);
+  background-color: #00ff9c;
   border-radius: 8px;
-  border: 2px solid rgba(0,255,156,0.08);
+  /* Simulated border without consuming layout space */
+  box-shadow: inset 0 0 0 2px #0f2018;
+  /* Keep the thumb aligned with the inset track */
+  border-right: 4px solid transparent;
+  background-clip: padding-box;
+  min-height: 20px; /* Ensure thumb is large enough without buttons */
 }
+
 .terminal-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0,255,156,0.6);
+  background-color: #33ffb1;
+}
+
+/* Ensure track pieces don't show gap where buttons were */
+.terminal-scroll::-webkit-scrollbar-track-piece {
+  background: transparent;
 }
 
 /* Filters trellis animation */
@@ -137,24 +155,30 @@ html.scroll-lock {
 
 /* Flicker transitions */
 .flicker-out {
-  animation: flickerOut 400ms ease-in-out both;
+  animation: flickerOut 200ms ease-in-out both;
 }
 
 .flicker-in {
-  animation: flickerIn 400ms ease-in-out both;
+  animation: flickerIn 200ms ease-in-out both;
 }
 
 @keyframes flickerOut {
-  0% { opacity: 1; }
-  35% { opacity: 0.75; }
-  70% { opacity: 0.45; }
+  0% { opacity: 0.6; }
+  20% { opacity: 0.8; }
+  40% { opacity: 0.4; }
+  60% { opacity: 0.6; }
+  80% { opacity: 0.2; }
+  90% { opacity: 0.4; }
   100% { opacity: 0; }
 }
 
 @keyframes flickerIn {
-  0% { opacity: 0; }
-  30% { opacity: 0.30; }
-  65% { opacity: 0.65; }
+  0% { opacity: 0.4; }
+  20% { opacity: 0.2; }
+  40% { opacity: 0.6; }
+  60% { opacity: 0.4; }
+  80% { opacity: 0.8; }
+  90% { opacity: 0.6; }
   100% { opacity: 1; }
 }
 
@@ -251,6 +275,62 @@ html.scroll-lock {
 }
 
 
+.crt-frame {
+  position: relative;
+  background: #0f2018;
+  border-radius: 30px; /* Screen radius (total outer: 32px - 12px padding) */
+  box-shadow: 
+    /* Screen glass effect */
+    inset 0 0 20px rgba(0,0,0,0.9),
+    inset 0 0 40px rgba(0,0,0,0.8),
+    inset 0 0 60px rgba(0,0,0,0.7);
+  
+  overflow: hidden;
+  padding: 18px;
+  z-index: 9;
+}
+
+.crt-screen {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0,0,0,0.3) 70%,
+    rgba(0,0,0,0.6) 100%
+  );
+  border-radius: 16px; /* Adjusted for inner padding */
+  pointer-events: none;
+  z-index: 10;
+}
+
+.crt-screen::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.02) 30%,
+    transparent 100%
+  );
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* Ensure content fits properly */
+.crt-frame > .crt-content {
+  position: relative;
+  z-index: 3;
+  padding: 24px;
+}
 
 
 
