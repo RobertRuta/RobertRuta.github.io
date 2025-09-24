@@ -1,7 +1,5 @@
 'use client'
 import * as React from 'react'
-import { NormalView } from './normal/NormalView'
-import { AboutView } from './normal/AboutView'
 import { Terminal } from './terminal/Terminal'
 import { TerminalNav } from './terminal/TerminalNav'
 import { ScrollLock } from './lib/ScrollLock'
@@ -79,51 +77,3 @@ export function Monitor() {
         </main>
     )
 }
-
-// {/* <div className="w-full h-screen space-y-4">
-// <div className="flex items-center justify-center">
-
-// {/* View Mode Switcher */}
-// <div className="inline-flex rounded-md border border-terminal-green/20 overflow-hidden">
-//     <Button
-//     variant={mode === 'timeline' ? 'default' : 'secondary'}
-//     size="sm"
-//     onClick={() => switchMode('timeline')}
-//     className="rounded-none"
-//     >
-//     Timeline
-//     </Button>
-//     <Button
-//     variant={mode === 'normal' ? 'default' : 'secondary'}
-//     size="sm"
-//     onClick={() => switchMode('normal')}
-//     className="rounded-none"
-//     >
-//     Normal
-//     </Button>
-//     <Button
-//     variant={mode === 'terminal' ? 'default' : 'secondary'}
-//     size="sm"
-//     onClick={() => switchMode('terminal')}
-//     className="rounded-none"
-//     >
-//     Terminal
-//     </Button>
-// </div>
-// </div>
-
-// {/* Main Content */}
-// <div className="relative bg-terminal-dim/10 border border-terminal-green/30 rounded-lg">
-// <div
-//     className={['absolute inset-0 p-6', fadePhase === 'flicker-out' ? 'flicker-out' : fadePhase === 'flicker-in' ? 'flicker-in' : ''].join(' ')}
-// >
-//     {displayMode === 'timeline' ? (
-//     <TimelineView />
-//     ) : displayMode === 'terminal' ? (
-//     <Terminal />
-//     ) : (
-//     <NormalView />
-//     )}
-// </div>
-// </div>
-// </div> */}
