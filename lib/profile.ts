@@ -11,9 +11,9 @@ export const skills = [
 
 export const contacts = {
   phone: '+971-50-298-6194',
-  email: 'work-robert@ruta.co.uk',
+  email: 'work.robert@ruta.co.uk',
   github: 'https://github.com/RobertRuta',
-  linkedin: 'https://www.linkedin.com/in/robert-ruta',
+  linkedin: 'https://www.linkedin.com/in/robertruta',
   site: 'https://robert.ruta.co.uk',
   location: 'Abu Dhabi',
 }
