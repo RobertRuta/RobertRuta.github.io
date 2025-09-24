@@ -1,19 +1,23 @@
 import { normalised } from '@/generated/normalised_data'
 import { highlightedIds } from '@/generated/highlighted'
 
-// Derive precise item type from the generated data to avoid union mismatches
+
+// Define the datatype of an unprocessed experience item
 export type RawItem = typeof normalised.items[number]
+
 
 export type YearMonth = {
   year: number
   month: number | null // null when month is unknown
 }
 
+
 export type ParsedDate = {
   sortValue: number // milliseconds since epoch for sorting; 0 when unknown
   isoLabel: string // 'YYYY' or 'YYYY-MM' or '' when unknown
   yearMonth: YearMonth | null
 }
+
 
 export function parsePartialDate(input: string | null): ParsedDate {
   if (!input) return { sortValue: 0, isoLabel: '', yearMonth: null }
@@ -35,7 +39,8 @@ export function parsePartialDate(input: string | null): ParsedDate {
   return { sortValue: isNaN(t) ? 0 : t, isoLabel: input, yearMonth: null }
 }
 
-export class NormalisedItem {
+
+export class ExperienceItem {
   constructor(private readonly raw: RawItem) {}
 
   get id(): string { return this.raw.id }
@@ -63,11 +68,12 @@ export class NormalisedItem {
   toJSON(): RawItem { return this.raw }
 }
 
-export class Query {
-  private readonly items: NormalisedItem[]
-  constructor(items: NormalisedItem[]) { this.items = items }
 
-  where(predicate: (item: NormalisedItem) => boolean): Query {
+export class Query {
+  private readonly items: ExperienceItem[]
+  constructor(items: ExperienceItem[]) { this.items = items }
+
+  where(predicate: (item: ExperienceItem) => boolean): Query {
     return new Query(this.items.filter(predicate))
   }
 
@@ -94,8 +100,8 @@ export class Query {
 
   limit(n: number): Query { return new Query(this.items.slice(0, n)) }
 
-  groupByYear(): Map<number, NormalisedItem[]> {
-    const map = new Map<number, NormalisedItem[]>()
+  groupByYear(): Map<number, ExperienceItem[]> {
+    const map = new Map<number, ExperienceItem[]>()
     for (const it of this.items) {
       const y = it.start.yearMonth?.year
       if (!y) continue
@@ -106,32 +112,33 @@ export class Query {
     return map
   }
 
-  toArray(): NormalisedItem[] { return this.items }
+  toArray(): ExperienceItem[] { return this.items }
 
   showcased(): Query { return this.where((it) => it.isShowcased) }
 }
 
-export class NormalisedDB {
-  private readonly indexById: Map<string, NormalisedItem>
-  private readonly allItems: NormalisedItem[]
+
+export class ExperienceDB {
+  private readonly indexById: Map<string, ExperienceItem>
+  private readonly allItems: ExperienceItem[]
 
   constructor() {
-    this.allItems = normalised.items.map((r) => new NormalisedItem(r))
+    this.allItems = normalised.items.map((r) => new ExperienceItem(r))
     this.indexById = new Map(this.allItems.map((i) => [i.id, i]))
   }
 
   items(): Query { return new Query(this.allItems) }
-  all(): NormalisedItem[] { return this.allItems }
-  findById(id: string): NormalisedItem | undefined { return this.indexById.get(id) }
+  all(): ExperienceItem[] { return this.allItems }
+  findById(id: string): ExperienceItem | undefined { return this.indexById.get(id) }
   skills(): string[] { return [...normalised.skills] }
 
-  showcased(): NormalisedItem[] {
+  showcased(): ExperienceItem[] {
     return this.items().showcased().sortByStart(true).toArray()
   }
 }
 
-export const db = new NormalisedDB()
+
+export const db = new ExperienceDB()
+
 
 const showcasedIdSet: ReadonlySet<string> = new Set<string>(highlightedIds as readonly string[])
-
-
