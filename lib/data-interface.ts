@@ -1,4 +1,4 @@
-import { normalised } from '@/generated/normalised_data'
+import { normalised } from '@/generated/raw-experience-data'
 import { highlightedIds } from '@/generated/highlighted'
 
 

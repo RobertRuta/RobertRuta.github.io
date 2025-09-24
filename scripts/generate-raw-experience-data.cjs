@@ -43,7 +43,7 @@ mkdirSync(outDir, { recursive: true });
 const header = "// AUTO-GENERATED FILE. Do not edit by hand.\n\nexport type ItemType = 'work'|'education'|'project'|'language'\nexport type Item = { id: string; label: string; startDate: string|null; endDate: string|null; type: ItemType|null; institution: string|null; description: string|null; note: string|null; link: string|null; skills: string[] }\n\n";
 const body = `export const normalised = ${JSON.stringify({ items, skills }, null, 2)} as const\n`;
 
-writeFileSync(path.join(outDir, 'normalised_data.ts'), header + body);
-console.log('Generated: generated/normalised_data.ts');
+writeFileSync(path.join(outDir, 'raw-experience-data.ts'), header + body);
+console.log('Generated: generated/raw-experience-data.ts');
 
 

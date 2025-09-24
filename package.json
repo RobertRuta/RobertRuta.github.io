@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "description": "Robert Ruta personal site - terminal themed (Next.js + Tailwind + shadcn/ui)",
   "scripts": {
-    "predev": "node scripts/run-normaliser.cjs",
+    "predev": "node scripts/run-utility.cjs",
     "dev": "next dev --turbo",
-    "prebuild": "node scripts/run-normaliser.cjs",
+    "prebuild": "node scripts/run-utility.cjs",
     "build": "next build",
     "start": "next start",
     "lint": "echo 'No linter configured'",
