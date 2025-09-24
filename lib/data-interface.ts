@@ -1,5 +1,5 @@
-import { normalised } from '@/generated/raw-experience-data'
-import { highlightedIds } from '@/generated/highlighted'
+import { normalised } from '@/data/generated/raw-experience-data'
+import { highlightedIds } from '@/data/generated/highlighted'
 
 
 // Define the datatype of an unprocessed experience item

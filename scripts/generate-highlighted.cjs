@@ -3,8 +3,8 @@ const fs = require('fs')
 const path = require('path')
 
 function main() {
-  const root = path.resolve(__dirname, '..')
-  const srcFile = path.join(root, 'data', 'highlighted_experiences.txt')
+const root = path.join(process.cwd(), 'data');
+  const srcFile = path.join(root, 'highlighted_experiences.txt')
   const outDir = path.join(root, 'generated')
   const outFile = path.join(outDir, 'highlighted.ts')
 

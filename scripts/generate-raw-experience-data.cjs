@@ -3,10 +3,9 @@ const { readFileSync, writeFileSync, mkdirSync } = require('fs');
 const path = require('node:path');
 const { parse } = require('csv-parse/sync');
 
-const root = process.cwd();
-const csvPath = path.join(root, 'data/experience_table.csv');
-const skillsMapPath = path.join(root, 'data/experience_skills.json');
-// unique skills will be derived from mapping values; no separate file needed
+const root = path.join(process.cwd(), 'data');
+const csvPath = path.join(root, 'experience_table.csv');
+const skillsMapPath = path.join(root, 'experience_skills.json');
 
 const rows = parse(readFileSync(csvPath, 'utf8'), { columns: true, skip_empty_lines: true });
 const skillsMap = JSON.parse(readFileSync(skillsMapPath, 'utf8'));
