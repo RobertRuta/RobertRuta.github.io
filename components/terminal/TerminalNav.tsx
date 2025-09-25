@@ -1,9 +1,10 @@
 'use client'
 
 import * as React from 'react'
+import { MainViewTag } from '../Monitor'
 
 
-type OnSelect = (key: string, index: number) => void
+type OnSelect = (key: MainViewTag, index: number) => void
 
 export function TerminalNav({
   sections,
@@ -15,14 +16,14 @@ export function TerminalNav({
   onSelectSection?: OnSelect
 }) {
 
-  const keys = React.useMemo(() => Object.keys(sections), [sections])
+  const keys = React.useMemo(() => Object.keys(sections), [sections]) as MainViewTag[];
   const listRef = React.useRef<HTMLUListElement | null>(null)
   const itemRefs = React.useRef<(HTMLLIElement | null)[]>([])
   const scrollIdle = React.useRef<number | null>(null)
 
   const activeIndex = React.useMemo(() => {
     if (typeof activeSection === 'number') return Math.max(0, Math.min(keys.length - 1, activeSection))
-    if (typeof activeSection === 'string') return Math.max(0, keys.indexOf(activeSection))
+    if (typeof activeSection === 'string') return Math.max(0, keys.indexOf(activeSection as MainViewTag))
     return 0
   }, [activeSection, keys])
 
@@ -64,7 +65,7 @@ export function TerminalNav({
           bestIdx = i
         }
       }
-      const key = keys[bestIdx]
+      const key = keys[bestIdx] as MainViewTag
       onSelectSection?.(key, bestIdx)
     }, 120)
   }

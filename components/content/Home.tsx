@@ -3,9 +3,12 @@ import * as React from 'react'
 import Image from 'next/image'
 import { db } from '@/lib/data-interface'
 import { contacts } from '@/lib/profile'
+import { ExperiencePopup } from '../ui/experience-popup'
+import { ExperienceTrigger } from '../ui/experience-page'
+import { ViewProps, ViewTag } from '../Monitor'
 
 
-export default function Home() {
+export default function Home({ onChangeView, onExperienceOpen, onExperienceClose }: ViewProps) {
 
     const showcased = React.useMemo(() => db.showcased(), [])
     
@@ -56,31 +59,34 @@ export default function Home() {
                 </div>
             </div>
 
+            {/* <ExperiencePopup experienceItem={showcased[0]}/> */}
+
             {/* Showcase */}
             <div className='w-full h-full flex flex-col border border-terminal-green/10 mt-6 justify-center items-center'>
                 <div className='flex flex-col items-center justify-center w-full'>
                     <h1 className='flex text-4xl font-bold p-3'>Recent Highlights</h1>
                     <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-4 px-4 pb-6'>
                         {showcased.map((it) => (
-                            <div key={it.id} className='flex flex-col gap-1 p-4 rounded-md border border-terminal-green/20 bg-terminal/10'>
-                                <div className='flex items-baseline gap-2'>
-                                    <h2 className='text-xl font-semibold'>{it.label}</h2>
-                                    {it.institution ? (
-                                        <span className='text-xs opacity-70'>— {it.institution}</span>
-                                    ) : null}
-                                </div>
-                                <div className='text-xs opacity-60'>{it.displayDate}{it.type ? ` · ${it.type}` : ''}</div>
-                                {it.description ? (
-                                    <p className='text-sm opacity-80 mt-1'>{it.description}</p>
-                                ) : it.note ? (
-                                    <p className='text-sm opacity-80 mt-1'>{it.note}</p>
-                                ) : null}
-                                {it.link ? (
-                                    <a className='text-xs underline decoration-terminal-green/30 underline-offset-4 mt-2 w-fit' href={it.link} target='_blank' rel='noreferrer'>
-                                        {it.link}
-                                    </a>
-                                ) : null}
-                            </div>
+                            <ExperienceTrigger experienceItem={it} onOpen={ onExperienceOpen }/>
+                            // <div key={it.id} className='flex flex-col gap-1 p-4 rounded-md border border-terminal-green/20 bg-terminal/10'>
+                            //     <div className='flex items-baseline gap-2'>
+                            //         <h2 className='text-xl font-semibold'>{it.label}</h2>
+                            //         {it.institution ? (
+                            //             <span className='text-xs opacity-70'>— {it.institution}</span>
+                            //         ) : null}
+                            //     </div>
+                            //     <div className='text-xs opacity-60'>{it.displayDate}{it.type ? ` · ${it.type}` : ''}</div>
+                            //     {it.description ? (
+                            //         <p className='text-sm opacity-80 mt-1'>{it.description}</p>
+                            //     ) : it.note ? (
+                            //         <p className='text-sm opacity-80 mt-1'>{it.note}</p>
+                            //     ) : null}
+                            //     {it.link ? (
+                            //         <a className='text-xs underline decoration-terminal-green/30 underline-offset-4 mt-2 w-fit' href={it.link} target='_blank' rel='noreferrer'>
+                            //             {it.link}
+                            //         </a>
+                            //     ) : null}
+                            // </div>
                         ))}
                     </div>
                 </div>

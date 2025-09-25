@@ -1,8 +1,10 @@
 'use client'
 import * as React from 'react'
 import { contacts, education, experience, skills, about } from '@/lib/profile'
+import { ViewProps, ViewTag } from '../Monitor';
 
-export default function CV() {
+
+export default function CV({ onChangeView, onExperienceOpen, onExperienceClose }: ViewProps) {
   return (
     <div className='space-y-6'>
       <header>

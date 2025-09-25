@@ -7,7 +7,12 @@ import { db } from '@/lib/data-interface'
 
 const INCLUDED_TYPES = new Set(['work', 'education', 'project', 'notable_work'])
 
-export function TimelineView() {
+
+type SectionProps = {
+  onChangeView: (section: string) => void;
+};
+
+export function TimelineView({ onChangeView }: SectionProps) {
   const baseItems = React.useMemo(() => {
     return db
       .items()

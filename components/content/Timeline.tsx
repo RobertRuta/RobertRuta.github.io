@@ -4,10 +4,12 @@ import * as React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { db } from '@/lib/data-interface'
+import { ViewProps, ViewTag } from '../Monitor'
 
 const INCLUDED_TYPES = new Set(['work', 'education', 'project', 'notable_work'])
 
-export function Timeline() {
+
+export function Timeline({ onChangeView, onExperienceOpen, onExperienceClose }: ViewProps) {
   const baseItems = React.useMemo(() => {
     return db
       .items()

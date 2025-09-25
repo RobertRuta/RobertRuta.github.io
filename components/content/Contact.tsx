@@ -1,8 +1,10 @@
 'use client'
 import * as React from 'react'
 import { contacts } from '@/lib/profile'
+import { ViewProps, ViewTag } from '../Monitor';
 
-export default function Contact() {
+
+export default function Contact({ onChangeView, onExperienceOpen, onExperienceClose }: ViewProps) {
   return (
     <div className='space-y-4'>
       <div>

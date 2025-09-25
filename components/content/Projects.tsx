@@ -1,10 +1,12 @@
 'use client'
 import * as React from 'react'
 import { db } from '@/lib/data-interface'
+import { ViewProps, ViewTag } from '../Monitor';
 
 const PROJECT_TYPES = new Set(['project', 'notable_work'])
 
-export default function Projects() {
+
+export default function Projects({ onChangeView, onExperienceOpen, onExperienceClose }: ViewProps) {
   const items = React.useMemo(() => {
     return db
       .items()

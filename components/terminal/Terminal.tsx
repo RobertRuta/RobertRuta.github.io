@@ -36,7 +36,11 @@ function resolvePath(path: string, cwd: string): string {
   return '/' + stack.join('/')
 }
 
-export function Terminal() {
+type SectionProps = {
+  onChangeView: (section: string) => void;
+};
+
+export function Terminal({ onChangeView }: SectionProps) {
   const [history, setHistory] = React.useState<React.ReactNode[]>([<Intro key="intro" />])
   const [input, setInput] = React.useState('help')
   const [cursor, setCursor] = React.useState<HTMLDivElement | null>(null)
