@@ -3,6 +3,7 @@ import * as React from 'react'
 import { ExperienceItem } from '@/lib/data-interface'
 
 import { Badge } from './badge'
+import clsx from 'clsx'
 
 
 interface ExperiencePageProps {
@@ -13,12 +14,20 @@ interface ExperiencePageProps {
 interface ExperienceTriggerProps {
   experienceItem: ExperienceItem;
   onOpen: (item: ExperienceItem) => void;
+  className?: string;
 }
 
-export function ExperienceTrigger({ experienceItem, onOpen }: ExperienceTriggerProps) {
+export function ExperienceTrigger({
+  experienceItem,
+  onOpen,
+  className,
+}: ExperienceTriggerProps) {
   return (
     <div
-      className="cursor-pointer hover:text-terminal-green/60"
+      className={clsx(
+        "cursor-pointer hover:text-terminal-green/60",
+        className
+      )}
       onClick={() => onOpen(experienceItem)}
     >
       {experienceItem.label}
