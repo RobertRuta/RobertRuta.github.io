@@ -27,17 +27,16 @@ export type ViewProps = {
 export function Monitor()
 {    
     const [currentView, setCurrentView] = React.useState<ViewTag>('HOME')
+    const [prevView, setPrevView] = React.useState<ViewTag | null>(null)
     const [activeExperience, setActiveExperience] = React.useState<ExperienceItem | null>(null);
     const [transitionState, setTransitionState] = React.useState<boolean>(false);
-
-    let prevView: ViewTag = 'HOME';
 
     const handleViewChange = (nextView: ViewTag, ) => {
       if (nextView === currentView){
         return;
       }
 
-      prevView = currentView
+      setPrevView(currentView)
 
       setAnimating(true)
       setFadePhase('flicker-out')
@@ -86,8 +85,6 @@ export function Monitor()
 
     const [animating, setAnimating] = React.useState(false)
 
-    
-
     return (
         <main className="max-h-screen h-[88vh] flex justify-center max-w-7xl mx-auto sm:px-4 px-2">
             <div className={['max-w-6xl w-full h-full sm:my-10 crt-frame sm:h-[calc(100vh-5rem)]', fadePhase === 'flicker-out' ? 'flicker-out' : fadePhase === 'flicker-in' ? 'flicker-in' : ''].join(' ')}>
@@ -95,6 +92,7 @@ export function Monitor()
               <TerminalNav sections={viewComponents} activeSection={currentView} onSelectSection={(key: MainViewTag) => handleViewChange(key)} />
 
               <div className='crt-content h-[calc(100%-3rem)] overflow-y-auto [-webkit-overflow-scrolling:touch] terminal-scroll'>
+                { prevView }
                 { currentView === 'EXPERIENCE' ? <ExperiencePage experienceItem={activeExperience!} onExperienceClose={handleExperienceClose} /> : (viewComponents[currentView as MainViewTag] || null) }
               </div>
                 

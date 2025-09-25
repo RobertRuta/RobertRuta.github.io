@@ -2,6 +2,7 @@
 import * as React from 'react'
 import { db } from '@/lib/data-interface'
 import { ViewProps, ViewTag } from '../Monitor';
+import { ExperienceTrigger } from '../ui/experience-page';
 
 const PROJECT_TYPES = new Set(['project', 'notable_work'])
 
@@ -26,7 +27,8 @@ export default function Projects({ onChangeView, onExperienceOpen, onExperienceC
         {items.map((it) => (
           <div key={it.id} className='p-4 rounded-md border border-terminal-green/20 bg-terminal/10'>
             <div className='flex items-baseline gap-2'>
-              <div className='font-semibold'>{it.label}</div>
+              <ExperienceTrigger experienceItem={it} onOpen={onExperienceOpen}/>
+              {/* <div className='font-semibold'>{it.label}</div> */}
               {it.institution ? <span className='text-xs opacity-70'>— {it.institution}</span> : null}
             </div>
             <div className='text-xs opacity-60'>{it.displayDate}{it.type ? ` · ${it.type}` : ''}</div>
