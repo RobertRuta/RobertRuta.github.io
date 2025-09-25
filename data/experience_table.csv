@@ -12,12 +12,12 @@ just_snap_steam,Just Snap,2025,,project,Steam,,,"https://store.steampowered.com/
 fitnessbyalexandra,Fitnessbyalexandra.com,2025,,project,Fitnessbyalexandra.com,,,"https://fitnessbyalexandra.com"
 terminal_portfolio,Terminal Portfolio,2025,,project,GitHub,,,"https://github.com/RobertRuta/RobertRuta.github.io"
 sketch_remesher_blender,Sketch Remesher,,,notable_work,Blender,,Blender Add‑On,
-shadow_weaver_jam,Shadow Weaver,,,notable_work,,,"Game Jam, 2nd Place",
-ml_fedcsis_2023,ML Paper Presentation,2023,,notable_work,FedCSIS 2023,,,
-ml_ieee_bigdata_2023,Published ML Research,2023,,notable_work,IEEE BigData Cup 2023,,,
+shadow_weaver_jam,Shadow Weaver,2024-07,2024-08,game_work,,"Programmed a 3D game in two weaks using Unity, as a part of a team-based game jam where teams of of up to 5 competed for winning games. I entered solo, and created a game that scored in the 90th percentile in \'playability\', \'cleverness\', and 80th percentile for Artistic Style.","Game Jam, 90th Percentile",
+prisn,Prisn,2024-11,2024-12,game_jam,"BCCS","Won first place for best concept. Our team of 4 spent a couple of days designing and programming a colour based snake game, based on the theme \'colour is everything\'.","Game Jam, Winner",
+ml_fedcsis_2023,ML Paper Presentation,2023,,research,FedCSIS 2023,"My father and I occasionally collaborate in ML competitions. This project was focused on training a model to successfully identify cybersecurity based on network event log data. I worked on the feature engineering and presented the final paper associated with this work.",,
+ml_ieee_bigdata_2023,Published ML Research,2023,,research,IEEE BigData Cup 2023,"",,
 planetary_gravity_unity,Planetary Gravity Simulator,,,notable_work,Unity,,,
 vicsek,Million Particle GPU Simulation,,,notable_work,Unity,,,
-openai_manager_discord,OpenAI Manager,,,notable_work,Discord,,LLM Discord Bot,
 openai_manager_discord,OpenAI Manager,,,notable_work,Discord,,LLM Discord Bot,
 todo_village,Gamified Productivity App,,,notable_work,Unity,,,
 steam_scrapy_py,Steam Scrapy,,,notable_work,Steam,,Python + Steam API,

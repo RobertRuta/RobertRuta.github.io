@@ -1,3 +1,8 @@
 msc_cs_bath
 sketch_remesher_blender
 perfectgym
+pzu_data_scientist
+mbank_process_mining
+fitnessbyalexandra
+terminal_portfolio
+just_snap_steam
