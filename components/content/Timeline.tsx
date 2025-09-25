@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { db } from '@/lib/data-interface'
 import { ViewProps, ViewTag } from '../Monitor'
+import { ExperienceTrigger } from '../ui/experience-page'
 
 const INCLUDED_TYPES = new Set(['work', 'education', 'project', 'notable_work'])
 
@@ -183,7 +184,8 @@ export function Timeline({ onChangeView, onExperienceOpen, onExperienceClose }: 
                     />
                     <div className="flex items-baseline gap-2">
                       <div className="font-semibold">
-                        {it.label}
+                        <ExperienceTrigger experienceItem={it} onOpen={onExperienceOpen}/>
+                        {/* {it.label} */}
                         {it.institution ? <span className="opacity-80"> — {it.institution}</span> : null}
                       </div>
                       {it.type ? (
