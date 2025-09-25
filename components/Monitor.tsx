@@ -91,7 +91,7 @@ export function Monitor()
               
               <TerminalNav sections={viewComponents} activeSection={currentView} onSelectSection={(key: MainViewTag) => handleViewChange(key)} />
 
-              <div className='crt-content h-[calc(100%-3rem)] overflow-y-auto [-webkit-overflow-scrolling:touch] terminal-scroll'>
+              <div className='crt-content h-[calc(100%-5rem)] overflow-y-auto [-webkit-overflow-scrolling:touch] terminal-scroll'>
                 { currentView === 'EXPERIENCE' ? <ExperiencePage experienceItem={activeExperience!} onExperienceClose={handleExperienceClose} /> : (viewComponents[currentView as MainViewTag] || null) }
               </div>
                 
