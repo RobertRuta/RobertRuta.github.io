@@ -3,7 +3,6 @@ import * as React from 'react'
 import Image from 'next/image'
 import { db } from '@/lib/data-interface'
 import { contacts } from '@/lib/profile'
-import { ExperiencePopup } from '../ui/experience-popup'
 import { ExperienceTrigger } from '../ui/experience-page'
 import { ViewProps, ViewTag } from '../Monitor'
 
