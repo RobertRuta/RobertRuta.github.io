@@ -39,7 +39,7 @@ export default function Home({ onChangeView, onExperienceOpen, onExperienceClose
                         <p>
                             Welcome to my website! Here you can find out a little more about me: my resume, my public projects and my contact details. 
                             If you're interested in a timeline of my career relevant experiences, please have a look at the Timeline tab. If you want basically the same information but arranged like it's a traditional CV, 
-                            please take a look at the CV tab. The rest should be pretty self-explanatory. Except for the terminal... don't touch my terminal... that's only for me to use. Happy exploring!
+                            please take a look at the CV tab. The rest should be pretty self-explanatory. Happy exploring!
                         </p>
                     {/* <p><span className="font-mono">ID:</span> RR-001</p>
                     <p><span className="font-mono">STATUS:</span> Active</p>
