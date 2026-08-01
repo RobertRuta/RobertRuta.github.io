@@ -208,7 +208,8 @@
       <tr><td class="w">Jesus</td><td class="d">10 Jun</td><td><q>I can fly to Tbilisi for 750 in December … main thing will be getting the time off work</q>; <q>cannot leave harjot alone until the 24th</q></td><td>Dec possible in principle</td></tr>
       <tr><td class="w">Jesus</td><td class="d">21 Jun</td><td><q>I'll have to be back in Spain by Christmas, maybe by 23</q></td><td>≈10% from ~Dec 22</td></tr>
       <tr><td class="w">Jesus</td><td class="d">16 Jul</td><td><q>I can't go on the 7th. I can't take a whole month off work… I can't say what dates I'll be available yet</q>; Christmas leave = <q>2 days</q></td><td>early Dec ≈20%</td></tr>
-      <tr><td class="w">Jesus</td><td class="d">27 Jul</td><td><q>January works a lot better for me</q> → "Early Jan only right?" → <q>Yes</q></td><td>Jan 2–11 ≈50% (Rob: "at best 60%")</td></tr>
+      <tr><td class="w">Jesus</td><td class="d">27 Jul</td><td><q>January works a lot better for me</q> → "Early Jan only right?" → <q>Yes</q></td><td>Jan 1–14 ≈70% (revised, see 30 Jul)</td></tr>
+      <tr><td class="w">Robert</td><td class="d">30 Jul</td><td>Revised estimate for Jesus: <q>First 2 weeks of jan are 70%. Around christmas should be like 10%. week before that like 30 and then first week of dec is very low probability as well.</q></td><td>Dec 1–14 ≈5% · Dec 15–21 ≈30% · Dec 22–Jan 1 ≈10% · Jan 2–15 ≈70%</td></tr>
       <tr><td class="w">Jack</td><td class="d">19 Jun / 19 Jul</td><td><q>yeah I'm free anytime December</q>; <q>I can do these dates, just let me know when they locked in so I can book asap</q> (re 26 Dec–2 Jan)</td><td>100% throughout</td></tr>
       <tr><td class="w">Philippe</td><td class="d">11 Jul / 27 Jul</td><td><q>I'm flexible</q>; <q>I am flexible</q></td><td>100% throughout</td></tr>
       <tr><td class="w">Balint</td><td class="d">11 Jul / 18 Jul</td><td><q>metoo</q> (flexible); "And my axe!" + <q>You can count on me</q> (re 26 Dec–2 Jan)</td><td>100% throughout</td></tr>
@@ -219,7 +220,7 @@
 </section>
 
 <footer>
-  <p style="margin:0 0 8px"><b>Availability %</b> are likelihood-of-availability estimates read from message tone; Jesus is pinned at 50% for Jan 2–11 and 10–30% for December windows per Robert's instruction.</p>
+  <p style="margin:0 0 8px"><b>Availability %</b> are likelihood-of-availability estimates read from message tone. Jesus's figures are pinned directly by Robert (30 Jul revision): 70% for the first two weeks of January, 10% around Christmas, 30% the week before Christmas, and very low (~5%) for the first two weeks of December.</p>
   <p style="margin:0 0 8px"><b>Snow %</b> come from the lift-opening dates discussed in the chat: Gudauri's lifts opened <b>Dec 27</b> last season and the Airbnb co-host warned they'd <b>most probably not be open Dec 5–12</b>; Shahdag opened ~<b>Dec 15</b>; the Alps run from late November on snowmaking.</p>
   <p style="margin:0"><b>Prices are modelled estimates, not live quotes.</b> Two are hard anchors from the chat — the real Chalet Marina booking (<b>zł7,846.63 for 7 guests, Dec 5–12</b> ≈ €1,845) and Robert's <q>4000£ for the new date range</q> (Jan 2–10). Everything else is scaled from those using published seasonal patterns: January in the Alps runs 20–30% under the Christmas peak, while Georgia stays firm in January because its season only starts on Dec 27. <b>Accommodation only — flights are excluded</b>, which matters because flights, not beds, are the binding constraint for Nazhan (<q>with banana currency i dont think i can afford italy</q>) and Jesus. Confirm any figure before booking on it.</p>
 </footer>
@@ -247,11 +248,11 @@
   // segments: [startDay, endDay, likelihood%, quote, inferred?]
   var people=[
     {name:'Jesus', note:'Canada · needs work leave', segs:[
-      [0,13,20,'Long shot — "I can’t go on the 7th… can’t take a whole month off work", leave unknown. Pinned 10–30% per Robert.'],
-      [13,21,30,'"In principle this would work for me… it is very complicated" (re 14–21). Only 2 days of Christmas leave. Pinned 10–30%.'],
-      [21,32,10,'Christmas in Spain with Harjot + family — "back in Spain by Christmas, maybe by 23", "cannot leave harjot alone until the 24th".'],
-      [32,42,50,'"January works a lot better for me" → early Jan only, confirmed. Rob rates 2–10 Jan "at best 60%". Pinned 50%.'],
-      [42,62,25,'"Early Jan only right?" — "Yes". Back to Canada/work after ~11 Jan.']
+      [0,13,5,'Very low — Robert: "first week of dec is very low probability as well". "I can’t go on the 7th… can’t take a whole month off work", leave unknown.'],
+      [13,21,30,'Robert: "week before that [Christmas] like 30". "In principle this would work for me… it is very complicated" (re 14–21). Only 2 days of Christmas leave.'],
+      [21,32,10,'Robert: "Around christmas should be like 10%". Christmas in Spain with Harjot + family — "back in Spain by Christmas, maybe by 23", "cannot leave harjot alone until the 24th".'],
+      [32,46,70,'Robert: "First 2 weeks of jan are 70%" — Jesus’s best odds of the whole window. "January works a lot better for me".'],
+      [46,62,20,'Carried over from the earlier estimate (unchanged by Robert’s update) — "Early Jan only right?" — "Yes". Back to Canada/work after mid-January.']
     ]},
     {name:'Misha', note:'hard stop Dec 17 · Japan NYE', segs:[
       [0,16,90,'"I should be ok if I come back 17th December… from 1st till 17th" — re-confirmed today ("Yes" to December before the 17th).'],
