@@ -38,7 +38,7 @@
     }
   },
   "updatedAt": null,
-  "flightDataSource": "Amadeus Flight Offers Search; round-trip offers by candidate trip and destination gateway",
+  "flightDataSource": "Aviasales Data API (Travelpayouts), cached recent user-search prices; not live bookable quotes",
   "participants": {
     "Jack": {
       "homeAirport": {

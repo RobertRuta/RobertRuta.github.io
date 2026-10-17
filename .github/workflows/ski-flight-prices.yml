@@ -26,10 +26,9 @@ jobs:
         with:
           node-version: 20
 
-      - name: Refresh observed flight offers
+      - name: Refresh cached Aviasales flight prices
         env:
-          AMADEUS_CLIENT_ID: ${{ secrets.AMADEUS_CLIENT_ID }}
-          AMADEUS_CLIENT_SECRET: ${{ secrets.AMADEUS_CLIENT_SECRET }}
+          AVIASALES_API_TOKEN: ${{ secrets.AVIASALES_API_TOKEN }}
         run: node scripts/update-ski-prices.mjs
 
       - name: Commit updated price database

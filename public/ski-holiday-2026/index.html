@@ -111,7 +111,7 @@
     </div>
     <div id="table-pagination" class="table-pagination" hidden><button id="previous-page" type="button" disabled>Previous</button><span id="page-info">Loading…</span><button id="next-page" type="button" disabled>Next</button></div>
     <p class="price-status" id="trip-updated"></p>
-    <p class="price-status">Accommodation is the group estimate divided by the group size shown in its column heading. Flight fares are each person’s own round-trip ticket and are not divided by the group. Known total sums the available per-person cost components; pending components are excluded until prices are collected. Weekdays off counts Monday–Friday dates in the travel window, including a Friday departure day. <a class="data-link" href="./prices.json" download="ski-holiday-february-prices.json">Download the complete trip database (JSON)</a>.</p>
+    <p class="price-status">Accommodation is the group estimate divided by the group size shown in its column heading. Flight fares are each person’s own round-trip ticket and are not divided by the group. Flight prices are averages and best fares observed in Aviasales’ recent search cache, not live bookable quotes; coverage depends on searches other travellers have made. Known total sums the available per-person cost components; pending components are excluded until prices are collected. Weekdays off counts Monday–Friday dates in the travel window, including a Friday departure day. <a class="data-link" href="./prices.json" download="ski-holiday-february-prices.json">Download the complete trip database (JSON)</a>.</p>
   </main>
 </div>
 <div id="tip" role="tooltip"></div>
@@ -317,7 +317,7 @@
     endRange.addEventListener('input',function(){if(Number(endRange.value)<Number(startRange.value))startRange.value=endRange.value;page=0;render();});
     previous.addEventListener('click',function(){page=Math.max(0,page-1);renderTable();});next.addEventListener('click',function(){page+=1;renderTable();});
     render();
-    document.getElementById('trip-updated').textContent='Database updated: '+(db.updatedAt?new Date(db.updatedAt).toLocaleString():'flight prices have not been refreshed yet')+'. Flight average and best prices are pending until AMADEUS_CLIENT_ID and AMADEUS_CLIENT_SECRET are added to GitHub Actions and the refresh workflow runs. Known totals add available cost components while pending components are excluded.';
+    document.getElementById('trip-updated').textContent='Database updated: '+(db.updatedAt?new Date(db.updatedAt).toLocaleString():'flight prices have not been refreshed yet')+'. Flight data comes from Aviasales’ recent user-search cache and may be missing for routes or dates nobody searched. To populate it, add the AVIASALES_API_TOKEN GitHub Actions secret and run the weekly refresh workflow. Known totals add available cost components while pending components are excluded.';
   }
 
   fetch(new URL('./prices.json',window.location.href),{cache:'no-cache'})

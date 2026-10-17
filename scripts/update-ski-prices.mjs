@@ -10,89 +10,117 @@ if (db.schemaVersion !== 3 || !db.participants || !db.destinations || !db.dateRa
   throw new Error('prices.json is missing the expected February trip database structure.');
 }
 
-const participants = Object.entries(db.participants);
-const destinations = Object.entries(db.destinations);
-const trips = new Map();
-for (const [, participant] of participants) {
-  for (const [key, trip] of Object.entries(participant.trips || {})) trips.set(key, trip);
-}
-
-if (!process.env.AMADEUS_CLIENT_ID || !process.env.AMADEUS_CLIENT_SECRET) {
-  console.log('Amadeus credentials are not configured; prices.json remains the source database and flight fares stay as currently recorded.');
+const token = process.env.AVIASALES_API_TOKEN;
+if (!token) {
+  console.log('AVIASALES_API_TOKEN is not configured; no external flight data was fetched and existing prices.json values were preserved.');
   process.exit(0);
 }
 
-const apiBase = process.env.AMADEUS_API_BASE || 'https://api.amadeus.com';
-const tokenResponse = await fetch(`${apiBase}/v1/security/oauth2/token`, {
-  method: 'POST',
-  headers: { 'content-type': 'application/x-www-form-urlencoded' },
-  body: new URLSearchParams({
-    grant_type: 'client_credentials',
-    client_id: process.env.AMADEUS_CLIENT_ID,
-    client_secret: process.env.AMADEUS_CLIENT_SECRET,
-  }),
-});
-if (!tokenResponse.ok) throw new Error(`Amadeus token request failed: ${tokenResponse.status} ${await tokenResponse.text()}`);
-const { access_token: token } = await tokenResponse.json();
-
-const today = new Date();
-today.setUTCHours(0, 0, 0, 0);
-const date = (value) => new Date(`${value}T00:00:00Z`);
-const sampledAtForTrip = (key) => {
-  const timestamps = participants.flatMap(([, participant]) => destinations
-    .map(([location]) => participant.trips[key]?.flights?.[location]?.sampledAt)
-    .filter(Boolean)
-    .map((value) => Date.parse(value)));
-  return timestamps.length ? Math.min(...timestamps) : 0;
-};
-const upcomingTrips = [...trips.entries()]
-  .map(([key, trip]) => ({ key, trip }))
-  .filter(({ trip }) => date(trip.endDate) >= today)
-  .sort((a, b) => sampledAtForTrip(a.key) - sampledAtForTrip(b.key)
-    || b.trip.holidayDays - a.trip.holidayDays
-    || a.trip.weekdaysOff - b.trip.weekdaysOff
-    || a.trip.startDate.localeCompare(b.trip.startDate)
-    || a.trip.endDate.localeCompare(b.trip.endDate));
-const requestedBatchSize = Number.parseInt(process.env.SKI_PRICE_TRIP_BATCH || '4', 10);
-const requestBudgetBatchSize = Math.max(1, Math.floor(150 / (participants.length * destinations.length)));
-const batchSize = Math.min(Number.isFinite(requestedBatchSize) ? Math.max(1, requestedBatchSize) : 4, requestBudgetBatchSize);
-const tripsToRefresh = upcomingTrips.slice(0, batchSize);
-
+const endpoint = 'https://api.travelpayouts.com/aviasales/v3/prices_for_dates';
+const observedAt = new Date().toISOString();
+const rowsByRoute = new Map();
 let requestCount = 0;
-for (const { key, trip } of tripsToRefresh) {
-  for (const [name, participant] of participants) {
-    for (const [location, destination] of destinations) {
-      const flight = participant.trips[key]?.flights?.[location];
-      if (!flight) continue;
+let successfulRoutes = 0;
 
-      const query = new URLSearchParams({
-        originLocationCode: participant.homeAirport.code,
-        destinationLocationCode: destination.airportCode,
-        departureDate: trip.startDate,
-        returnDate: trip.endDate,
-        adults: '1', currencyCode: db.currency || 'EUR', max: '20',
-      });
-      requestCount += 1;
-      if (requestCount > 150) throw new Error('Search budget exceeded; refusing to make more than 150 flight calls in one run.');
+async function fetchRoute(origin, destination) {
+  const rows = [];
+  const limit = 1000;
 
-      const response = await fetch(`${apiBase}/v2/shopping/flight-offers?${query}`, {
-        headers: { authorization: `Bearer ${token}` },
-      });
-      if (!response.ok) {
-        console.warn(`${name} ${key} ${destination.airportCode}: Amadeus returned ${response.status}; preserving previous data.`);
-        continue;
+  for (let page = 1; page <= 10; page += 1) {
+    const query = new URLSearchParams({
+      origin,
+      destination,
+      departure_at: db.dateRange.start.slice(0, 7),
+      return_at: db.dateRange.start.slice(0, 7),
+      one_way: 'false',
+      direct: 'false',
+      sorting: 'price',
+      unique: 'false',
+      currency: db.currency || 'EUR',
+      limit: String(limit),
+      page: String(page),
+    });
+    requestCount += 1;
+    if (requestCount > 350) throw new Error('Request guard exceeded; refusing to make more than 350 API calls in one run.');
+
+    const response = await fetch(`${endpoint}?${query}`, {
+      headers: { 'X-Access-Token': token, 'Accept-Encoding': 'gzip, deflate' },
+    });
+    if (response.status === 429) {
+      const reset = Number(response.headers.get('x-rate-limit-reset'));
+      const waitMs = Number.isFinite(reset) && reset > 0 ? reset * 1000 + 250 : 60_000;
+      console.warn(`Rate limited on ${origin}-${destination}; waiting ${Math.ceil(waitMs / 1000)}s once.`);
+      await new Promise((resolveWait) => setTimeout(resolveWait, waitMs));
+      page -= 1;
+      continue;
+    }
+    if (!response.ok) throw new Error(`Aviasales request for ${origin}-${destination} failed: ${response.status} ${await response.text()}`);
+
+    const result = await response.json();
+    if (result.success !== true || !Array.isArray(result.data)) {
+      throw new Error(`Aviasales returned an invalid response for ${origin}-${destination}: ${result.error || 'unexpected response shape'}`);
+    }
+    rows.push(...result.data);
+    if (page === 10 && result.data.length === limit) {
+      throw new Error(`Aviasales returned at least ${limit * 10} rows for ${origin}-${destination}; refusing to save a truncated sample.`);
+    }
+    if (result.data.length < limit) break;
+  }
+
+  return rows;
+}
+
+for (const [name, participant] of Object.entries(db.participants)) {
+  const origin = participant.homeAirport?.code;
+  if (!origin) continue;
+
+  for (const [location, destination] of Object.entries(db.destinations)) {
+    const airport = destination.airportCode;
+    const routeKey = `${origin}:${airport}`;
+    if (!rowsByRoute.has(routeKey)) {
+      try {
+        rowsByRoute.set(routeKey, await fetchRoute(origin, airport));
+        successfulRoutes += 1;
+        console.log(`${origin}-${airport}: received ${rowsByRoute.get(routeKey).length} cached round-trip observations.`);
+      } catch (error) {
+        console.warn(`${name} / ${location}: ${error.message}; preserving previous route prices.`);
+        rowsByRoute.set(routeKey, null);
       }
+    }
 
-      const result = await response.json();
-      const prices = (result.data || []).map((offer) => Number(offer.price?.grandTotal)).filter(Number.isFinite);
-      flight.sampledAt = new Date().toISOString();
+    const rows = rowsByRoute.get(routeKey);
+    if (!rows) continue;
+
+    for (const trip of Object.values(participant.trips || {})) {
+      const flight = trip.flights?.[location];
+      if (!flight) continue;
+      const matches = rows.filter((row) => {
+        const departure = String(row.departure_at || '').slice(0, 10);
+        const returning = String(row.return_at || '').slice(0, 10);
+        const price = Number(row.price);
+        const rowCurrency = String(row.currency || db.currency || '').toUpperCase();
+        return departure === trip.startDate
+          && returning === trip.endDate
+          && (!row.origin_airport || row.origin_airport === origin)
+          && (!row.destination_airport || row.destination_airport === airport)
+          && rowCurrency === String(db.currency || 'EUR').toUpperCase()
+          && Number.isFinite(price)
+          && price > 0
+          && (!row.expires_at || Date.parse(row.expires_at) > Date.now());
+      });
+      const prices = matches.map((row) => Number(row.price));
+      flight.sampledAt = observedAt;
       flight.offersCount = prices.length;
       flight.averageEur = prices.length ? Math.round(prices.reduce((sum, price) => sum + price, 0) / prices.length) : null;
       flight.bestEur = prices.length ? Math.round(Math.min(...prices)) : null;
+      flight.priceBasis = 'Aviasales cached user-search observations';
     }
   }
 }
 
-db.updatedAt = new Date().toISOString();
+if (successfulRoutes === 0) throw new Error('No route request succeeded; prices.json was not changed. Check the Travelpayouts API token and API access.');
+
+db.updatedAt = observedAt;
+db.flightDataSource = 'Aviasales Data API (Travelpayouts), cached round-trip prices recently found in user searches; not live bookable quotes';
 await writeFile(databasePath, `${JSON.stringify(db, null, 2)}\n`);
-console.log(`Refreshed ${tripsToRefresh.length} February trip options with ${requestCount} searches in prices.json.`);
+console.log(`Refreshed ${rowsByRoute.size} origin/gateway routes with ${requestCount} API requests in prices.json.`);
