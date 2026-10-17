@@ -81,15 +81,35 @@ const failedIndices = [];
 const ratePromises = new Map();
 let completed = 0;
 let offersFound = 0;
+let nextDuffelRequestAt = 0;
+let duffelRateLimitResetAt = 0;
+let duffelRequestQueue = Promise.resolve();
+
+const minimumDuffelRequestIntervalMs = 7_000;
 
 function wait(ms) {
   return new Promise((resolveWait) => setTimeout(resolveWait, ms));
 }
 
-async function fetchJson(url, options, label) {
+function waitForDuffelRequestSlot() {
+  const slot = duffelRequestQueue.then(async () => {
+    while (true) {
+      const scheduledAt = Math.max(nextDuffelRequestAt, duffelRateLimitResetAt);
+      const delay = scheduledAt - Date.now();
+      if (delay <= 0) break;
+      await wait(delay);
+    }
+    nextDuffelRequestAt = Date.now() + minimumDuffelRequestIntervalMs;
+  });
+  duffelRequestQueue = slot.catch(() => {});
+  return slot;
+}
+
+async function fetchJson(url, options, label, isDuffelRequest = false) {
   for (let attempt = 0; attempt < 4; attempt += 1) {
     let response;
     try {
+      if (isDuffelRequest) await waitForDuffelRequestSlot();
       response = await fetch(url, { ...options, signal: AbortSignal.timeout(25_000) });
     } catch (error) {
       if (attempt === 3) throw new Error(`${label}: ${error.message}`);
@@ -97,12 +117,24 @@ async function fetchJson(url, options, label) {
       continue;
     }
 
-    if ((response.status === 429 || response.status >= 500) && attempt < 3) {
+    if (response.status === 429) {
+      const resetHeader = response.headers.get('ratelimit-reset');
+      const resetTime = resetHeader ? Date.parse(resetHeader) : NaN;
       const retryAfter = Number(response.headers.get('retry-after'));
-      const delay = Number.isFinite(retryAfter) && retryAfter > 0
-        ? Math.min(retryAfter * 1000, 60_000)
-        : 1000 * (2 ** attempt);
-      await wait(delay);
+      const retryAt = Number.isFinite(resetTime) && resetTime > Date.now()
+        ? resetTime + 1000
+        : Number.isFinite(retryAfter) && retryAfter > 0
+          ? Date.now() + retryAfter * 1000 + 1000
+          : Date.now() + 60_000;
+      if (isDuffelRequest) duffelRateLimitResetAt = Math.max(duffelRateLimitResetAt, retryAt);
+      if (attempt < 3) {
+        console.warn(`${label}: HTTP 429; waiting for Duffel's rate-limit reset${resetHeader ? ` (${resetHeader})` : ''}.`);
+        continue;
+      }
+    }
+
+    if (response.status >= 500 && attempt < 3) {
+      await wait(1000 * (2 ** attempt));
       continue;
     }
     if (!response.ok) {
@@ -150,7 +182,7 @@ async function search(entry) {
       'Duffel-Version': 'v2',
     },
     body: JSON.stringify(body),
-  }, `${entry.origin}-${entry.destination} ${entry.trip.startDate}–${entry.trip.endDate}`);
+  }, `${entry.origin}-${entry.destination} ${entry.trip.startDate}–${entry.trip.endDate}`, true);
 
   if (!result.data || !Array.isArray(result.data.offers)) {
     throw new Error(`${entry.origin}-${entry.destination} returned an unexpected Duffel offer response.`);
@@ -201,6 +233,7 @@ async function worker(queue) {
 }
 
 const queue = [...selected];
+console.log(`Pacing Duffel search requests at least ${minimumDuffelRequestIntervalMs / 1000}s apart.`);
 await Promise.all(Array.from({ length: Math.min(concurrency, queue.length) }, () => worker(queue)));
 
 db.flightCollector = {
