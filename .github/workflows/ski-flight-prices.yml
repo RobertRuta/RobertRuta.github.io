@@ -15,6 +15,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -26,12 +27,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Refresh cached Aviasales flight prices
+      - name: Refresh Duffel flight offer prices
+        id: refresh
         env:
-          AVIASALES_API_TOKEN: ${{ secrets.AVIASALES_API_TOKEN }}
+          DUFFEL_ACCESS_TOKEN: ${{ secrets.DUFFEL_ACCESS_TOKEN }}
         run: node scripts/update-ski-prices.mjs
 
       - name: Commit updated price database
+        if: ${{ always() && steps.refresh.outcome != 'skipped' }}
         run: |
           if git diff --quiet -- public/ski-holiday-2026/prices.json; then
             echo "No price database changes to commit."
