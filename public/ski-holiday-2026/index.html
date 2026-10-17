@@ -56,13 +56,13 @@
     </div>
     <div class="tablewrap trip-table">
       <table>
-        <thead><tr><th>Person / origin</th><th>Location / gateway</th><th>Depart</th><th>Return</th><th>Holiday days</th><th>Weekdays off</th><th>Availability</th><th>Accommodation</th><th>Flight average</th><th>Flight best</th><th>Auxiliary</th><th>Priced subtotal</th></tr></thead>
+        <thead><tr><th>Person / origin</th><th>Location / gateway</th><th>Depart</th><th>Return</th><th>Holiday days</th><th>Weekdays off</th><th>Availability</th><th id="accommodation-heading">Accommodation / person</th><th>Flight average / person</th><th>Flight best / person</th><th>Auxiliary / person</th><th>Priced subtotal / person</th></tr></thead>
         <tbody id="trip-rows"><tr><td colspan="12" class="price-status">Loading February trip data…</td></tr></tbody>
       </table>
     </div>
     <div class="table-pagination"><button id="previous-page" type="button" disabled>Previous</button><span id="page-info">Loading…</span><button id="next-page" type="button" disabled>Next</button></div>
     <p class="price-status" id="trip-updated"></p>
-    <p class="price-status">Accommodation is modeled per person. The priced subtotal adds accommodation and average flight fare; auxiliary costs are separate and included only when available. <a class="data-link" href="./prices.json" download="ski-holiday-february-prices.json">Download the complete trip database (JSON)</a>.</p>
+    <p class="price-status">Accommodation is the group estimate divided by the group size shown in its column heading. Flight fares are each person’s own round-trip ticket and are not divided by the group. The per-person subtotal adds accommodation and average flight fare; auxiliary costs are separate and included only when available. <a class="data-link" href="./prices.json" download="ski-holiday-february-prices.json">Download the complete trip database (JSON)</a>.</p>
   </main>
 </div>
 <div id="tip" role="tooltip"></div>
@@ -146,6 +146,11 @@
     var first=new Date(db.dateRange.start+'T00:00:00Z'),last=new Date(db.dateRange.end+'T00:00:00Z');
     for(var current=new Date(first);current<=last;current.setUTCDate(current.getUTCDate()+1))dates.push(current.toISOString().slice(0,10));
     if(!dates.length)throw new Error('The trip database has an invalid date range.');
+    var groupSizes=Array.from(new Set(names.flatMap(function(name){return Object.values(db.participants[name].trips||{}).map(function(trip){return trip.accommodation&&trip.accommodation.groupSize;}).filter(Number.isFinite);})))
+      .sort(function(a,b){return a-b;});
+    document.getElementById('accommodation-heading').textContent=groupSizes.length===1
+      ?'Accommodation / person (group ÷ '+groupSizes[0]+' people)'
+      :'Accommodation / person (group share)';
     [startRange,endRange].forEach(function(input){input.min='0';input.max=String(dates.length-1);input.step='1';});
     startRange.value='0';endRange.value=String(dates.length-1);
     locations.forEach(function(location){selectedLocations.add(location);});
