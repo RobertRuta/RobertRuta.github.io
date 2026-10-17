@@ -3,592 +3,171 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ski Trip Availability — Dec 2026 to Feb 2027</title>
+<title>Ski Trip Costs — February 2027</title>
 <style>
-  :root{
-    --paper:#f5f7fa; --card:#ffffff; --ink:#1b2733; --ink-2:#51606e; --ink-3:#8494a3;
-    --line:#dde4ec; --line-strong:#c3cedb;
-    --accent:#3e7cb1; --accent-ink:#2c5f8c;
-    --go-ink:#1c6e3c; --stop-ink:#a83c3c; --tbc-ink:#96690f;
-    --seg-l:44%; --seg-s:58%;
-    --snow-edge:rgba(20,24,15,.42); --price-edge:rgba(20,24,15,.18);
-    --shadow:0 1px 2px rgba(27,39,51,.06), 0 8px 24px rgba(27,39,51,.07);
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --paper:#141b23; --card:#1c2530; --ink:#e8eef4; --ink-2:#a9b8c6; --ink-3:#748496;
-      --line:#2b3644; --line-strong:#3b4757;
-      --accent:#6ba3d6; --accent-ink:#8fbce4;
-      --go-ink:#7fd8a4; --stop-ink:#f0a0a0; --tbc-ink:#ecc27b;
-      --seg-l:44%; --seg-s:58%;
-      --snow-edge:rgba(255,255,255,.48); --price-edge:rgba(255,255,255,.22);
-      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
-    }
-  }
-  :root[data-theme="dark"]{
-    --paper:#141b23; --card:#1c2530; --ink:#e8eef4; --ink-2:#a9b8c6; --ink-3:#748496;
-    --line:#2b3644; --line-strong:#3b4757;
-    --accent:#6ba3d6; --accent-ink:#8fbce4;
-    --go-ink:#7fd8a4; --stop-ink:#f0a0a0; --tbc-ink:#ecc27b;
-    --seg-l:44%; --seg-s:58%;
-    --snow-edge:rgba(255,255,255,.48); --price-edge:rgba(255,255,255,.22);
-    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
-  }
-  :root[data-theme="light"]{
-    --paper:#f5f7fa; --card:#ffffff; --ink:#1b2733; --ink-2:#51606e; --ink-3:#8494a3;
-    --line:#dde4ec; --line-strong:#c3cedb;
-    --accent:#3e7cb1; --accent-ink:#2c5f8c;
-    --go-ink:#1c6e3c; --stop-ink:#a83c3c; --tbc-ink:#96690f;
-    --seg-l:44%; --seg-s:58%;
-    --snow-edge:rgba(20,24,15,.42); --price-edge:rgba(20,24,15,.18);
-    --shadow:0 1px 2px rgba(27,39,51,.06), 0 8px 24px rgba(27,39,51,.07);
-  }
+  :root{--paper:#f5f7fa;--card:#fff;--ink:#1b2733;--ink-2:#51606e;--ink-3:#8494a3;--line:#dde4ec;--line-strong:#c3cedb;--accent:#3e7cb1;--accent-ink:#2c5f8c;--shadow:0 1px 2px rgba(27,39,51,.06),0 8px 24px rgba(27,39,51,.07)}
+  @media(prefers-color-scheme:dark){:root{--paper:#141b23;--card:#1c2530;--ink:#e8eef4;--ink-2:#a9b8c6;--ink-3:#748496;--line:#2b3644;--line-strong:#3b4757;--accent:#6ba3d6;--accent-ink:#8fbce4;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35)}}
   *{box-sizing:border-box}
-  body{
-    background:var(--paper); color:var(--ink);
-    font:15px/1.55 "Segoe UI", system-ui, -apple-system, sans-serif;
-    margin:0; padding:32px 20px 64px;
-  }
-  .wrap{max-width:1060px; margin:0 auto}
-  header{margin-bottom:24px}
-  .eyebrow{
-    font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--accent-ink); font-weight:600; margin:0 0 6px;
-  }
-  h1{font-size:clamp(22px,3.4vw,30px); line-height:1.2; margin:0 0 8px; text-wrap:balance; font-weight:650}
-  .sub{color:var(--ink-2); max-width:70ch; margin:0}
-  .sub b{color:var(--ink)}
-
-  .panel{background:var(--card); border:1px solid var(--line); border-radius:10px; box-shadow:var(--shadow); padding:20px 22px; margin-top:20px}
-  .panel h2{font-size:16px; margin:0 0 12px; font-weight:650}
-
-  /* legend */
-  .legend{display:flex; flex-wrap:wrap; gap:12px 26px; align-items:center; font-size:13px; color:var(--ink-2); margin-top:14px}
-  .legend .key{display:flex; align-items:center; gap:8px}
-  .ramp{width:180px; height:12px; border-radius:6px; flex:none;
-    background:linear-gradient(90deg,
-      hsl(0 58% 44%) 0%, hsl(30 58% 44%) 25%, hsl(60 58% 44%) 50%,
-      hsl(90 58% 44%) 75%, hsl(120 58% 44%) 100%);}
-  .ramp-labels{display:flex; justify-content:space-between; width:180px; font-size:10.5px; color:var(--ink-3); font-variant-numeric:tabular-nums}
-  .sw-dash{width:22px; height:12px; border-radius:3px; border:1.5px dashed var(--ink-3); flex:none}
-
-  /* timeline */
-  .tl{overflow-x:auto}
-  .tl-inner{min-width:760px}
-  .months{display:flex; margin-left:150px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
-  .months div{border-left:1px solid var(--line-strong); padding:2px 0 4px 8px}
-  .grid{position:relative}
-  .gridlines{position:absolute; inset:0 0 0 150px; pointer-events:none}
-  .gridlines i{position:absolute; top:0; bottom:0; width:1px; background:var(--line)}
-  .gridlines i.month{background:var(--line-strong)}
-  .gridlines b{position:absolute; top:-1px; transform:translateX(-50%); font-weight:400; font-size:10.5px; color:var(--ink-3); background:var(--card); padding:0 3px; font-variant-numeric:tabular-nums}
-  .row{display:flex; align-items:center; position:relative; padding:6px 0}
-  .row + .row{border-top:1px dashed var(--line)}
-  .row.divide{border-top:1px solid var(--line-strong)}
-  .row-label{width:150px; flex:none; font-weight:600; font-size:14px; padding-right:12px}
-  .row-label small{display:block; font-weight:400; font-size:11.5px; color:var(--ink-3); line-height:1.3}
-  .track{position:relative; height:26px; flex:1}
-  .seg{
-    position:absolute; top:2px; bottom:2px; border-radius:4px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:11px; font-weight:600; color:#fff; cursor:default;
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);
-    white-space:nowrap; overflow:hidden; font-variant-numeric:tabular-nums;
-  }
-  .seg.small span{display:none}
-  /* opposite-tone halo keeps the value legible on mid-tone fills, where neither ink clears AA alone */
-  .seg span{text-shadow:0 0 2px var(--halo), 0 0 3px var(--halo)}
-  .seg.assumed{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
-  .seg.assumed span{opacity:.9}
-  .seg:hover{outline:2px solid var(--accent); outline-offset:1px; z-index:3}
-  .seg.inferred{border:1.5px dashed rgba(255,255,255,.75)}
-
-  /* location rows — thin paired bars: snow (black→white) + price (indigo ramp) */
-  .section-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; padding:16px 0 6px; border-top:1px solid var(--line-strong)}
-  .section-head span{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); font-weight:700; white-space:nowrap}
-  .section-head em{font-style:normal; font-size:12px; color:var(--ink-3)}
-  .row.loc{padding:0}
-  .row.loc-snow{border-top:1px dashed var(--line); padding-top:5px}
-  .row.loc-snow:first-of-type{border-top:none}
-  .row.loc-price{border-top:none; padding-bottom:5px}
-  .row.loc .row-label{font-weight:600; font-size:13px}
-  .row.loc-price .row-label{font-weight:400; font-size:11.5px; color:var(--ink-3); padding-left:10px}
-  .row.loc .track{height:15px}
-  .seg.thin{
-    top:1px; bottom:1px; border-radius:2px;
-    box-shadow:none; font-size:9px; font-weight:700;
-  }
-  /* Each theme's edge rescues the end of the greyscale ramp that would otherwise vanish
-     into the card: a dark edge for the near-white bars on white, a light edge for the
-     near-black bars on the dark card. */
-  .seg.snow{border:1px solid var(--snow-edge)}
-  .seg.price{border:1px solid var(--price-edge)}
-
-  /* receipts */
-  table{border-collapse:collapse; width:100%; font-size:13px}
-  th,td{text-align:left; padding:7px 10px; vertical-align:top; border-top:1px solid var(--line)}
-  th{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); border-top:none}
-  td.d{white-space:nowrap; color:var(--ink-3); font-variant-numeric:tabular-nums}
-  td.w{white-space:nowrap; font-weight:600}
-  q{color:var(--ink); font-style:italic}
-  details summary{cursor:pointer; font-weight:600; color:var(--accent-ink); font-size:14px}
-  details[open] summary{margin-bottom:8px}
-  .tablewrap{overflow-x:auto}
-  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
-  .filter-tile{border:1px solid var(--line-strong);border-radius:999px;background:var(--card);color:var(--ink-2);padding:7px 13px;font:inherit;font-size:12px;cursor:pointer}
-  .filter-tile[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
-  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
-  .price-card{border:1px solid var(--line);border-radius:8px;padding:14px;background:var(--paper)}
-  .price-card h3{font-size:14px;margin:0 0 6px}.price-card p{margin:4px 0;color:var(--ink-2);font-size:12px}
-  .price-card strong{font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums}
-  .price-card small{display:block;color:var(--ink-3);font-size:11px;margin-top:5px}
-  .price-table{margin-top:16px}
-  .price-table td.money{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-  .price-status{color:var(--ink-3);font-size:12px;margin:8px 0 0}
-  .range-controls{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0}
+  body{margin:0;padding:32px 20px 64px;background:var(--paper);color:var(--ink);font:15px/1.55 "Segoe UI",system-ui,-apple-system,sans-serif}
+  .wrap{max-width:1180px;margin:0 auto}
+  header{margin:0 0 24px}
+  .eyebrow{margin:0 0 6px;color:var(--accent-ink);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+  h1{margin:0 0 8px;font-size:clamp(23px,3.4vw,32px);line-height:1.2;font-weight:650}
+  .sub{max-width:75ch;margin:0;color:var(--ink-2)}
+  .panel{margin-top:20px;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)}
+  .panel h2{margin:0 0 16px;font-size:17px;font-weight:650}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+  .filter-tile{padding:7px 13px;border:1px solid var(--line-strong);border-radius:999px;background:var(--card);color:var(--ink-2);font:inherit;font-size:12px;cursor:pointer}
+  .filter-tile[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff}
+  .filter-tile:focus-visible,.table-pagination button:focus-visible,.data-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .range-controls{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
   .range-controls label{display:grid;gap:6px;color:var(--ink-2);font-size:12px}
   .range-controls input{width:100%;accent-color:var(--accent)}
   .range-readout{font-weight:650;color:var(--ink)}
-  .table-pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;color:var(--ink-2);font-size:12px}
-  .table-pagination button,.data-link{border:1px solid var(--line-strong);border-radius:6px;background:var(--card);color:var(--accent-ink);padding:6px 10px;font:inherit;text-decoration:none;cursor:pointer}
+  .tablewrap{overflow-x:auto}
+  table{width:100%;min-width:1160px;border-collapse:collapse;font-size:13px}
+  th,td{padding:8px 10px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+  th{border-top:none;color:var(--ink-3);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+  td.w{font-weight:600;min-width:180px}
+  td.money{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .price-status{margin:8px 0 0;color:var(--ink-3);font-size:12px}
+  .table-pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;color:var(--ink-2);font-size:12px}
+  .table-pagination button,.data-link{padding:6px 10px;border:1px solid var(--line-strong);border-radius:6px;background:var(--card);color:var(--accent-ink);font:inherit;text-decoration:none;cursor:pointer}
   .table-pagination button:disabled{opacity:.45;cursor:default}
-  .tablewrap.trip-table{margin-top:14px}
-  .trip-table table{min-width:1150px}
-  .trip-table td.money{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-  @media(max-width:700px){.range-controls{grid-template-columns:1fr}}
-
-  /* tooltip */
-  #tip{
-    position:fixed; z-index:50; max-width:300px; background:var(--ink); color:var(--paper);
-    font-size:12.5px; line-height:1.45; padding:9px 11px; border-radius:7px; pointer-events:none;
-    box-shadow:var(--shadow); display:none;
-  }
-  #tip b{display:block; margin-bottom:3px}
-  footer{margin-top:26px; color:var(--ink-3); font-size:12.5px; max-width:75ch}
-  @media (prefers-reduced-motion: no-preference){
-    .seg{transition:outline-color .12s ease}
-  }
+  @media(max-width:700px){body{padding:22px 12px 44px}.panel{padding:16px 14px}.range-controls{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header>
-  <p class="eyebrow">Ski trip this winter? 😝 &middot; group chat digest &middot; 10 Jun – 30 Jul 2026</p>
-  <h1>Likelihood each member can ski, Dec&nbsp;2026&nbsp;→&nbsp;Feb&nbsp;2027</h1>
-  <p class="sub">Compiled from dated group statements for all seven members. Each bar estimates the <b>probability that person is available</b>; hover for the evidence. Use the single table below to compare February trip dates, flight fares, accommodation and known costs by person and destination.</p>
-</header>
+  <header>
+    <p class="eyebrow">Ski trip this winter? 😝 &middot; group chat digest</p>
+    <h1 id="page-title">February ski trip costs</h1>
+    <p class="sub">Compare per-person flight and accommodation estimates for weekend departures, with returns on any later date in February. The table is loaded from the committed trip database; rows prioritize longer holidays with fewer weekdays off.</p>
+  </header>
 
-<section class="panel">
-  <h2>Availability timeline</h2>
-  <div class="tl"><div class="tl-inner">
-    <div class="months" id="months"></div>
-    <div class="grid" id="grid">
-      <div class="gridlines" id="gridlines"></div>
-      <!-- rows injected -->
+  <main class="panel" id="trip-prices">
+    <h2>Trip costs by person and location</h2>
+    <div class="filters" id="member-filters" role="group" aria-label="Filter by participant"></div>
+    <p class="price-status">Choose one or more locations. All locations are selected initially.</p>
+    <div class="filters" id="location-filters" role="group" aria-label="Filter by holiday location"></div>
+    <div class="range-controls">
+      <label>Depart on or after <span class="range-readout" id="start-date-label"></span><input id="start-date-range" type="range"></label>
+      <label>Return on or before <span class="range-readout" id="end-date-label"></span><input id="end-date-range" type="range"></label>
     </div>
-  </div></div>
-  <div class="legend">
-    <span class="key">
-      <span>
-        <span class="ramp"></span>
-        <span class="ramp-labels"><span>0% — can't go</span><span>50%</span><span>100% — in</span></span>
-      </span>
-    </span>
-    <span class="key"><span class="sw-dash"></span> dashed = no direct statement, likelihood inferred (50%)</span>
-    <span class="key">
-      <span>
-        <span class="ramp" style="background:linear-gradient(90deg,#000,#fff); border:1px solid var(--line-strong)"></span>
-        <span class="ramp-labels"><span>0% — no snow</span><span>100% — snow-sure</span></span>
-      </span>
-    </span>
-    <span class="key">
-      <span>
-        <span class="ramp" style="background:linear-gradient(90deg,hsl(255 45% 88%),hsl(255 48% 30%)); border:1px solid var(--line-strong)"></span>
-        <span class="ramp-labels"><span>€1.2k / week</span><span>€6k+ / week</span></span>
-      </span>
-    </span>
-  </div>
-</section>
-
-
-<section class="panel" id="trip-prices">
-  <h2>February trip costs by person and location</h2>
-  <p class="sub">Compare per-person accommodation and round-trip flight estimates for Friday, Saturday or Sunday departures, with returns on any later February date. Sort priority favors longer breaks with fewer weekdays off. Flight fares are observed offers, not guaranteed booking prices.</p>
-  <div class="filters" id="member-filters" role="group" aria-label="Filter by participant"></div>
-  <p class="price-status">Select one or more locations to show matching trip options.</p>
-  <div class="filters" id="location-filters" role="group" aria-label="Filter by holiday location"></div>
-  <div class="range-controls">
-    <label>Depart no earlier than <span class="range-readout" id="start-date-label"></span><input id="start-date-range" type="range" min="0" max="27" value="0"></label>
-    <label>Return no later than <span class="range-readout" id="end-date-label"></span><input id="end-date-range" type="range" min="0" max="27" value="27"></label>
-  </div>
-  <div class="tablewrap trip-table"><table><thead><tr><th>Person / origin</th><th>Location / gateway</th><th>Depart</th><th>Return</th><th>Holiday days</th><th>Weekdays off</th><th>Availability</th><th>Accommodation</th><th>Flight average</th><th>Flight best</th><th>Auxiliary</th><th>Priced subtotal</th></tr></thead><tbody id="trip-rows"><tr><td colspan="12" class="price-status">Choose a location to display trip prices.</td></tr></tbody></table></div>
-  <div class="table-pagination"><button id="previous-page" type="button" disabled>Previous</button><span id="page-info">No rows</span><button id="next-page" type="button" disabled>Next</button></div>
-  <p class="price-status" id="trip-updated"></p>
-  <p class="price-status">For the complete per-person data, <a class="data-link" href="./prices.json" download="ski-holiday-february-prices.json">download the raw February price data (JSON)</a>. Accommodation is modeled per-person; auxiliary costs stay pending until sourced.</p>
-</section>
-
-
-<section class="panel">
-  <details>
-    <summary>Receipts — every dated statement used (table view)</summary>
-    <div class="tablewrap">
-    <table>
-      <tr><th>Who</th><th>Said on</th><th>Statement</th><th>Read as</th></tr>
-      <tr><td class="w">Misha</td><td class="d">19 Jun</td><td><q>I should be ok if I come back 17th December … like from 1st till 17th</q></td><td>Dec 1–17 ≈90%</td></tr>
-      <tr><td class="w">Misha</td><td class="d">21 Jun</td><td><q>We can do end of November also</q></td><td>late Nov possible</td></tr>
-      <tr><td class="w">Misha</td><td class="d">19 Jul</td><td><q>I will be japan, but it is still an acceptable outcome</q> (re 26 Dec–2 Jan)</td><td>26 Dec–2 Jan ≈5%</td></tr>
-      <tr><td class="w">Misha</td><td class="d">27 Jul</td><td><q>Don't count on me on those days</q> (re 2–10 Jan)</td><td>Jan 2–10 ≈5%</td></tr>
-      <tr><td class="w">Misha</td><td class="d">28 Jul</td><td><q>End of January. Im just cooked so just dont book for me.</q></td><td>late Jan ≈45%, low commitment</td></tr>
-      <tr><td class="w">Misha</td><td class="d">30 Jul</td><td><q>Yes</q> (re "December … before 17th")</td><td>re-confirms Dec 1–17</td></tr>
-      <tr><td class="w">Nazhan</td><td class="d">22 Jun</td><td><q>Hows the week of dec 7 … I prefer around this time</q>; <q>So far 7-14 looks good for me too</q></td><td>Dec 7–14 ≈85%</td></tr>
-      <tr><td class="w">Nazhan</td><td class="d">13 Jul</td><td><q>i think these dates can… might need to adjust according to ticket prices… might be 14-20</q> (re 14–21)</td><td>Dec 14–20/21 ≈60%</td></tr>
-      <tr><td class="w">Nazhan</td><td class="d">19 Jul</td><td><q>i think prices might be too high for me for thise dates</q> (re 26 Dec–2 Jan); <q>with banana currency i dont think i can afford italy</q></td><td>26 Dec–2 Jan ≈30%</td></tr>
-      <tr><td class="w">Nazhan</td><td class="d">30 Jul</td><td><q>I think i have nye plans</q>; <q>I would much prefer before xmas</q>; <q>How about mid jan</q>; <q>Il check again ij a bit</q> (re 2–10 Jan)</td><td>NYE low · Jan 2–10 ≈45% TBC · mid-Jan ≈50%</td></tr>
-      <tr><td class="w">Jesus</td><td class="d">10 Jun</td><td><q>I can fly to Tbilisi for 750 in December … main thing will be getting the time off work</q>; <q>cannot leave harjot alone until the 24th</q></td><td>Dec possible in principle</td></tr>
-      <tr><td class="w">Jesus</td><td class="d">21 Jun</td><td><q>I'll have to be back in Spain by Christmas, maybe by 23</q></td><td>≈10% from ~Dec 22</td></tr>
-      <tr><td class="w">Jesus</td><td class="d">16 Jul</td><td><q>I can't go on the 7th. I can't take a whole month off work… I can't say what dates I'll be available yet</q>; Christmas leave = <q>2 days</q></td><td>early Dec ≈20%</td></tr>
-      <tr><td class="w">Jesus</td><td class="d">27 Jul</td><td><q>January works a lot better for me</q> → "Early Jan only right?" → <q>Yes</q></td><td>Jan 1–14 ≈70% (revised, see 30 Jul)</td></tr>
-      <tr><td class="w">Robert</td><td class="d">30 Jul</td><td>Revised estimate for Jesus: <q>First 2 weeks of jan are 70%. Around christmas should be like 10%. week before that like 30 and then first week of dec is very low probability as well.</q></td><td>Dec 1–14 ≈5% · Dec 15–21 ≈30% · Dec 22–Jan 1 ≈10% · Jan 2–15 ≈70%</td></tr>
-      <tr><td class="w">Jack</td><td class="d">19 Jun / 19 Jul</td><td><q>yeah I'm free anytime December</q>; <q>I can do these dates, just let me know when they locked in so I can book asap</q> (re 26 Dec–2 Jan)</td><td>100% throughout</td></tr>
-      <tr><td class="w">Philippe</td><td class="d">11 Jul / 27 Jul</td><td><q>I'm flexible</q>; <q>I am flexible</q></td><td>100% throughout</td></tr>
-      <tr><td class="w">Balint</td><td class="d">11 Jul / 18 Jul</td><td><q>metoo</q> (flexible); "And my axe!" + <q>You can count on me</q> (re 26 Dec–2 Jan)</td><td>100% throughout</td></tr>
-      <tr><td class="w">Robert</td><td class="d">30 Jul</td><td><q>But I'm free</q> (re mid-Jan) — and he's organising every window proposed</td><td>100% throughout</td></tr>
-    </table>
+    <div class="tablewrap trip-table">
+      <table>
+        <thead><tr><th>Person / origin</th><th>Location / gateway</th><th>Depart</th><th>Return</th><th>Holiday days</th><th>Weekdays off</th><th>Availability</th><th id="accommodation-heading">Accommodation / person</th><th>Flight average / person</th><th>Flight best / person</th><th>Auxiliary / person</th><th>Priced subtotal / person</th></tr></thead>
+        <tbody id="trip-rows"><tr><td colspan="12" class="price-status">Loading February trip data…</td></tr></tbody>
+      </table>
     </div>
-  </details>
-</section>
-
-<footer>
-  <p style="margin:0 0 8px"><b>Availability %</b> are likelihood-of-availability estimates read from message tone. Jesus's figures are pinned directly by Robert (30 Jul revision): 70% for the first two weeks of January, 10% around Christmas, 30% the week before Christmas, and very low (~5%) for the first two weeks of December. Nobody supplied direct February availability, so February estimates are explicitly marked as inferred and carried forward.</p>
-  <p style="margin:0 0 8px"><b>Snow %</b> come from the lift-opening dates discussed in the chat: Gudauri's lifts opened <b>Dec 27</b> last season and the Airbnb co-host warned they'd <b>most probably not be open Dec 5–12</b>; Shahdag opened ~<b>Dec 15</b>; the Alps run from late November on snowmaking.</p>
-  <p style="margin:0"><b>Accommodation prices are modelled estimates, not live quotes.</b> Two are hard anchors from the chat — the real Chalet Marina booking (<b>zł7,846.63 for 7 guests, Dec 5–12</b> ≈ €1,845) and Robert's <q>4000£ for the new date range</q> (Jan 2–10). February figures extend the same seasonal model into half-term. The price database splits each modeled 7-night group cost across seven people and preserves a per-location breakdown. Flight prices below are live observed offers when the weekly Amadeus search is configured; unobserved fares and auxiliary trip costs stay pending. Confirm any figure before booking on it.</p>
-</footer>
+    <div class="table-pagination"><button id="previous-page" type="button" disabled>Previous</button><span id="page-info">Loading…</span><button id="next-page" type="button" disabled>Next</button></div>
+    <p class="price-status" id="trip-updated"></p>
+    <p class="price-status">Accommodation is the group estimate divided by the group size shown in its column heading. Flight fares are each person’s own round-trip ticket and are not divided by the group. The per-person subtotal adds accommodation and average flight fare; auxiliary costs are separate and included only when available. <a class="data-link" href="./prices.json" download="ski-holiday-february-prices.json">Download the complete trip database (JSON)</a>.</p>
+  </main>
 </div>
-
-<div id="tip"></div>
-
+<div id="tip" role="tooltip"></div>
 <script>
 (function(){
-  // Timeline domain: Dec 1 (0) → Mar 1 (90), including all of February.
-  var TOTAL=90;
-  function pct(d){return (d/TOTAL*100).toFixed(3)+'%';}
-  function w(a,b){return ((b-a)/TOTAL*100).toFixed(3)+'%';}
+  var rowsElement=document.getElementById('trip-rows');
+  var pageInfo=document.getElementById('page-info');
+  var previous=document.getElementById('previous-page');
+  var next=document.getElementById('next-page');
+  var startRange=document.getElementById('start-date-range');
+  var endRange=document.getElementById('end-date-range');
+  var page=0, pageSize=50, selectedPerson='all', selectedLocations=new Set();
+  var db, names=[], locations=[], dates=[], allRows=[];
 
-  var months=document.getElementById('months');
-  months.innerHTML='<div style="width:'+w(0,31)+'">December 2026</div><div style="width:'+w(31,62)+'">January 2027</div><div style="width:'+w(62,90)+'">February 2027</div>';
-
-  var gl=document.getElementById('gridlines');
-  // Weekly date markers through February.
-  var ticks=[[6,'7'],[13,'14'],[20,'21'],[27,'28'],[34,'4'],[41,'11'],[48,'18'],[55,'25'],[62,'1'],[69,'8'],[76,'15'],[83,'22']];
-  var h='<i class="month" style="left:0"></i><i class="month" style="left:'+pct(31)+'"></i><i class="month" style="left:'+pct(62)+'"></i>';
-  ticks.forEach(function(t){h+='<i style="left:'+pct(t[0])+'"></i><b style="left:'+pct(t[0])+'">'+t[1]+'</b>';});
-  gl.innerHTML=h;
-
-  // segments: [startDay, endDay, likelihood%, quote, inferred?]
-  var people=[
-    {name:'Jesus', note:'Canada · needs work leave', segs:[
-      [0,13,5,'Very low — Robert: "first week of dec is very low probability as well". "I can’t go on the 7th… can’t take a whole month off work", leave unknown.'],
-      [13,21,30,'Robert: "week before that [Christmas] like 30". "In principle this would work for me… it is very complicated" (re 14–21). Only 2 days of Christmas leave.'],
-      [21,32,10,'Robert: "Around christmas should be like 10%". Christmas in Spain with Harjot + family — "back in Spain by Christmas, maybe by 23", "cannot leave harjot alone until the 24th".'],
-      [32,46,70,'Robert: "First 2 weeks of jan are 70%" — Jesus’s best odds of the whole window. "January works a lot better for me".'],
-      [46,90,20,'Carried over from the earlier estimate (unchanged by Robert’s update) — "Early Jan only right?" — "Yes". February availability has not been discussed; shown as a carried-over estimate.']
-    ]},
-    {name:'Misha', note:'hard stop Dec 17 · Japan NYE', segs:[
-      [0,16,90,'"I should be ok if I come back 17th December… from 1st till 17th" — re-confirmed today ("Yes" to December before the 17th).'],
-      [16,25,20,'Must be back home from the 17th.'],
-      [25,32,5,'Japan trip over New Year — "I will be japan… enjoying the night life… multiple day benders". "Japan trip is scared ground."'],
-      [32,40,5,'Re 2–10 Jan proposal: "Don’t count on me on those days".'],
-      [40,54,30,'"Im just cooked so just dont book for me" — not free until late Jan.'],
-      [54,90,45,'"When are you free in Jan?" → "End of January." Free, but told the group not to book around him. February has not been discussed; estimate carried forward.']
-    ]},
-    {name:'Nazhan', note:'Malaysia · budget-bound', segs:[
-      [0,6,55,'No explicit statement for 1–6 Dec, but "I would much prefer before xmas".',1],
-      [6,13,85,'"Hows the week of dec 7 — I prefer around this time"; "So far 7-14 looks good for me too".'],
-      [13,20,60,'"These dates can… but might need to adjust according to ticket prices — might be 14-20" (re 14–21).'],
-      [20,25,50,'No statement covers 21–25 Dec — unknown, so 50/50.',1],
-      [25,32,30,'"Prices might be too high for me for thise dates" + "I think i have nye plans".'],
-      [32,40,45,'Current blocker: "Bro i actually cant check the company calendar rn… Il check again ij a bit". Prefers before Xmas.'],
-      [40,54,50,'Counter-proposed it himself: "How about mid jan next year" — but unverified against his work calendar.'],
-      [54,90,50,'No statement covers late January or February — unknown, so 50/50.',1]
-    ]},
-    {name:'Robert, Philippe, Balint, Jack', note:'flexible on every date', segs:[
-      [0,62,100,'All four confirmed no constraints for dates discussed through January: Robert — proposed every window himself, "But I’m free" (re mid-Jan). Philippe — "I’m flexible" (11 Jul), "I am flexible" (27 Jul). Balint — "metoo" (flexible), "You can count on me" / "And my axe!" (re 26 Dec–2 Jan). Jack — "yeah I’m free anytime December", "I can do these dates, just let me know when they locked in so I can book asap".'],
-      [62,90,100,'No direct February confirmation for these four; their prior flexible estimate is carried forward as inferred.',1]
-    ]}
-  ];
-
-  // ---- colour helpers: fills are computed, label ink is chosen for max contrast
-  function hslToRgb(h,s,l){
-    s/=100; l/=100;
-    var c=(1-Math.abs(2*l-1))*s, hp=h/60, x=c*(1-Math.abs(hp%2-1)), r=0,g=0,b=0;
-    if(hp<1){r=c;g=x;} else if(hp<2){r=x;g=c;} else if(hp<3){g=c;b=x;}
-    else if(hp<4){g=x;b=c;} else if(hp<5){r=x;b=c;} else {r=c;b=x;}
-    var m=l-c/2;
-    return [Math.round((r+m)*255),Math.round((g+m)*255),Math.round((b+m)*255)];
+  function dateLabel(iso){return new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',timeZone:'UTC'}).format(new Date(iso+'T00:00:00Z'));}
+  function euro(value){return value==null||!Number.isFinite(Number(value))?'Pending':'€'+Math.round(Number(value)).toLocaleString('en-GB');}
+  function addCell(row,value,className){var cell=document.createElement('td');cell.textContent=value==null?'—':String(value);if(className)cell.className=className;row.appendChild(cell);}
+  function setMessage(message){rowsElement.innerHTML='';var row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=12;cell.className='price-status';cell.textContent=message;row.appendChild(cell);rowsElement.appendChild(row);pageInfo.textContent='No rows';previous.disabled=true;next.disabled=true;}
+  function makeTile(label,pressed,onClick){var button=document.createElement('button');button.type='button';button.className='filter-tile';button.textContent=label;button.setAttribute('aria-pressed',pressed?'true':'false');button.addEventListener('click',onClick);return button;}
+  function renderMemberFilters(){
+    var group=document.getElementById('member-filters');group.replaceChildren();
+    group.appendChild(makeTile('Everyone',selectedPerson==='all',function(){selectedPerson='all';page=0;renderMemberFilters();render();}));
+    names.forEach(function(name){group.appendChild(makeTile(name,selectedPerson===name,function(){selectedPerson=name;page=0;renderMemberFilters();render();}));});
   }
-  function relLum(c){
-    var f=function(v){v/=255; return v<=.03928 ? v/12.92 : Math.pow((v+.055)/1.055,2.4);};
-    return .2126*f(c[0])+.7152*f(c[1])+.0722*f(c[2]);
+  function renderLocationFilters(){
+    var group=document.getElementById('location-filters');group.replaceChildren();
+    locations.forEach(function(location){group.appendChild(makeTile(location,selectedLocations.has(location),function(){
+      if(selectedLocations.has(location))selectedLocations.delete(location);else selectedLocations.add(location);
+      page=0;renderLocationFilters();render();
+    }));});
   }
-  // pick whichever of near-black / white contrasts better against the fill,
-  // plus an opposite-tone halo so mid-tone fills (where neither ink clears AA) stay legible
-  function inkFor(c){
-    var L=relLum(c);
-    return ((L+.05)/.05) >= (1.05/(L+.05))
-      ? {fg:'#14180f', halo:'rgba(255,255,255,.72)'}
-      : {fg:'#ffffff', halo:'rgba(20,24,15,.72)'};
+  function updateDateLabels(){
+    document.getElementById('start-date-label').textContent=dateLabel(dates[Number(startRange.value)]);
+    document.getElementById('end-date-label').textContent=dateLabel(dates[Number(endRange.value)]);
   }
-
-  // linear red→green ramp: 0% → hue 0, 100% → hue 120
-  var SEG_S=58, SEG_L=44;
-  function segColor(p){
-    var rgb=hslToRgb(p*1.2, SEG_S, SEG_L), ink=inkFor(rgb);
-    return {bg:'rgb('+rgb.join(',')+')', fg:ink.fg, halo:ink.halo};
-  }
-
-  var grid=document.getElementById('grid');
-  var tip=document.getElementById('tip');
-
-  people.forEach(function(p,idx){
-    var row=document.createElement('div'); row.className='row'+(idx===3?' divide':'');
-    var segsHtml='';
-    p.segs.forEach(function(s){
-      var a=s[0],b=s[1],lk=s[2],quote=s[3],inferred=s[4];
-      var days=b-a;
-      var col=segColor(lk);
-      var cls='seg'+(days<6?' small':'')+(inferred?' inferred':'');
-      var style='left:'+pct(a)+';width:calc('+w(a,b)+' - 2px);background:'+col.bg+';color:'+col.fg+';--halo:'+col.halo+';';
-      segsHtml+='<div class="'+cls+'" style="'+style+'" data-tip="'+quote.replace(/"/g,'&quot;')+'" data-who="'+p.name+' — '+fmt(a)+' → '+fmt(b)+' · '+lk+'% likely available">'+
-        '<span>'+lk+'%</span></div>';
-    });
-    row.innerHTML='<div class="row-label">'+p.name+'<small>'+p.note+'</small></div><div class="track">'+segsHtml+'</div>';
-    grid.appendChild(row);
-  });
-
-  // ---- location rows: snow coverage (black→white) + weekly price (indigo ramp)
-  var head=document.createElement('div'); head.className='section-head';
-  head.innerHTML='<span>Locations — snow &amp; price</span>'+
-    '<em>snow = chance of skiable snow · price = whole-group accommodation for a 7-night stay <b>starting</b> in that window (6–7 people, self-catered)</em>';
-  grid.appendChild(head);
-
-  // shared weekly start-date buckets so prices read as a comparable matrix
-  var B=[[0,6],[6,13],[13,20],[20,25],[25,32],[32,39],[39,46],[46,53],[53,62],[62,69],[69,76],[76,83],[83,90]];
-
-  var places=[
-    {name:'Georgia', note:'Caucasus · Gudauri',
-      snow:[
-        [0,13,15,'Lifts opened 27 Dec last season; the Airbnb co-host warned lifts “most probably will not be open” for 5–12 Dec. Rob: “Before Jan there is a good chance of no snow — not worth the risk.”'],
-        [13,21,30,'Still ~2 weeks before the historical lift opening — Rob put it at “80% chance of no skiing” for an early-Dec booking.'],
-        [21,26,45,'Approaching the late-Dec opening; snowmaking possible at 2,200 m.'],
-        [26,32,60,'“In Georgia, the ski lifts for the 2025 to 2026 season opened on December 27th.”'],
-        [32,46,80,'Season properly underway; the snowfall chart Rob posted looked strong from the season’s second week.'],
-        [46,90,90,'Deep season — “best snow conditions usually in February and March”.']
-      ],
-      // €/week for the group, by bucket
-      price:[1400,1845,1900,3200,4600,4070,2900,2600,2550,2550,2550,2550,2550],
-      priceNote:[
-        'Pre-season rate — the cheapest week on the whole board, but ~15% snow odds.',
-        'Anchor: the actual Chalet Marina booking, zł7,846.63 for 7 guests, 5–12 Dec ≈ €1,845.',
-        'Still pre-season pricing in Gudauri.',
-        'Christmas run-up; rates climb as the 27 Dec opening approaches.',
-        'New Year peak — Rob: “26 dec – 31 Jan is like 3x more expensive in some cases”.',
-        'Anchor: Rob’s quote of “4000£ for the new date range” (2–10 Jan, 8 nights) ≈ €4,070 per 7 nights.',
-        'Eases off, but Georgia’s season has only just started so January stays in demand.',
-        'Mid-January — the cheapest genuinely snow-sure week in the Caucasus.',
-        'Holds around the mid-Jan level into February.','February deep-season rate.','February deep-season rate.','Late-February deep-season rate.','Late-February deep-season rate.'
-      ]},
-    {name:'Azerbaijan', note:'Caucasus · Shahdag',
-      snow:[
-        [0,13,20,'Rob: “I suspect Azerbaijan may be similar” to Georgia’s late opening.'],
-        [13,21,45,'“Last year Azerbaijan shahdag opened ski lifts 15 december.”'],
-        [21,32,60,'Open per last season’s dates, but thin early-season cover and heavy snowmaking reliance.'],
-        [32,46,75,'Cover builds through January.'],
-        [46,90,85,'Deep season in the eastern Caucasus.']
-      ],
-      price:[1600,2000,2200,3400,4900,4300,3100,2800,2750,2750,2800,2900,3000],
-      priceNote:[
-        'Modelled ~10–15% above Gudauri — Shahdag inventory is hotel-heavy rather than self-catered.',
-        'Opens earlier than Georgia, so mid-Dec is already in-season pricing.',
-        'In-season from ~15 Dec.',
-        'Christmas rates.',
-        'New Year peak.',
-        'Rob’s finding matters more than the price here: “I’ve been looking at Azerbaijan and it’s basically fully booked. For 6-7 people.”',
-        'January demand stays firm.',
-        'Mid-January easing.',
-        'Late-January level.','February deep-season rate.','February deep-season rate.','February school-holiday demand.','February school-holiday demand.'
-      ]},
-    {name:'Italy', note:'Alps · Dolomites',
-      snow:[
-        [0,13,85,'Rob: the risk of no skiing in the Alps in early Dec “is like 10%” — Dolomites open from late Nov with extensive snowmaking.'],
-        [13,32,90,'Full lift networks running right through the Christmas period.'],
-        [32,90,95,'Peak-season reliability through February.']
-      ],
-      price:[1800,2100,2400,4500,5500,3100,2800,2900,3300,3500,3700,4100,4300],
-      priceNote:[
-        'Low-season Dolomites rate for a 7-person self-catered apartment (~€240/night average scaled to a group unit).',
-        'Still low season before the Christmas ramp.',
-        'Rates begin climbing mid-December.',
-        'Christmas week — one of the two annual peaks.',
-        'New Year peak; luxury inventory runs far higher, this is the normal self-catered band.',
-        'The post-holiday lull begins — industry guidance puts January 20–30% below the Christmas peak.',
-        'Cheapest snow-sure week in the Alps: full cover, lull pricing.',
-        'Still in the January lull.',
-        'Creeping back up towards February half-term.','February half-term rates rise.','February half-term rates rise.','Peak half-term demand.','Peak half-term demand.'
-      ]},
-    {name:'France', note:'Alps · Tarentaise',
-      snow:[
-        [0,13,85,'Named as a fallback (“Yes France Austria different place in Italy”); high-altitude French resorts open from late Nov.'],
-        [13,32,90,'Christmas period fully open.'],
-        [32,90,95,'Peak-season reliability through February.']
-      ],
-      price:[2000,2300,2600,4900,5900,3300,3000,3100,3600,3800,4000,4500,4700],
-      priceNote:[
-        'Typically the priciest of the three Alpine options for equivalent proximity to a lift.',
-        'Low season, pre-Christmas.',
-        'Mid-December climb.',
-        'Christmas peak.',
-        'New Year is the single most expensive week anywhere on this chart.',
-        'January lull starts.',
-        'Good-value snow-sure week.',
-        'Still in the lull.',
-        'Rising towards half-term.','February half-term rates rise.','February half-term rates rise.','Peak half-term demand.','Peak half-term demand.'
-      ]},
-    {name:'Austria', note:'Alps · Tirol',
-      snow:[
-        [0,13,88,'Named as a fallback; Austrian glacier resorts effectively guarantee early-season skiing.'],
-        [13,32,92,'Christmas period fully open.'],
-        [32,90,95,'Peak-season reliability through February.']
-      ],
-      price:[2100,2300,2500,4700,5600,3200,2950,3050,3500,3700,3900,4300,4500],
-      priceNote:[
-        'Less of an early-season discount than Italy — the glacier resorts are genuinely skiable, so December is priced as in-season.',
-        'Low season, pre-Christmas.',
-        'Mid-December climb.',
-        'Christmas peak.',
-        'New Year peak.',
-        'January lull starts.',
-        'Good-value snow-sure week.',
-        'Still in the lull.',
-        'Rising towards half-term.','February half-term rates rise.','February half-term rates rise.','Peak half-term demand.','Peak half-term demand.'
-      ]}
-  ];
-
-  // price → indigo ramp, normalised €1,200 (light) → €6,000 (dark)
-  var P_MIN=1200, P_MAX=6000;
-  function priceColor(v){
-    var t=Math.max(0,Math.min(1,(v-P_MIN)/(P_MAX-P_MIN)));
-    var rgb=hslToRgb(255, 46, 88-58*t), ink=inkFor(rgb);  // 88% → 30% lightness
-    return {bg:'rgb('+rgb.join(',')+')', fg:ink.fg, halo:ink.halo};
-  }
-  function money(v){
-    return '€'+(v>=1000 ? (v/1000).toFixed(v>=10000?0:1).replace(/\.0$/,'')+'k' : v);
-  }
-
-  places.forEach(function(p){
-    // --- snow row (carries the location name)
-    var rs=document.createElement('div'); rs.className='row loc loc-snow';
-    var sh='';
-    p.snow.forEach(function(s){
-      var a=s[0],b=s[1],sp=s[2],quote=s[3];
-      var g=Math.round(sp*2.55), fill='rgb('+g+','+g+','+g+')', ink=inkFor([g,g,g]);
-      var cls='seg thin snow'+((b-a)<5?' small':'');
-      sh+='<div class="'+cls+'" style="left:'+pct(a)+';width:calc('+w(a,b)+' - 2px);background:'+fill+';color:'+ink.fg+';--halo:'+ink.halo+';" '+
-        'data-tip="'+quote.replace(/"/g,'&quot;')+'" '+
-        'data-who="'+p.name+' — snow, '+fmt(a)+' → '+fmt(b)+' · '+sp+'% chance of skiable snow">'+
-        '<span>'+sp+'%</span></div>';
-    });
-    rs.innerHTML='<div class="row-label">'+p.name+'<small>'+p.note+'</small></div><div class="track">'+sh+'</div>';
-    grid.appendChild(rs);
-
-    // --- price row
-    var rp=document.createElement('div'); rp.className='row loc loc-price';
-    var ph='';
-    B.forEach(function(bk,i){
-      var a=bk[0], b=bk[1], v=p.price[i], c=priceColor(v);
-      var perHead=Math.round(v/7);
-      var cls='seg thin price'+((b-a)<5?' small':'');
-      ph+='<div class="'+cls+'" style="left:'+pct(a)+';width:calc('+w(a,b)+' - 2px);background:'+c.bg+';color:'+c.fg+';--halo:'+c.halo+';" '+
-        'data-tip="'+p.priceNote[i].replace(/"/g,'&quot;')+'" '+
-        'data-who="'+p.name+' — 7 nights starting '+fmt(a)+'–'+fmt(b)+' · '+money(v)+' for the group ≈ €'+perHead+'/person">'+
-        '<span>'+money(v)+'</span></div>';
-    });
-    rp.innerHTML='<div class="row-label">↳ €/week</div><div class="track">'+ph+'</div>';
-    grid.appendChild(rp);
-  });
-
-  // The full per-person database remains downloadable; the page shows rows only after a destination is selected.
-  fetch('./prices.json').then(function(r){if(!r.ok) throw new Error('Price data unavailable');return r.json();}).then(function(db){
-    var names=Object.keys(db.participants), locations=Object.keys(db.destinations), selectedPerson='all', selectedLocations=new Set(), page=0, pageSize=50;
-    var startRange=document.getElementById('start-date-range'), endRange=document.getElementById('end-date-range');
-    var rowsElement=document.getElementById('trip-rows'), pageInfo=document.getElementById('page-info');
-    function isoDay(index){return '2027-02-'+String(index+1).padStart(2,'0');}
-    function labelDay(index){return 'Feb '+String(index+1).padStart(2,'0');}
-    function eur(v){return v==null||!Number.isFinite(Number(v))?'Pending':'€'+Math.round(Number(v)).toLocaleString('en-GB');}
-    function buildMemberFilters(){
-      var el=document.getElementById('member-filters');el.innerHTML='';
-      [['all','Everyone']].concat(names.map(function(n){return [n,n];})).forEach(function(item){var btn=document.createElement('button');
-        btn.type='button';btn.className='filter-tile';btn.textContent=item[1];btn.setAttribute('aria-pressed',selectedPerson===item[0]?'true':'false');
-        btn.onclick=function(){selectedPerson=item[0];page=0;buildMemberFilters();render();};el.appendChild(btn);});
-    }
-    function buildLocationFilters(){
-      var el=document.getElementById('location-filters');el.innerHTML='';
-      locations.forEach(function(location){var btn=document.createElement('button');btn.type='button';btn.className='filter-tile';btn.textContent=location;
-        btn.setAttribute('aria-pressed',selectedLocations.has(location)?'true':'false');btn.onclick=function(){
-          if(selectedLocations.has(location))selectedLocations.delete(location);else selectedLocations.add(location);page=0;buildLocationFilters();render();};el.appendChild(btn);});
-    }
-    function updateRangeLabels(){document.getElementById('start-date-label').textContent=labelDay(Number(startRange.value));document.getElementById('end-date-label').textContent=labelDay(Number(endRange.value));}
-    function render(){
-      updateRangeLabels();rowsElement.innerHTML='';
-      if(!selectedLocations.size){rowsElement.innerHTML='<tr><td colspan="12" class="price-status">Choose one or more location tiles to display trip prices.</td></tr>';pageInfo.textContent='No rows';
-        document.getElementById('previous-page').disabled=true;document.getElementById('next-page').disabled=true;return;}
-      var startDate=isoDay(Number(startRange.value)),endDate=isoDay(Number(endRange.value)),allRows=[];
-      names.filter(function(name){return selectedPerson==='all'||name===selectedPerson;}).forEach(function(name){
-        var person=db.participants[name];Object.values(person.trips).forEach(function(trip){
-          if(trip.startDate<startDate||trip.endDate>endDate)return;
-          selectedLocations.forEach(function(location){var flight=trip.flights[location]||{};
-            var lodging=trip.accommodation.perPersonEur[location],aux=trip.auxiliary.totalPerPersonEur;
-            var subtotal=lodging!=null&&flight.averageEur!=null?lodging+flight.averageEur+(aux||0):null;
-            allRows.push({name:name,person:person,trip:trip,location:location,flight:flight,lodging:lodging,aux:aux,subtotal:subtotal});
-          });
+  function render(){
+    updateDateLabels();
+    var firstDate=dates[Number(startRange.value)],lastDate=dates[Number(endRange.value)];
+    allRows=[];
+    names.filter(function(name){return selectedPerson==='all'||name===selectedPerson;}).forEach(function(name){
+      var person=db.participants[name];
+      Object.entries(person.trips||{}).forEach(function(entry){
+        var trip=entry[1];
+        if(trip.startDate<firstDate||trip.endDate>lastDate)return;
+        selectedLocations.forEach(function(location){
+          var flight=trip.flights&&trip.flights[location]||{};
+          var accommodation=trip.accommodation&&trip.accommodation.perPersonEur&&trip.accommodation.perPersonEur[location];
+          var auxiliary=trip.auxiliary&&trip.auxiliary.totalPerPersonEur;
+          var subtotal=accommodation!=null&&flight.averageEur!=null
+            ?Number(accommodation)+Number(flight.averageEur)+(auxiliary==null?0:Number(auxiliary)):null;
+          allRows.push({name:name,person:person,trip:trip,location:location,flight:flight,accommodation:accommodation,auxiliary:auxiliary,subtotal:subtotal});
         });
       });
-      allRows.sort(function(a,b){return b.trip.holidayDays-a.trip.holidayDays||a.trip.weekdaysOff-b.trip.weekdaysOff||a.trip.startDate.localeCompare(b.trip.startDate)||a.trip.endDate.localeCompare(b.trip.endDate)||a.name.localeCompare(b.name);});
-      var pageCount=Math.max(1,Math.ceil(allRows.length/pageSize));page=Math.min(page,pageCount-1);
-      allRows.slice(page*pageSize,(page+1)*pageSize).forEach(function(item){var tr=document.createElement('tr'),t=item.trip,f=item.flight;
-        tr.innerHTML='<td class="w">'+item.name+'<br><small>'+item.person.homeAirport.label+' ('+item.person.homeAirport.code+')</small></td>'+
-          '<td>'+item.location+' ('+(f.airportCode||db.destinations[item.location].airportCode)+')</td><td>'+t.startDate+'</td><td>'+t.endDate+'</td>'+
-          '<td>'+t.holidayDays+'</td><td>'+t.weekdaysOff+'</td><td>'+t.availability.probability+'%'+(t.availability.inferred?' · estimated':'')+'</td>'+
-          '<td class="money">'+eur(item.lodging)+'</td><td class="money">'+eur(f.averageEur)+'</td><td class="money">'+eur(f.bestEur)+'</td>'+
-          '<td class="money">'+eur(item.aux)+'</td><td class="money">'+eur(item.subtotal)+'</td>';rowsElement.appendChild(tr);
-      });
-      pageInfo.textContent=allRows.length?('Rows '+(page*pageSize+1)+'–'+Math.min((page+1)*pageSize,allRows.length)+' of '+allRows.length):'No matching trips';
-      document.getElementById('previous-page').disabled=page===0;document.getElementById('next-page').disabled=(page+1)*pageSize>=allRows.length;
-      if(!allRows.length)rowsElement.innerHTML='<tr><td colspan="12" class="price-status">No candidate trips match this date range.</td></tr>';
-    }
-    startRange.oninput=function(){if(Number(startRange.value)>Number(endRange.value))endRange.value=startRange.value;page=0;render();};
-    endRange.oninput=function(){if(Number(endRange.value)<Number(startRange.value))startRange.value=endRange.value;page=0;render();};
-    document.getElementById('previous-page').onclick=function(){page=Math.max(0,page-1);render();};
-    document.getElementById('next-page').onclick=function(){page+=1;render();};
-    buildMemberFilters();buildLocationFilters();render();
-    document.getElementById('trip-updated').textContent='Database last updated: '+(db.updatedAt||'flight data not yet refreshed')+'. Flight average and best prices are refreshed weekly when Amadeus credentials are configured.';
-  }).catch(function(){document.getElementById('trip-rows').innerHTML='<tr><td colspan="12" class="price-status">Could not load prices.json. The weekly flight search runs after Amadeus API credentials are configured in GitHub Actions.</td></tr>';});
+    });
+    allRows.sort(function(a,b){return Number(b.trip.holidayDays||0)-Number(a.trip.holidayDays||0)
+      ||Number(a.trip.weekdaysOff||0)-Number(b.trip.weekdaysOff||0)
+      ||a.trip.startDate.localeCompare(b.trip.startDate)
+      ||a.trip.endDate.localeCompare(b.trip.endDate)
+      ||a.name.localeCompare(b.name)
+      ||a.location.localeCompare(b.location);});
 
-  function fmt(d){
-    if(d>=90) return 'Mar 1';
-    if(d>=62) return 'Feb '+(d-61);
-    if(d>=31) return 'Jan '+(d-30);
-    return 'Dec '+(d+1);
+    rowsElement.replaceChildren();
+    if(!allRows.length){setMessage('No trips match these filters. Try widening the date range or selecting another location.');return;}
+    var pageCount=Math.ceil(allRows.length/pageSize);page=Math.min(page,pageCount-1);
+    allRows.slice(page*pageSize,(page+1)*pageSize).forEach(function(item){
+      var trip=item.trip,flight=item.flight,row=document.createElement('tr');
+      addCell(row,item.name+' · '+item.person.homeAirport.label+' ('+item.person.homeAirport.code+')','w');
+      addCell(row,item.location+' ('+(flight.airportCode||db.destinations[item.location].airportCode)+')');
+      addCell(row,trip.startDate);addCell(row,trip.endDate);
+      addCell(row,trip.holidayDays);addCell(row,trip.weekdaysOff);
+      addCell(row,trip.availability?trip.availability.probability+'%'+(trip.availability.inferred?' · estimated':''):'Pending');
+      addCell(row,euro(item.accommodation),'money');addCell(row,euro(flight.averageEur),'money');addCell(row,euro(flight.bestEur),'money');
+      addCell(row,euro(item.auxiliary),'money');addCell(row,euro(item.subtotal),'money');rowsElement.appendChild(row);
+    });
+    pageInfo.textContent='Rows '+(page*pageSize+1)+'–'+Math.min((page+1)*pageSize,allRows.length)+' of '+allRows.length;
+    previous.disabled=page===0;next.disabled=(page+1)*pageSize>=allRows.length;
+  }
+  function initialise(data){
+    db=data;names=Object.keys(db.participants||{});locations=Object.keys(db.destinations||{});
+    if(!names.length||!locations.length)throw new Error('The trip database has no participants or locations.');
+    var first=new Date(db.dateRange.start+'T00:00:00Z'),last=new Date(db.dateRange.end+'T00:00:00Z');
+    for(var current=new Date(first);current<=last;current.setUTCDate(current.getUTCDate()+1))dates.push(current.toISOString().slice(0,10));
+    if(!dates.length)throw new Error('The trip database has an invalid date range.');
+    var groupSizes=Array.from(new Set(names.flatMap(function(name){return Object.values(db.participants[name].trips||{}).map(function(trip){return trip.accommodation&&trip.accommodation.groupSize;}).filter(Number.isFinite);})))
+      .sort(function(a,b){return a-b;});
+    document.getElementById('accommodation-heading').textContent=groupSizes.length===1
+      ?'Accommodation / person (group ÷ '+groupSizes[0]+' people)'
+      :'Accommodation / person (group share)';
+    [startRange,endRange].forEach(function(input){input.min='0';input.max=String(dates.length-1);input.step='1';});
+    startRange.value='0';endRange.value=String(dates.length-1);
+    locations.forEach(function(location){selectedLocations.add(location);});
+    document.getElementById('page-title').textContent='Ski trip costs · '+dateLabel(db.dateRange.start)+'–'+dateLabel(db.dateRange.end)+' '+db.dateRange.start.slice(0,4);
+    renderMemberFilters();renderLocationFilters();
+    startRange.addEventListener('input',function(){if(Number(startRange.value)>Number(endRange.value))endRange.value=startRange.value;page=0;render();});
+    endRange.addEventListener('input',function(){if(Number(endRange.value)<Number(startRange.value))startRange.value=endRange.value;page=0;render();});
+    previous.addEventListener('click',function(){page=Math.max(0,page-1);render();});
+    next.addEventListener('click',function(){page+=1;render();});
+    render();
+    document.getElementById('trip-updated').textContent='Database updated: '+(db.updatedAt?new Date(db.updatedAt).toLocaleString():'flight prices have not been refreshed yet')+'. Flights with no observed offers remain pending.';
   }
 
-  document.querySelectorAll('[data-tip]').forEach(function(el){
-    el.addEventListener('mousemove',function(e){
-      tip.style.display='block';
-      tip.innerHTML='<b>'+el.getAttribute('data-who')+'</b>'+el.getAttribute('data-tip');
-      var x=Math.min(e.clientX+14, window.innerWidth-320), y=e.clientY+16;
-      tip.style.left=x+'px'; tip.style.top=y+'px';
-    });
-    el.addEventListener('mouseleave',function(){tip.style.display='none';});
-  });
+  fetch(new URL('./prices.json',window.location.href),{cache:'no-cache'})
+    .then(function(response){if(!response.ok)throw new Error('Price data request failed (HTTP '+response.status+').');return response.json();})
+    .then(initialise)
+    .catch(function(error){setMessage('Could not load the February trip database: '+error.message+' Reload the page to try again.');});
 })();
 </script>
 </body>
