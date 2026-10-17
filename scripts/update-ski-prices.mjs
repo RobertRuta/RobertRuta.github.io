@@ -38,23 +38,32 @@ const { access_token: token } = await tokenResponse.json();
 const today = new Date();
 today.setUTCHours(0, 0, 0, 0);
 const date = (value) => new Date(`${value}T00:00:00Z`);
+const sampledAtForTrip = (key) => {
+  const timestamps = participants.flatMap(([, participant]) => destinations
+    .map(([location]) => participant.trips[key]?.flights?.[location]?.sampledAt)
+    .filter(Boolean)
+    .map((value) => Date.parse(value)));
+  return timestamps.length ? Math.min(...timestamps) : 0;
+};
 const upcomingTrips = [...trips.entries()]
   .map(([key, trip]) => ({ key, trip }))
   .filter(({ trip }) => date(trip.endDate) >= today)
-  .sort((a, b) => b.trip.holidayDays - a.trip.holidayDays
+  .sort((a, b) => sampledAtForTrip(a.key) - sampledAtForTrip(b.key)
+    || b.trip.holidayDays - a.trip.holidayDays
     || a.trip.weekdaysOff - b.trip.weekdaysOff
     || a.trip.startDate.localeCompare(b.trip.startDate)
     || a.trip.endDate.localeCompare(b.trip.endDate));
-const tripsToRefresh = upcomingTrips.filter(({ key }) => participants.some(([, participant]) =>
-  destinations.some(([location]) => participant.trips[key]?.flights?.[location]?.sampledAt == null)))
-  .slice(0, 4);
+const requestedBatchSize = Number.parseInt(process.env.SKI_PRICE_TRIP_BATCH || '4', 10);
+const requestBudgetBatchSize = Math.max(1, Math.floor(150 / (participants.length * destinations.length)));
+const batchSize = Math.min(Number.isFinite(requestedBatchSize) ? Math.max(1, requestedBatchSize) : 4, requestBudgetBatchSize);
+const tripsToRefresh = upcomingTrips.slice(0, batchSize);
 
 let requestCount = 0;
 for (const { key, trip } of tripsToRefresh) {
   for (const [name, participant] of participants) {
     for (const [location, destination] of destinations) {
       const flight = participant.trips[key]?.flights?.[location];
-      if (!flight || flight.sampledAt) continue;
+      if (!flight) continue;
 
       const query = new URLSearchParams({
         originLocationCode: participant.homeAirport.code,
@@ -86,4 +95,4 @@ for (const { key, trip } of tripsToRefresh) {
 
 db.updatedAt = new Date().toISOString();
 await writeFile(databasePath, `${JSON.stringify(db, null, 2)}\n`);
-console.log(`Updated ${tripsToRefresh.length} February trip options with at most ${requestCount} searches in prices.json.`);
+console.log(`Refreshed ${tripsToRefresh.length} February trip options with ${requestCount} searches in prices.json.`);

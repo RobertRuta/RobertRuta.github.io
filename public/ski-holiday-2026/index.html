@@ -39,6 +39,7 @@
   .price-scale{display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums}
   .availability-key{display:flex;align-items:center;gap:6px}.availability-dot{width:12px;height:12px;border:3px solid;border-radius:50%}
   .chart-note{margin:7px 0 14px;color:var(--ink-3);font-size:12px}
+  .location-chart-title{margin:24px 0 4px;font-size:14px;font-weight:650}
   [hidden]{display:none!important}
   .range-controls{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
   .range-controls label{display:grid;gap:6px;color:var(--ink-2);font-size:12px}
@@ -77,7 +78,7 @@
     <p class="control-label">Colour by price</p>
     <div class="toggle-group" id="metric-switch" role="group" aria-label="Choose the price shown on the timeline">
       <button class="metric-toggle" type="button" data-metric="flight" aria-pressed="false">Flight</button>
-      <button class="metric-toggle" type="button" data-metric="total" aria-pressed="false">Total</button>
+      <button class="metric-toggle" type="button" data-metric="total" aria-pressed="false">Known total</button>
       <button class="metric-toggle" type="button" data-metric="accommodation" aria-pressed="true">Accommodation</button>
     </div>
     <div class="filters" id="member-filters" role="group" aria-label="Filter by participant"></div>
@@ -90,6 +91,9 @@
     <section id="timeline-view" aria-label="February trip timeline">
       <p class="chart-note" id="chart-note"></p>
       <div class="timeline-scroller"><div id="timeline-grid" class="timeline-grid" role="table" aria-label="Trip dates by person"></div></div>
+      <h3 class="location-chart-title">Trip prices by location</h3>
+      <p class="chart-note" id="location-chart-note"></p>
+      <div class="timeline-scroller"><div id="location-timeline-grid" class="timeline-grid" role="table" aria-label="Trip dates by location"></div></div>
       <div class="timeline-legend">
         <span class="availability-key"><i class="availability-dot" style="border-color:#21834a"></i> higher availability</span>
         <span class="availability-key"><i class="availability-dot" style="border-color:#d08a13"></i> mixed availability</span>
@@ -101,13 +105,13 @@
     <div id="table-top-scroll" class="table-top-scroll" aria-label="Scroll table horizontally" hidden><div id="table-top-scroll-inner"></div></div>
     <div id="table-view" class="tablewrap trip-table" hidden>
       <table>
-        <thead><tr><th>Person / origin</th><th>Location / gateway</th><th>Depart</th><th>Return</th><th>Holiday days</th><th>Weekdays off</th><th>Availability</th><th id="accommodation-heading">Accommodation / person</th><th>Flight average / person</th><th>Flight best / person</th><th>Auxiliary / person</th><th>Total cost / person</th></tr></thead>
+        <thead><tr><th>Person / origin</th><th>Location / gateway</th><th>Depart</th><th>Return</th><th>Holiday days</th><th>Weekdays off</th><th>Availability</th><th id="accommodation-heading">Accommodation / person</th><th>Flight average / person</th><th>Flight best / person</th><th>Auxiliary / person</th><th>Known total / person</th></tr></thead>
         <tbody id="trip-rows"><tr><td colspan="12" class="price-status">Loading February trip data…</td></tr></tbody>
       </table>
     </div>
     <div id="table-pagination" class="table-pagination" hidden><button id="previous-page" type="button" disabled>Previous</button><span id="page-info">Loading…</span><button id="next-page" type="button" disabled>Next</button></div>
     <p class="price-status" id="trip-updated"></p>
-    <p class="price-status">Accommodation is the group estimate divided by the group size shown in its column heading. Flight fares are each person’s own round-trip ticket and are not divided by the group. Total cost adds accommodation, average flight and known auxiliary costs; pending components are excluded. Weekdays off counts Monday–Friday dates in the travel window, including a Friday departure day. <a class="data-link" href="./prices.json" download="ski-holiday-february-prices.json">Download the complete trip database (JSON)</a>.</p>
+    <p class="price-status">Accommodation is the group estimate divided by the group size shown in its column heading. Flight fares are each person’s own round-trip ticket and are not divided by the group. Known total sums the available per-person cost components; pending components are excluded until prices are collected. Weekdays off counts Monday–Friday dates in the travel window, including a Friday departure day. <a class="data-link" href="./prices.json" download="ski-holiday-february-prices.json">Download the complete trip database (JSON)</a>.</p>
   </main>
 </div>
 <div id="tip" role="tooltip"></div>
@@ -120,7 +124,7 @@
   var topTableScrollInner=document.getElementById('table-top-scroll-inner');
   var page=0,pageSize=50,selectedPerson='all',selectedLocations=new Set(),selectedMetric='accommodation',selectedView='timeline';
   var db,names=[],locations=[],dates=[],allRows=[];
-  var metricLabels={flight:'Flight average / person',total:'Total cost / person',accommodation:'Accommodation / person'};
+  var metricLabels={flight:'Flight average / person',total:'Known total / person',accommodation:'Accommodation / person'};
 
   function dateLabel(iso){return new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',timeZone:'UTC'}).format(new Date(iso+'T00:00:00Z'));}
   function euro(value){return value==null||!Number.isFinite(Number(value))?'Pending':'€'+Math.round(Number(value)).toLocaleString('en-GB');}
@@ -164,7 +168,8 @@
     var auxiliary=trip.auxiliary&&trip.auxiliary.totalPerPersonEur;
     if(selectedMetric==='flight')return flight.averageEur==null?null:Number(flight.averageEur);
     if(selectedMetric==='accommodation')return accommodation==null?null:Number(accommodation);
-    return accommodation==null||flight.averageEur==null?null:Number(accommodation)+Number(flight.averageEur)+(auxiliary==null?0:Number(auxiliary));
+    var known=[accommodation,flight.averageEur,auxiliary].filter(function(value){return value!=null&&Number.isFinite(Number(value));});
+    return known.length?known.reduce(function(sum,value){return sum+Number(value);},0):null;
   }
   function tripPrice(trip){
     var values=Array.from(selectedLocations).map(function(location){return priceForLocation(trip,location);}).filter(Number.isFinite);
@@ -180,7 +185,8 @@
           var flight=trip.flights&&trip.flights[location]||{};
           var accommodation=trip.accommodation&&trip.accommodation.perPersonEur&&trip.accommodation.perPersonEur[location];
           var auxiliary=trip.auxiliary&&trip.auxiliary.totalPerPersonEur;
-          var subtotal=accommodation!=null&&flight.averageEur!=null?Number(accommodation)+Number(flight.averageEur)+(auxiliary==null?0:Number(auxiliary)):null;
+          var known=[accommodation,flight.averageEur,auxiliary].filter(function(value){return value!=null&&Number.isFinite(Number(value));});
+          var subtotal=known.length?known.reduce(function(sum,value){return sum+Number(value);},0):null;
           rows.push({name:name,person:person,trip:trip,location:location,flight:flight,accommodation:accommodation,auxiliary:auxiliary,subtotal:subtotal});
         });
       });
@@ -242,6 +248,49 @@
     document.getElementById('chart-note').textContent=selected
       ?'Each date cell shows the longest qualifying trip from that departure date, with fewer weekdays off breaking ties. Cell fill shows '+metricLabels[selectedMetric]+' averaged across '+selected+' selected location'+(selected===1?'':'s')+'; the border shows estimated availability. Hover a cell for its return date and details.'
       :'Select at least one location to show trip-price cells on the timeline.';
+    renderLocationTimeline(visibleNames,firstDate,lastDate);
+  }
+  function renderLocationTimeline(visibleNames,firstDate,lastDate){
+    var chart=document.getElementById('location-timeline-grid');chart.replaceChildren();
+    var visibleLocations=locations.filter(function(location){return selectedLocations.has(location);});
+    var locationPrices=[];
+    visibleLocations.forEach(function(location){visibleNames.forEach(function(name){dates.forEach(function(date){
+      if(date<firstDate||date>lastDate)return;
+      var trip=chooseTrip(db.participants[name],date,lastDate);if(!trip)return;
+      var value=priceForLocation(trip,location);if(Number.isFinite(value))locationPrices.push(value);
+    });});});
+    var low=locationPrices.length?Math.min.apply(null,locationPrices):0,high=locationPrices.length?Math.max.apply(null,locationPrices):0;
+    chart.style.gridTemplateColumns='150px repeat('+dates.length+', minmax(34px, 1fr))';
+    var corner=document.createElement('div');corner.className='timeline-corner';corner.textContent='Location';corner.setAttribute('role','columnheader');chart.appendChild(corner);
+    dates.forEach(function(date){var day=document.createElement('div');day.className='timeline-day';day.textContent=String(Number(date.slice(-2)));day.title=date;day.setAttribute('role','columnheader');chart.appendChild(day);});
+    visibleLocations.forEach(function(location){
+      var label=document.createElement('div');label.className='timeline-person';label.textContent=location;label.title=location+' ('+db.destinations[location].airportCode+')';label.setAttribute('role','rowheader');chart.appendChild(label);
+      dates.forEach(function(date){
+        var cell=document.createElement('div');cell.className='timeline-cell';cell.setAttribute('role','cell');
+        if(date<firstDate||date>lastDate){cell.classList.add('empty');chart.appendChild(cell);return;}
+        var observations=[];
+        visibleNames.forEach(function(name){
+          var trip=chooseTrip(db.participants[name],date,lastDate);
+          if(!trip)return;
+          var value=priceForLocation(trip,location);
+          var rawProbability=trip.availability&&Number(trip.availability.probability);
+          observations.push({name:name,trip:trip,value:value,availability:Number.isFinite(rawProbability)?rawProbability:null});
+        });
+        if(!observations.length){cell.classList.add('empty');chart.appendChild(cell);return;}
+        var prices=observations.map(function(item){return item.value;}).filter(Number.isFinite);
+        var value=prices.length?prices.reduce(function(sum,price){return sum+price;},0)/prices.length:null;
+        var available=observations.map(function(item){return item.availability;}).filter(Number.isFinite);
+        var probability=available.length?available.reduce(function(sum,availability){return sum+availability;},0)/available.length:50;
+        var mark=document.createElement('div');mark.className='timeline-mark'+(value==null?' pending':'');mark.style.setProperty('--availability-color',availabilityColor(probability));
+        if(value!=null){var fill=priceFill(value,low,high);mark.style.setProperty('--price-color',fill.background);mark.style.setProperty('--mark-ink',fill.color);}
+        mark.textContent=compactEuro(value);
+        mark.title=location+' · '+date+' · '+metricLabels[selectedMetric]+': '+euro(value)+' average across '+observations.length+' people · availability '+Math.round(probability)+'% average · '+observations.map(function(item){return item.name+': '+item.trip.startDate+' to '+item.trip.endDate;}).join('; ');
+        mark.setAttribute('aria-label',mark.title);cell.appendChild(mark);chart.appendChild(cell);
+      });
+    });
+    document.getElementById('location-chart-note').textContent=visibleLocations.length
+      ?'Rows show selected locations. Each date cell averages the selected people’s best qualifying trip from that departure date; fill shows '+metricLabels[selectedMetric]+' and the border shows average estimated availability. Hover a cell for details.'
+      :'Select one or more locations above to show price rows.';
   }
   function render(){
     updateDateLabels();renderToggles();
@@ -268,7 +317,7 @@
     endRange.addEventListener('input',function(){if(Number(endRange.value)<Number(startRange.value))startRange.value=endRange.value;page=0;render();});
     previous.addEventListener('click',function(){page=Math.max(0,page-1);renderTable();});next.addEventListener('click',function(){page+=1;renderTable();});
     render();
-    document.getElementById('trip-updated').textContent='Database updated: '+(db.updatedAt?new Date(db.updatedAt).toLocaleString():'flight prices have not been refreshed yet')+'. Flight fares without observed offers remain pending.';
+    document.getElementById('trip-updated').textContent='Database updated: '+(db.updatedAt?new Date(db.updatedAt).toLocaleString():'flight prices have not been refreshed yet')+'. Flight average and best prices are pending until AMADEUS_CLIENT_ID and AMADEUS_CLIENT_SECRET are added to GitHub Actions and the refresh workflow runs. Known totals add available cost components while pending components are excluded.';
   }
 
   fetch(new URL('./prices.json',window.location.href),{cache:'no-cache'})
