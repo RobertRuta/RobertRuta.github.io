@@ -14,7 +14,6 @@ const participants = {
   Robert: { homeAirport: { label: 'Poland (Warsaw proxy)', code: 'WAW', isProxy: true }, availability: [[0, 62, 100, false, 'Flexible on all proposed dates through mid-January.'], [62, 90, 100, true, 'No direct February confirmation; prior flexible estimate carried forward.']] },
 };
 
-// The candidate holiday locations currently compared on the page, with one representative gateway each.
 const destinations = {
   'Gudauri, Georgia': { airportCode: 'TBS', region: 'Georgia · Gudauri' },
   'Shahdag, Azerbaijan': { airportCode: 'GYD', region: 'Azerbaijan · Shahdag' },
@@ -23,124 +22,120 @@ const destinations = {
   'Tyrol, Austria': { airportCode: 'INN', region: 'Austria · Tyrol' },
 };
 const destinationList = Object.entries(destinations).map(([label, value]) => ({ label, ...value }));
-
-// Modeled group accommodation values from the location series shown on the page.
-const accommodationByWindow = [
-  [1400, 1600, 1800, 2000, 2100], [1845, 2000, 2100, 2300, 2300],
-  [1900, 2200, 2400, 2600, 2500], [3200, 3400, 4500, 4900, 4700],
-  [4600, 4900, 5500, 5900, 5600], [4070, 4300, 3100, 3300, 3200],
-  [2900, 3100, 2800, 3000, 2950], [2600, 2800, 2900, 3100, 3050],
-  [2550, 2750, 3300, 3600, 3500], [2550, 2750, 3500, 3800, 3700],
-  [2550, 2800, 3700, 4000, 3900], [2550, 2900, 4100, 4500, 4300],
-  [2550, 3000, 4300, 4700, 4500],
+const accommodationAnchors = [
+  { date: '2027-02-01', group7NightEur: [2550, 2750, 3500, 3800, 3700] },
+  { date: '2027-02-08', group7NightEur: [2550, 2800, 3700, 4000, 3900] },
+  { date: '2027-02-15', group7NightEur: [2550, 2900, 4100, 4500, 4300] },
+  { date: '2027-02-22', group7NightEur: [2550, 3000, 4300, 4700, 4500] },
 ];
-const starts = [
-  '2026-12-01', '2026-12-07', '2026-12-14', '2026-12-21', '2026-12-26',
-  '2027-01-02', '2027-01-09', '2027-01-16', '2027-01-23', '2027-02-01',
-  '2027-02-08', '2027-02-15', '2027-02-22',
-];
-const endOfStay = (date) => {
-  const end = new Date(`${date}T00:00:00Z`);
-  end.setUTCDate(end.getUTCDate() + 7);
-  return end.toISOString().slice(0, 10);
-};
-const startOffset = (date) => Math.round((Date.parse(`${date}T00:00:00Z`) - Date.parse('2026-12-01T00:00:00Z')) / 86400000);
-const availabilityForStay = (segments, start) => {
-  let weightedProbability = 0;
-  let inferredDays = 0;
-  const notes = new Set();
-  for (let day = start; day < start + 7; day += 1) {
-    const segment = segments.find(([from, to]) => day >= from && day < to);
-    if (!segment) continue;
-    weightedProbability += segment[2];
-    if (segment[3]) inferredDays += 1;
-    notes.add(segment[4]);
+const februaryDates = Array.from({ length: 28 }, (_, i) => `2027-02-${String(i + 1).padStart(2, '0')}`);
+const dateAtUtc = (isoDate) => new Date(`${isoDate}T00:00:00Z`);
+const formatUtc = (date) => date.toISOString().slice(0, 10);
+const tripKey = (startDate, endDate) => `${startDate}__${endDate}`;
+const dateOffset = (date) => Math.round((dateAtUtc(date) - dateAtUtc('2026-12-01')) / 86400000);
+const weekday = (date) => dateAtUtc(date).getUTCDay();
+const countWeekdaysOff = (startDate, endDate) => {
+  let count = 0;
+  for (let date = dateAtUtc(startDate); date <= dateAtUtc(endDate); date.setUTCDate(date.getUTCDate() + 1)) {
+    if (formatUtc(date) === startDate) continue; // Friday evening/Saturday/Sunday departure does not use a workday.
+    if (date.getUTCDay() >= 1 && date.getUTCDay() <= 5) count += 1;
   }
-  return {
-    probability: Math.round(weightedProbability / 7),
-    inferred: inferredDays > 0,
-    inferredDays,
-    sourceNote: [...notes].join(' '),
-  };
+  return count;
 };
-const availabilityForDay = (segments, day) => {
-  const segment = segments.find(([from, to]) => day >= from && day < to);
+const candidateTrips = [];
+for (const startDate of februaryDates) {
+  if (![0, 5, 6].includes(weekday(startDate))) continue; // Friday, Saturday, Sunday departures.
+  for (let end = dateAtUtc(startDate); ; end.setUTCDate(end.getUTCDate() + 1)) {
+    end.setUTCHours(0, 0, 0, 0);
+    const endDate = formatUtc(end);
+    if (endDate > '2027-02-28') break;
+    if (endDate <= startDate) continue;
+    candidateTrips.push({
+      key: tripKey(startDate, endDate), startDate, endDate,
+      nights: Math.round((dateAtUtc(endDate) - dateAtUtc(startDate)) / 86400000),
+      holidayDays: Math.round((dateAtUtc(endDate) - dateAtUtc(startDate)) / 86400000) + 1,
+      weekdaysOff: countWeekdaysOff(startDate, endDate),
+    });
+    if (endDate === '2027-02-28') break;
+  }
+}
+
+const availabilityForDay = (segments, date) => {
+  const offset = dateOffset(date);
+  const segment = segments.find(([from, to]) => offset >= from && offset < to);
   return segment
     ? { probability: segment[2], inferred: segment[3], sourceNote: segment[4] }
     : { probability: 50, inferred: true, sourceNote: 'No date-specific availability statement; unknown, so 50/50.' };
+};
+const availabilityForTrip = (segments, startDate, endDate) => {
+  let score = 0;
+  let inferred = false;
+  const notes = new Set();
+  for (let date = dateAtUtc(startDate); date <= dateAtUtc(endDate); date.setUTCDate(date.getUTCDate() + 1)) {
+    const daily = availabilityForDay(segments, formatUtc(date));
+    score += daily.probability;
+    inferred ||= daily.inferred;
+    notes.add(daily.sourceNote);
+  }
+  return { probability: Math.round(score / (Math.round((dateAtUtc(endDate) - dateAtUtc(startDate)) / 86400000) + 1)), inferred, sourceNote: [...notes].join(' ') };
+};
+const accommodationForTrip = (startDate, nights) => {
+  const anchor = [...accommodationAnchors].reverse().find((item) => item.date <= startDate) || accommodationAnchors[0];
+  return Object.fromEntries(destinationList.map((destination, i) => [
+    destination.label,
+    Math.round(anchor.group7NightEur[i] * nights / 49), // group estimate × nights ÷ 7 nights ÷ 7 people
+  ]));
 };
 
 let db;
 try {
   db = JSON.parse(await readFile(databasePath, 'utf8'));
 } catch {
-  db = { schemaVersion: 2, currency: 'EUR', updatedAt: null, participants: {} };
+  db = { schemaVersion: 3, currency: 'EUR', updatedAt: null, participants: {} };
 }
-db.schemaVersion = 2;
+db.schemaVersion = 3;
 db.currency = 'EUR';
+db.updatedAt ??= null;
+db.flightDataSource = 'Amadeus Flight Offers Search; round-trip offers by candidate trip and destination gateway';
+db.dateRange = { start: '2027-02-01', end: '2027-02-28' };
+db.departureDays = ['Friday evening', 'Saturday', 'Sunday'];
 db.destinations = destinations;
+db.tripSelection = { minimumNights: 1, maximumNights: 27, returnDay: 'any day through February 28' };
 
 for (const [name, member] of Object.entries(participants)) {
-  db.participants[name] ??= { homeAirport: member.homeAirport, dates: {} };
-  db.participants[name].homeAirport = member.homeAirport;
-  delete db.participants[name].origin;
-  db.participants[name].availabilityByDate = Object.fromEntries(
-    Array.from({ length: 28 }, (_, index) => {
-      const day = index + 1;
-      const date = `2027-02-${String(day).padStart(2, '0')}`;
-      return [date, availabilityForDay(member.availability, 61 + day)];
-    }),
-  );
-  for (let index = 0; index < starts.length; index += 1) {
-    const startDate = starts[index];
-    const endDate = endOfStay(startDate);
-    const dateRecord = db.participants[name].dates[startDate] ??= {
-      startDate,
-      endDate,
+  db.participants[name] ??= { homeAirport: member.homeAirport, availabilityByDate: {}, trips: {} };
+  const person = db.participants[name];
+  person.homeAirport = member.homeAirport;
+  delete person.origin;
+  delete person.dates;
+  person.availabilityByDate = Object.fromEntries(februaryDates.map((date) => [date, availabilityForDay(member.availability, date)]));
+  person.trips ??= {};
+  const candidateKeys = new Set(candidateTrips.map((trip) => trip.key));
+  for (const oldKey of Object.keys(person.trips)) if (!candidateKeys.has(oldKey)) delete person.trips[oldKey];
+  for (const trip of candidateTrips) {
+    const record = person.trips[trip.key] ??= {
+      ...trip,
+      availability: availabilityForTrip(member.availability, trip.startDate, trip.endDate),
       flights: {},
       accommodation: {},
-      auxiliary: {
-        resortTransferPerPersonEur: null,
-        skiPassPerPersonEur: null,
-        equipmentRentalPerPersonEur: null,
-        totalPerPersonEur: null,
-      },
+      auxiliary: { resortTransferPerPersonEur: null, skiPassPerPersonEur: null, equipmentRentalPerPersonEur: null, totalPerPersonEur: null },
     };
-    dateRecord.startDate = startDate;
-    dateRecord.endDate = endDate;
-    dateRecord.availability = availabilityForStay(member.availability, startOffset(startDate));
-    dateRecord.flights ??= {};
-    // Migrate legacy aggregate data only as an explicitly non-location-specific value.
-    if (dateRecord.flight?.averageEur != null) dateRecord.legacyFlightAverageEur = dateRecord.flight.averageEur;
-    delete dateRecord.flight;
-    for (const destination of destinationList) {
-      dateRecord.flights[destination.label] ??= {
-        averageEur: null,
-        bestEur: null,
-        offersCount: 0,
-        airportCode: destination.airportCode,
-        sampledAt: null,
-      };
-    }
-    const groupPrices = accommodationByWindow[index];
-    dateRecord.accommodation = {
-      averagePerPersonEur: Math.round(groupPrices.reduce((sum, price) => sum + price, 0) / groupPrices.length / 7),
-      byLocationPerPersonEur: Object.fromEntries(destinationList.map((destination, i) => [destination.label, Math.round(groupPrices[i] / 7)])),
+    Object.assign(record, trip, { availability: availabilityForTrip(member.availability, trip.startDate, trip.endDate) });
+    record.accommodation = {
+      perPersonEur: accommodationForTrip(trip.startDate, trip.nights),
       groupSize: 7,
-      source: 'Modeled estimate already shown on the ski holiday page; mean of five candidate areas',
+      modeledFrom: 'February weekly accommodation estimate shown on the page, prorated by trip nights',
     };
-    dateRecord.auxiliary ??= {
-      resortTransferPerPersonEur: null,
-      skiPassPerPersonEur: null,
-      equipmentRentalPerPersonEur: null,
-      totalPerPersonEur: null,
-    };
+    record.flights ??= {};
+    for (const destination of destinationList) {
+      record.flights[destination.label] ??= { averageEur: null, bestEur: null, offersCount: 0, airportCode: destination.airportCode, sampledAt: null };
+    }
   }
 }
 
 if (!process.env.AMADEUS_CLIENT_ID || !process.env.AMADEUS_CLIENT_SECRET) {
   await writeDatabase();
-  console.log('Amadeus credentials are not configured; stored availability/accommodation and skipped live flight search.');
+  console.log(`Seeded ${candidateTrips.length} February weekend-start trip options; Amadeus credentials are not configured, so live fares remain pending.`);
   process.exit(0);
 }
 
@@ -148,73 +143,70 @@ const apiBase = process.env.AMADEUS_API_BASE || 'https://api.amadeus.com';
 const tokenResponse = await fetch(`${apiBase}/v1/security/oauth2/token`, {
   method: 'POST',
   headers: { 'content-type': 'application/x-www-form-urlencoded' },
-  body: new URLSearchParams({
-    grant_type: 'client_credentials',
-    client_id: process.env.AMADEUS_CLIENT_ID,
-    client_secret: process.env.AMADEUS_CLIENT_SECRET,
-  }),
+  body: new URLSearchParams({ grant_type: 'client_credentials', client_id: process.env.AMADEUS_CLIENT_ID, client_secret: process.env.AMADEUS_CLIENT_SECRET }),
 });
 if (!tokenResponse.ok) throw new Error(`Amadeus token request failed: ${tokenResponse.status} ${await tokenResponse.text()}`);
 const { access_token: token } = await tokenResponse.json();
 
-// Four upcoming dates × seven members × five candidate locations = 140 requests/run.
 const today = new Date();
 const todayUtc = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
-const futureDates = starts.filter((date) => Date.parse(`${date}T00:00:00Z`) >= todayUtc.getTime()).slice(0, 4);
+const byKey = new Map(candidateTrips.map((trip) => [trip.key, trip]));
+const futureTrips = [...new Set(Object.values(db.participants).flatMap((person) => Object.keys(person.trips)))].map((key) => byKey.get(key))
+  .filter((trip) => trip && dateAtUtc(trip.endDate) >= todayUtc)
+  .sort((a, b) => b.holidayDays - a.holidayDays || a.weekdaysOff - b.weekdaysOff || a.startDate.localeCompare(b.startDate) || a.endDate.localeCompare(b.endDate));
+const unsampled = futureTrips.filter((trip) => Object.values(db.participants).some((person) =>
+  Object.values(person.trips[trip.key].flights).some((flight) => flight.sampledAt == null)));
+const tripsToRefresh = unsampled.slice(0, 4);
 let requestCount = 0;
-for (const date of futureDates) {
+for (const trip of tripsToRefresh) {
   for (const [name, member] of Object.entries(participants)) {
     for (const destination of destinationList) {
+      const flight = db.participants[name].trips[trip.key].flights[destination.label];
+      if (flight.sampledAt) continue;
       const query = new URLSearchParams({
         originLocationCode: member.homeAirport.code,
         destinationLocationCode: destination.airportCode,
-        departureDate: date,
-        returnDate: endOfStay(date),
-        adults: '1',
-        currencyCode: 'EUR',
-        max: '20',
+        departureDate: trip.startDate,
+        returnDate: trip.endDate,
+        adults: '1', currencyCode: 'EUR', max: '20',
       });
       requestCount += 1;
       if (requestCount > 150) throw new Error('Search budget exceeded; refusing to make more than 150 flight calls in one run.');
       const response = await fetch(`${apiBase}/v2/shopping/flight-offers?${query}`, { headers: { authorization: `Bearer ${token}` } });
       if (!response.ok) {
-        console.warn(`${name} ${date} ${destination.airportCode}: Amadeus returned ${response.status}; preserving previous data.`);
+        console.warn(`${name} ${trip.key} ${destination.airportCode}: Amadeus returned ${response.status}; preserving previous data.`);
         continue;
       }
       const result = await response.json();
       const prices = (result.data || []).map((offer) => Number(offer.price?.grandTotal)).filter(Number.isFinite);
+      flight.sampledAt = new Date().toISOString();
       if (prices.length) {
-        dateFor(name, date).flights[destination.label] = {
-          averageEur: Math.round(prices.reduce((sum, price) => sum + price, 0) / prices.length),
-          bestEur: Math.round(Math.min(...prices)),
-          offersCount: prices.length,
-          airportCode: destination.airportCode,
-          sampledAt: new Date().toISOString(),
-        };
+        flight.averageEur = Math.round(prices.reduce((sum, price) => sum + price, 0) / prices.length);
+        flight.bestEur = Math.round(Math.min(...prices));
+        flight.offersCount = prices.length;
       }
     }
   }
 }
 db.updatedAt = new Date().toISOString();
-db.flightDataSource = 'Amadeus Flight Offers Search; round-trip offers for each candidate location gateway';
 await writeDatabase();
-console.log(`Updated ${futureDates.length} upcoming departure windows with at most ${requestCount} searches.`);
+console.log(`Updated ${tripsToRefresh.length} trip options with at most ${requestCount} searches.`);
 
-function dateFor(name, date) {
-  return db.participants[name].dates[date];
-}
 async function writeDatabase() {
-  const orderedParticipants = Object.fromEntries(Object.entries(db.participants).map(([name, member]) => [name, {
-    homeAirport: member.homeAirport,
-    availabilityByDate: member.availabilityByDate,
-    dates: member.dates,
+  const orderedParticipants = Object.fromEntries(Object.entries(db.participants).map(([name, person]) => [name, {
+    homeAirport: person.homeAirport,
+    availabilityByDate: person.availabilityByDate,
+    trips: person.trips,
   }]));
   const orderedDatabase = {
     schemaVersion: db.schemaVersion,
     currency: db.currency,
+    dateRange: db.dateRange,
+    departureDays: db.departureDays,
+    tripSelection: db.tripSelection,
+    destinations: db.destinations,
     updatedAt: db.updatedAt,
     flightDataSource: db.flightDataSource,
-    destinations: db.destinations,
     participants: orderedParticipants,
   };
   await writeFile(databasePath, `${JSON.stringify(orderedDatabase, null, 2)}\n`);
