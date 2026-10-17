@@ -20,3 +20,11 @@ Requirements:
 - Ensure the default branch is `main` or `master`.
 
 The workflow builds with `next build` (configured with `output: 'export'`) and publishes the `out/` directory to Pages.
+
+## Ski holiday prices
+
+The ski trip page reads `public/ski-holiday-2026/prices.json`, keyed by participant and trip start date. Every trip record includes a seven-night availability estimate, accommodation per candidate area, and a flight fare record for each candidate holiday location. Each participant also has daily availability entries for February 1–28. Flight records store average/best EUR fares, offer count, and the representative destination gateway. Availability notes distinguish direct statements from estimates carried forward into February.
+
+The `Refresh ski trip flight prices` workflow runs weekly and can also be started manually. To enable live searches, add the repository Actions secrets `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET`. It refreshes the next four upcoming 7-night windows and searches each member's home airport against five candidate location gateways, with a hard limit of 150 searches per run. Amadeus provides a limited free monthly request quota; check the current quota in its developer console. The workflow itself runs on a GitHub-hosted runner. Without credentials, it safely keeps the committed availability/accommodation data and leaves flight prices pending.
+
+City/country home locations without a specific airport use proxies (Kuala Lumpur for Malaysia, Madrid for Spain, Warsaw for Poland). The five destination gateways are TBS (Gudauri), GYD (Shahdag), VCE (Dolomites), GVA (Tarentaise), and INN (Tyrol). This is the full current candidate set on the page, not a worldwide search of every holiday destination. Auxiliary costs remain pending until a resort is selected.
