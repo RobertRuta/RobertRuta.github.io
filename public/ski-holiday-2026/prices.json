@@ -194,7 +194,7 @@
           "endDate": "2027-02-06",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -261,7 +261,7 @@
           "endDate": "2027-02-07",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -328,7 +328,7 @@
           "endDate": "2027-02-08",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -395,7 +395,7 @@
           "endDate": "2027-02-09",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -462,7 +462,7 @@
           "endDate": "2027-02-10",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -529,7 +529,7 @@
           "endDate": "2027-02-11",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -596,7 +596,7 @@
           "endDate": "2027-02-12",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -663,7 +663,7 @@
           "endDate": "2027-02-13",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -730,7 +730,7 @@
           "endDate": "2027-02-14",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -797,7 +797,7 @@
           "endDate": "2027-02-15",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -864,7 +864,7 @@
           "endDate": "2027-02-16",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -931,7 +931,7 @@
           "endDate": "2027-02-17",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -998,7 +998,7 @@
           "endDate": "2027-02-18",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1065,7 +1065,7 @@
           "endDate": "2027-02-19",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1132,7 +1132,7 @@
           "endDate": "2027-02-20",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1199,7 +1199,7 @@
           "endDate": "2027-02-21",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1266,7 +1266,7 @@
           "endDate": "2027-02-22",
           "nights": 17,
           "holidayDays": 18,
-          "weekdaysOff": 11,
+          "weekdaysOff": 12,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1333,7 +1333,7 @@
           "endDate": "2027-02-23",
           "nights": 18,
           "holidayDays": 19,
-          "weekdaysOff": 12,
+          "weekdaysOff": 13,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1400,7 +1400,7 @@
           "endDate": "2027-02-24",
           "nights": 19,
           "holidayDays": 20,
-          "weekdaysOff": 13,
+          "weekdaysOff": 14,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1467,7 +1467,7 @@
           "endDate": "2027-02-25",
           "nights": 20,
           "holidayDays": 21,
-          "weekdaysOff": 14,
+          "weekdaysOff": 15,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1534,7 +1534,7 @@
           "endDate": "2027-02-26",
           "nights": 21,
           "holidayDays": 22,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1601,7 +1601,7 @@
           "endDate": "2027-02-27",
           "nights": 22,
           "holidayDays": 23,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -1668,7 +1668,7 @@
           "endDate": "2027-02-28",
           "nights": 23,
           "holidayDays": 24,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -4616,7 +4616,7 @@
           "endDate": "2027-02-13",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -4683,7 +4683,7 @@
           "endDate": "2027-02-14",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -4750,7 +4750,7 @@
           "endDate": "2027-02-15",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -4817,7 +4817,7 @@
           "endDate": "2027-02-16",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -4884,7 +4884,7 @@
           "endDate": "2027-02-17",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -4951,7 +4951,7 @@
           "endDate": "2027-02-18",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5018,7 +5018,7 @@
           "endDate": "2027-02-19",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5085,7 +5085,7 @@
           "endDate": "2027-02-20",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5152,7 +5152,7 @@
           "endDate": "2027-02-21",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5219,7 +5219,7 @@
           "endDate": "2027-02-22",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5286,7 +5286,7 @@
           "endDate": "2027-02-23",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5353,7 +5353,7 @@
           "endDate": "2027-02-24",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5420,7 +5420,7 @@
           "endDate": "2027-02-25",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5487,7 +5487,7 @@
           "endDate": "2027-02-26",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5554,7 +5554,7 @@
           "endDate": "2027-02-27",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -5621,7 +5621,7 @@
           "endDate": "2027-02-28",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -7631,7 +7631,7 @@
           "endDate": "2027-02-20",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -7698,7 +7698,7 @@
           "endDate": "2027-02-21",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -7765,7 +7765,7 @@
           "endDate": "2027-02-22",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -7832,7 +7832,7 @@
           "endDate": "2027-02-23",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -7899,7 +7899,7 @@
           "endDate": "2027-02-24",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -7966,7 +7966,7 @@
           "endDate": "2027-02-25",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -8033,7 +8033,7 @@
           "endDate": "2027-02-26",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -8100,7 +8100,7 @@
           "endDate": "2027-02-27",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -8167,7 +8167,7 @@
           "endDate": "2027-02-28",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -9239,7 +9239,7 @@
           "endDate": "2027-02-27",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -9306,7 +9306,7 @@
           "endDate": "2027-02-28",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -9590,7 +9590,7 @@
           "endDate": "2027-02-06",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -9657,7 +9657,7 @@
           "endDate": "2027-02-07",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -9724,7 +9724,7 @@
           "endDate": "2027-02-08",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -9791,7 +9791,7 @@
           "endDate": "2027-02-09",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -9858,7 +9858,7 @@
           "endDate": "2027-02-10",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -9925,7 +9925,7 @@
           "endDate": "2027-02-11",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -9992,7 +9992,7 @@
           "endDate": "2027-02-12",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10059,7 +10059,7 @@
           "endDate": "2027-02-13",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10126,7 +10126,7 @@
           "endDate": "2027-02-14",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10193,7 +10193,7 @@
           "endDate": "2027-02-15",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10260,7 +10260,7 @@
           "endDate": "2027-02-16",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10327,7 +10327,7 @@
           "endDate": "2027-02-17",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10394,7 +10394,7 @@
           "endDate": "2027-02-18",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10461,7 +10461,7 @@
           "endDate": "2027-02-19",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10528,7 +10528,7 @@
           "endDate": "2027-02-20",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10595,7 +10595,7 @@
           "endDate": "2027-02-21",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10662,7 +10662,7 @@
           "endDate": "2027-02-22",
           "nights": 17,
           "holidayDays": 18,
-          "weekdaysOff": 11,
+          "weekdaysOff": 12,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10729,7 +10729,7 @@
           "endDate": "2027-02-23",
           "nights": 18,
           "holidayDays": 19,
-          "weekdaysOff": 12,
+          "weekdaysOff": 13,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10796,7 +10796,7 @@
           "endDate": "2027-02-24",
           "nights": 19,
           "holidayDays": 20,
-          "weekdaysOff": 13,
+          "weekdaysOff": 14,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10863,7 +10863,7 @@
           "endDate": "2027-02-25",
           "nights": 20,
           "holidayDays": 21,
-          "weekdaysOff": 14,
+          "weekdaysOff": 15,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10930,7 +10930,7 @@
           "endDate": "2027-02-26",
           "nights": 21,
           "holidayDays": 22,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -10997,7 +10997,7 @@
           "endDate": "2027-02-27",
           "nights": 22,
           "holidayDays": 23,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -11064,7 +11064,7 @@
           "endDate": "2027-02-28",
           "nights": 23,
           "holidayDays": 24,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14012,7 +14012,7 @@
           "endDate": "2027-02-13",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14079,7 +14079,7 @@
           "endDate": "2027-02-14",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14146,7 +14146,7 @@
           "endDate": "2027-02-15",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14213,7 +14213,7 @@
           "endDate": "2027-02-16",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14280,7 +14280,7 @@
           "endDate": "2027-02-17",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14347,7 +14347,7 @@
           "endDate": "2027-02-18",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14414,7 +14414,7 @@
           "endDate": "2027-02-19",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14481,7 +14481,7 @@
           "endDate": "2027-02-20",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14548,7 +14548,7 @@
           "endDate": "2027-02-21",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14615,7 +14615,7 @@
           "endDate": "2027-02-22",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14682,7 +14682,7 @@
           "endDate": "2027-02-23",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14749,7 +14749,7 @@
           "endDate": "2027-02-24",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14816,7 +14816,7 @@
           "endDate": "2027-02-25",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14883,7 +14883,7 @@
           "endDate": "2027-02-26",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -14950,7 +14950,7 @@
           "endDate": "2027-02-27",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -15017,7 +15017,7 @@
           "endDate": "2027-02-28",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -17027,7 +17027,7 @@
           "endDate": "2027-02-20",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -17094,7 +17094,7 @@
           "endDate": "2027-02-21",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -17161,7 +17161,7 @@
           "endDate": "2027-02-22",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -17228,7 +17228,7 @@
           "endDate": "2027-02-23",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -17295,7 +17295,7 @@
           "endDate": "2027-02-24",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -17362,7 +17362,7 @@
           "endDate": "2027-02-25",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -17429,7 +17429,7 @@
           "endDate": "2027-02-26",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -17496,7 +17496,7 @@
           "endDate": "2027-02-27",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -17563,7 +17563,7 @@
           "endDate": "2027-02-28",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -18635,7 +18635,7 @@
           "endDate": "2027-02-27",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -18702,7 +18702,7 @@
           "endDate": "2027-02-28",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -18987,7 +18987,7 @@
           "endDate": "2027-02-06",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19054,7 +19054,7 @@
           "endDate": "2027-02-07",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19121,7 +19121,7 @@
           "endDate": "2027-02-08",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19188,7 +19188,7 @@
           "endDate": "2027-02-09",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19255,7 +19255,7 @@
           "endDate": "2027-02-10",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19322,7 +19322,7 @@
           "endDate": "2027-02-11",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19389,7 +19389,7 @@
           "endDate": "2027-02-12",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19456,7 +19456,7 @@
           "endDate": "2027-02-13",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19523,7 +19523,7 @@
           "endDate": "2027-02-14",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19590,7 +19590,7 @@
           "endDate": "2027-02-15",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19657,7 +19657,7 @@
           "endDate": "2027-02-16",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19724,7 +19724,7 @@
           "endDate": "2027-02-17",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19791,7 +19791,7 @@
           "endDate": "2027-02-18",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19858,7 +19858,7 @@
           "endDate": "2027-02-19",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19925,7 +19925,7 @@
           "endDate": "2027-02-20",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -19992,7 +19992,7 @@
           "endDate": "2027-02-21",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -20059,7 +20059,7 @@
           "endDate": "2027-02-22",
           "nights": 17,
           "holidayDays": 18,
-          "weekdaysOff": 11,
+          "weekdaysOff": 12,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -20126,7 +20126,7 @@
           "endDate": "2027-02-23",
           "nights": 18,
           "holidayDays": 19,
-          "weekdaysOff": 12,
+          "weekdaysOff": 13,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -20193,7 +20193,7 @@
           "endDate": "2027-02-24",
           "nights": 19,
           "holidayDays": 20,
-          "weekdaysOff": 13,
+          "weekdaysOff": 14,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -20260,7 +20260,7 @@
           "endDate": "2027-02-25",
           "nights": 20,
           "holidayDays": 21,
-          "weekdaysOff": 14,
+          "weekdaysOff": 15,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -20327,7 +20327,7 @@
           "endDate": "2027-02-26",
           "nights": 21,
           "holidayDays": 22,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -20394,7 +20394,7 @@
           "endDate": "2027-02-27",
           "nights": 22,
           "holidayDays": 23,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -20461,7 +20461,7 @@
           "endDate": "2027-02-28",
           "nights": 23,
           "holidayDays": 24,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -23409,7 +23409,7 @@
           "endDate": "2027-02-13",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -23476,7 +23476,7 @@
           "endDate": "2027-02-14",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -23543,7 +23543,7 @@
           "endDate": "2027-02-15",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -23610,7 +23610,7 @@
           "endDate": "2027-02-16",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -23677,7 +23677,7 @@
           "endDate": "2027-02-17",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -23744,7 +23744,7 @@
           "endDate": "2027-02-18",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -23811,7 +23811,7 @@
           "endDate": "2027-02-19",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -23878,7 +23878,7 @@
           "endDate": "2027-02-20",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -23945,7 +23945,7 @@
           "endDate": "2027-02-21",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -24012,7 +24012,7 @@
           "endDate": "2027-02-22",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -24079,7 +24079,7 @@
           "endDate": "2027-02-23",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -24146,7 +24146,7 @@
           "endDate": "2027-02-24",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -24213,7 +24213,7 @@
           "endDate": "2027-02-25",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -24280,7 +24280,7 @@
           "endDate": "2027-02-26",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -24347,7 +24347,7 @@
           "endDate": "2027-02-27",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -24414,7 +24414,7 @@
           "endDate": "2027-02-28",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -26424,7 +26424,7 @@
           "endDate": "2027-02-20",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -26491,7 +26491,7 @@
           "endDate": "2027-02-21",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -26558,7 +26558,7 @@
           "endDate": "2027-02-22",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -26625,7 +26625,7 @@
           "endDate": "2027-02-23",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -26692,7 +26692,7 @@
           "endDate": "2027-02-24",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -26759,7 +26759,7 @@
           "endDate": "2027-02-25",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -26826,7 +26826,7 @@
           "endDate": "2027-02-26",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -26893,7 +26893,7 @@
           "endDate": "2027-02-27",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -26960,7 +26960,7 @@
           "endDate": "2027-02-28",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -28032,7 +28032,7 @@
           "endDate": "2027-02-27",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -28099,7 +28099,7 @@
           "endDate": "2027-02-28",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 50,
             "inferred": true,
@@ -28383,7 +28383,7 @@
           "endDate": "2027-02-06",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -28450,7 +28450,7 @@
           "endDate": "2027-02-07",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -28517,7 +28517,7 @@
           "endDate": "2027-02-08",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -28584,7 +28584,7 @@
           "endDate": "2027-02-09",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -28651,7 +28651,7 @@
           "endDate": "2027-02-10",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -28718,7 +28718,7 @@
           "endDate": "2027-02-11",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -28785,7 +28785,7 @@
           "endDate": "2027-02-12",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -28852,7 +28852,7 @@
           "endDate": "2027-02-13",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -28919,7 +28919,7 @@
           "endDate": "2027-02-14",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -28986,7 +28986,7 @@
           "endDate": "2027-02-15",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29053,7 +29053,7 @@
           "endDate": "2027-02-16",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29120,7 +29120,7 @@
           "endDate": "2027-02-17",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29187,7 +29187,7 @@
           "endDate": "2027-02-18",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29254,7 +29254,7 @@
           "endDate": "2027-02-19",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29321,7 +29321,7 @@
           "endDate": "2027-02-20",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29388,7 +29388,7 @@
           "endDate": "2027-02-21",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29455,7 +29455,7 @@
           "endDate": "2027-02-22",
           "nights": 17,
           "holidayDays": 18,
-          "weekdaysOff": 11,
+          "weekdaysOff": 12,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29522,7 +29522,7 @@
           "endDate": "2027-02-23",
           "nights": 18,
           "holidayDays": 19,
-          "weekdaysOff": 12,
+          "weekdaysOff": 13,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29589,7 +29589,7 @@
           "endDate": "2027-02-24",
           "nights": 19,
           "holidayDays": 20,
-          "weekdaysOff": 13,
+          "weekdaysOff": 14,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29656,7 +29656,7 @@
           "endDate": "2027-02-25",
           "nights": 20,
           "holidayDays": 21,
-          "weekdaysOff": 14,
+          "weekdaysOff": 15,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29723,7 +29723,7 @@
           "endDate": "2027-02-26",
           "nights": 21,
           "holidayDays": 22,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29790,7 +29790,7 @@
           "endDate": "2027-02-27",
           "nights": 22,
           "holidayDays": 23,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -29857,7 +29857,7 @@
           "endDate": "2027-02-28",
           "nights": 23,
           "holidayDays": 24,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -32805,7 +32805,7 @@
           "endDate": "2027-02-13",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -32872,7 +32872,7 @@
           "endDate": "2027-02-14",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -32939,7 +32939,7 @@
           "endDate": "2027-02-15",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33006,7 +33006,7 @@
           "endDate": "2027-02-16",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33073,7 +33073,7 @@
           "endDate": "2027-02-17",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33140,7 +33140,7 @@
           "endDate": "2027-02-18",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33207,7 +33207,7 @@
           "endDate": "2027-02-19",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33274,7 +33274,7 @@
           "endDate": "2027-02-20",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33341,7 +33341,7 @@
           "endDate": "2027-02-21",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33408,7 +33408,7 @@
           "endDate": "2027-02-22",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33475,7 +33475,7 @@
           "endDate": "2027-02-23",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33542,7 +33542,7 @@
           "endDate": "2027-02-24",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33609,7 +33609,7 @@
           "endDate": "2027-02-25",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33676,7 +33676,7 @@
           "endDate": "2027-02-26",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33743,7 +33743,7 @@
           "endDate": "2027-02-27",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -33810,7 +33810,7 @@
           "endDate": "2027-02-28",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -35820,7 +35820,7 @@
           "endDate": "2027-02-20",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -35887,7 +35887,7 @@
           "endDate": "2027-02-21",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -35954,7 +35954,7 @@
           "endDate": "2027-02-22",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -36021,7 +36021,7 @@
           "endDate": "2027-02-23",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -36088,7 +36088,7 @@
           "endDate": "2027-02-24",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -36155,7 +36155,7 @@
           "endDate": "2027-02-25",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -36222,7 +36222,7 @@
           "endDate": "2027-02-26",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -36289,7 +36289,7 @@
           "endDate": "2027-02-27",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -36356,7 +36356,7 @@
           "endDate": "2027-02-28",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -37428,7 +37428,7 @@
           "endDate": "2027-02-27",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -37495,7 +37495,7 @@
           "endDate": "2027-02-28",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -37780,7 +37780,7 @@
           "endDate": "2027-02-06",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -37847,7 +37847,7 @@
           "endDate": "2027-02-07",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -37914,7 +37914,7 @@
           "endDate": "2027-02-08",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -37981,7 +37981,7 @@
           "endDate": "2027-02-09",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38048,7 +38048,7 @@
           "endDate": "2027-02-10",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38115,7 +38115,7 @@
           "endDate": "2027-02-11",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38182,7 +38182,7 @@
           "endDate": "2027-02-12",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38249,7 +38249,7 @@
           "endDate": "2027-02-13",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38316,7 +38316,7 @@
           "endDate": "2027-02-14",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38383,7 +38383,7 @@
           "endDate": "2027-02-15",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38450,7 +38450,7 @@
           "endDate": "2027-02-16",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38517,7 +38517,7 @@
           "endDate": "2027-02-17",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38584,7 +38584,7 @@
           "endDate": "2027-02-18",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38651,7 +38651,7 @@
           "endDate": "2027-02-19",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38718,7 +38718,7 @@
           "endDate": "2027-02-20",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38785,7 +38785,7 @@
           "endDate": "2027-02-21",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38852,7 +38852,7 @@
           "endDate": "2027-02-22",
           "nights": 17,
           "holidayDays": 18,
-          "weekdaysOff": 11,
+          "weekdaysOff": 12,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38919,7 +38919,7 @@
           "endDate": "2027-02-23",
           "nights": 18,
           "holidayDays": 19,
-          "weekdaysOff": 12,
+          "weekdaysOff": 13,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -38986,7 +38986,7 @@
           "endDate": "2027-02-24",
           "nights": 19,
           "holidayDays": 20,
-          "weekdaysOff": 13,
+          "weekdaysOff": 14,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -39053,7 +39053,7 @@
           "endDate": "2027-02-25",
           "nights": 20,
           "holidayDays": 21,
-          "weekdaysOff": 14,
+          "weekdaysOff": 15,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -39120,7 +39120,7 @@
           "endDate": "2027-02-26",
           "nights": 21,
           "holidayDays": 22,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -39187,7 +39187,7 @@
           "endDate": "2027-02-27",
           "nights": 22,
           "holidayDays": 23,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -39254,7 +39254,7 @@
           "endDate": "2027-02-28",
           "nights": 23,
           "holidayDays": 24,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42202,7 +42202,7 @@
           "endDate": "2027-02-13",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42269,7 +42269,7 @@
           "endDate": "2027-02-14",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42336,7 +42336,7 @@
           "endDate": "2027-02-15",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42403,7 +42403,7 @@
           "endDate": "2027-02-16",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42470,7 +42470,7 @@
           "endDate": "2027-02-17",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42537,7 +42537,7 @@
           "endDate": "2027-02-18",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42604,7 +42604,7 @@
           "endDate": "2027-02-19",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42671,7 +42671,7 @@
           "endDate": "2027-02-20",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42738,7 +42738,7 @@
           "endDate": "2027-02-21",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42805,7 +42805,7 @@
           "endDate": "2027-02-22",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42872,7 +42872,7 @@
           "endDate": "2027-02-23",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -42939,7 +42939,7 @@
           "endDate": "2027-02-24",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -43006,7 +43006,7 @@
           "endDate": "2027-02-25",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -43073,7 +43073,7 @@
           "endDate": "2027-02-26",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -43140,7 +43140,7 @@
           "endDate": "2027-02-27",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -43207,7 +43207,7 @@
           "endDate": "2027-02-28",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -45217,7 +45217,7 @@
           "endDate": "2027-02-20",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -45284,7 +45284,7 @@
           "endDate": "2027-02-21",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -45351,7 +45351,7 @@
           "endDate": "2027-02-22",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -45418,7 +45418,7 @@
           "endDate": "2027-02-23",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -45485,7 +45485,7 @@
           "endDate": "2027-02-24",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -45552,7 +45552,7 @@
           "endDate": "2027-02-25",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -45619,7 +45619,7 @@
           "endDate": "2027-02-26",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -45686,7 +45686,7 @@
           "endDate": "2027-02-27",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -45753,7 +45753,7 @@
           "endDate": "2027-02-28",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -46825,7 +46825,7 @@
           "endDate": "2027-02-27",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -46892,7 +46892,7 @@
           "endDate": "2027-02-28",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 45,
             "inferred": true,
@@ -47176,7 +47176,7 @@
           "endDate": "2027-02-06",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47243,7 +47243,7 @@
           "endDate": "2027-02-07",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47310,7 +47310,7 @@
           "endDate": "2027-02-08",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47377,7 +47377,7 @@
           "endDate": "2027-02-09",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47444,7 +47444,7 @@
           "endDate": "2027-02-10",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47511,7 +47511,7 @@
           "endDate": "2027-02-11",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47578,7 +47578,7 @@
           "endDate": "2027-02-12",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47645,7 +47645,7 @@
           "endDate": "2027-02-13",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47712,7 +47712,7 @@
           "endDate": "2027-02-14",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47779,7 +47779,7 @@
           "endDate": "2027-02-15",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47846,7 +47846,7 @@
           "endDate": "2027-02-16",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47913,7 +47913,7 @@
           "endDate": "2027-02-17",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -47980,7 +47980,7 @@
           "endDate": "2027-02-18",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48047,7 +48047,7 @@
           "endDate": "2027-02-19",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48114,7 +48114,7 @@
           "endDate": "2027-02-20",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48181,7 +48181,7 @@
           "endDate": "2027-02-21",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48248,7 +48248,7 @@
           "endDate": "2027-02-22",
           "nights": 17,
           "holidayDays": 18,
-          "weekdaysOff": 11,
+          "weekdaysOff": 12,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48315,7 +48315,7 @@
           "endDate": "2027-02-23",
           "nights": 18,
           "holidayDays": 19,
-          "weekdaysOff": 12,
+          "weekdaysOff": 13,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48382,7 +48382,7 @@
           "endDate": "2027-02-24",
           "nights": 19,
           "holidayDays": 20,
-          "weekdaysOff": 13,
+          "weekdaysOff": 14,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48449,7 +48449,7 @@
           "endDate": "2027-02-25",
           "nights": 20,
           "holidayDays": 21,
-          "weekdaysOff": 14,
+          "weekdaysOff": 15,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48516,7 +48516,7 @@
           "endDate": "2027-02-26",
           "nights": 21,
           "holidayDays": 22,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48583,7 +48583,7 @@
           "endDate": "2027-02-27",
           "nights": 22,
           "holidayDays": 23,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -48650,7 +48650,7 @@
           "endDate": "2027-02-28",
           "nights": 23,
           "holidayDays": 24,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -51598,7 +51598,7 @@
           "endDate": "2027-02-13",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -51665,7 +51665,7 @@
           "endDate": "2027-02-14",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -51732,7 +51732,7 @@
           "endDate": "2027-02-15",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -51799,7 +51799,7 @@
           "endDate": "2027-02-16",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -51866,7 +51866,7 @@
           "endDate": "2027-02-17",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -51933,7 +51933,7 @@
           "endDate": "2027-02-18",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52000,7 +52000,7 @@
           "endDate": "2027-02-19",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52067,7 +52067,7 @@
           "endDate": "2027-02-20",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52134,7 +52134,7 @@
           "endDate": "2027-02-21",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52201,7 +52201,7 @@
           "endDate": "2027-02-22",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52268,7 +52268,7 @@
           "endDate": "2027-02-23",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52335,7 +52335,7 @@
           "endDate": "2027-02-24",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52402,7 +52402,7 @@
           "endDate": "2027-02-25",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52469,7 +52469,7 @@
           "endDate": "2027-02-26",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52536,7 +52536,7 @@
           "endDate": "2027-02-27",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -52603,7 +52603,7 @@
           "endDate": "2027-02-28",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -54613,7 +54613,7 @@
           "endDate": "2027-02-20",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -54680,7 +54680,7 @@
           "endDate": "2027-02-21",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -54747,7 +54747,7 @@
           "endDate": "2027-02-22",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -54814,7 +54814,7 @@
           "endDate": "2027-02-23",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -54881,7 +54881,7 @@
           "endDate": "2027-02-24",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -54948,7 +54948,7 @@
           "endDate": "2027-02-25",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -55015,7 +55015,7 @@
           "endDate": "2027-02-26",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -55082,7 +55082,7 @@
           "endDate": "2027-02-27",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -55149,7 +55149,7 @@
           "endDate": "2027-02-28",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -56221,7 +56221,7 @@
           "endDate": "2027-02-27",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -56288,7 +56288,7 @@
           "endDate": "2027-02-28",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 20,
             "inferred": true,
@@ -56573,7 +56573,7 @@
           "endDate": "2027-02-06",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -56640,7 +56640,7 @@
           "endDate": "2027-02-07",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -56707,7 +56707,7 @@
           "endDate": "2027-02-08",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -56774,7 +56774,7 @@
           "endDate": "2027-02-09",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -56841,7 +56841,7 @@
           "endDate": "2027-02-10",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -56908,7 +56908,7 @@
           "endDate": "2027-02-11",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -56975,7 +56975,7 @@
           "endDate": "2027-02-12",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57042,7 +57042,7 @@
           "endDate": "2027-02-13",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57109,7 +57109,7 @@
           "endDate": "2027-02-14",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57176,7 +57176,7 @@
           "endDate": "2027-02-15",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57243,7 +57243,7 @@
           "endDate": "2027-02-16",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57310,7 +57310,7 @@
           "endDate": "2027-02-17",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57377,7 +57377,7 @@
           "endDate": "2027-02-18",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57444,7 +57444,7 @@
           "endDate": "2027-02-19",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57511,7 +57511,7 @@
           "endDate": "2027-02-20",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57578,7 +57578,7 @@
           "endDate": "2027-02-21",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57645,7 +57645,7 @@
           "endDate": "2027-02-22",
           "nights": 17,
           "holidayDays": 18,
-          "weekdaysOff": 11,
+          "weekdaysOff": 12,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57712,7 +57712,7 @@
           "endDate": "2027-02-23",
           "nights": 18,
           "holidayDays": 19,
-          "weekdaysOff": 12,
+          "weekdaysOff": 13,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57779,7 +57779,7 @@
           "endDate": "2027-02-24",
           "nights": 19,
           "holidayDays": 20,
-          "weekdaysOff": 13,
+          "weekdaysOff": 14,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57846,7 +57846,7 @@
           "endDate": "2027-02-25",
           "nights": 20,
           "holidayDays": 21,
-          "weekdaysOff": 14,
+          "weekdaysOff": 15,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57913,7 +57913,7 @@
           "endDate": "2027-02-26",
           "nights": 21,
           "holidayDays": 22,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -57980,7 +57980,7 @@
           "endDate": "2027-02-27",
           "nights": 22,
           "holidayDays": 23,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -58047,7 +58047,7 @@
           "endDate": "2027-02-28",
           "nights": 23,
           "holidayDays": 24,
-          "weekdaysOff": 15,
+          "weekdaysOff": 16,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -60995,7 +60995,7 @@
           "endDate": "2027-02-13",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61062,7 +61062,7 @@
           "endDate": "2027-02-14",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61129,7 +61129,7 @@
           "endDate": "2027-02-15",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61196,7 +61196,7 @@
           "endDate": "2027-02-16",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61263,7 +61263,7 @@
           "endDate": "2027-02-17",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61330,7 +61330,7 @@
           "endDate": "2027-02-18",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61397,7 +61397,7 @@
           "endDate": "2027-02-19",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61464,7 +61464,7 @@
           "endDate": "2027-02-20",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61531,7 +61531,7 @@
           "endDate": "2027-02-21",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61598,7 +61598,7 @@
           "endDate": "2027-02-22",
           "nights": 10,
           "holidayDays": 11,
-          "weekdaysOff": 6,
+          "weekdaysOff": 7,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61665,7 +61665,7 @@
           "endDate": "2027-02-23",
           "nights": 11,
           "holidayDays": 12,
-          "weekdaysOff": 7,
+          "weekdaysOff": 8,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61732,7 +61732,7 @@
           "endDate": "2027-02-24",
           "nights": 12,
           "holidayDays": 13,
-          "weekdaysOff": 8,
+          "weekdaysOff": 9,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61799,7 +61799,7 @@
           "endDate": "2027-02-25",
           "nights": 13,
           "holidayDays": 14,
-          "weekdaysOff": 9,
+          "weekdaysOff": 10,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61866,7 +61866,7 @@
           "endDate": "2027-02-26",
           "nights": 14,
           "holidayDays": 15,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -61933,7 +61933,7 @@
           "endDate": "2027-02-27",
           "nights": 15,
           "holidayDays": 16,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -62000,7 +62000,7 @@
           "endDate": "2027-02-28",
           "nights": 16,
           "holidayDays": 17,
-          "weekdaysOff": 10,
+          "weekdaysOff": 11,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -64010,7 +64010,7 @@
           "endDate": "2027-02-20",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -64077,7 +64077,7 @@
           "endDate": "2027-02-21",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -64144,7 +64144,7 @@
           "endDate": "2027-02-22",
           "nights": 3,
           "holidayDays": 4,
-          "weekdaysOff": 1,
+          "weekdaysOff": 2,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -64211,7 +64211,7 @@
           "endDate": "2027-02-23",
           "nights": 4,
           "holidayDays": 5,
-          "weekdaysOff": 2,
+          "weekdaysOff": 3,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -64278,7 +64278,7 @@
           "endDate": "2027-02-24",
           "nights": 5,
           "holidayDays": 6,
-          "weekdaysOff": 3,
+          "weekdaysOff": 4,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -64345,7 +64345,7 @@
           "endDate": "2027-02-25",
           "nights": 6,
           "holidayDays": 7,
-          "weekdaysOff": 4,
+          "weekdaysOff": 5,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -64412,7 +64412,7 @@
           "endDate": "2027-02-26",
           "nights": 7,
           "holidayDays": 8,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -64479,7 +64479,7 @@
           "endDate": "2027-02-27",
           "nights": 8,
           "holidayDays": 9,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -64546,7 +64546,7 @@
           "endDate": "2027-02-28",
           "nights": 9,
           "holidayDays": 10,
-          "weekdaysOff": 5,
+          "weekdaysOff": 6,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -65618,7 +65618,7 @@
           "endDate": "2027-02-27",
           "nights": 1,
           "holidayDays": 2,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -65685,7 +65685,7 @@
           "endDate": "2027-02-28",
           "nights": 2,
           "holidayDays": 3,
-          "weekdaysOff": 0,
+          "weekdaysOff": 1,
           "availability": {
             "probability": 100,
             "inferred": true,
@@ -65815,5 +65815,6 @@
         }
       }
     }
-  }
+  },
+  "weekdaysOffDefinition": "Count every Monday–Friday calendar day from departure through return, inclusive."
 }
