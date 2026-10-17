@@ -19,7 +19,26 @@
   .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
   .filter-tile{padding:7px 13px;border:1px solid var(--line-strong);border-radius:999px;background:var(--card);color:var(--ink-2);font:inherit;font-size:12px;cursor:pointer}
   .filter-tile[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff}
-  .filter-tile:focus-visible,.table-pagination button:focus-visible,.data-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .filter-tile:focus-visible,.table-pagination button:focus-visible,.data-link:focus-visible,.view-toggle:focus-visible,.metric-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .control-label{margin:16px 0 7px;color:var(--ink-3);font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .toggle-group{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;padding:4px;width:max-content;max-width:100%;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+  .view-toggle,.metric-toggle{padding:7px 14px;border:0;border-radius:999px;background:transparent;color:var(--ink-2);font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+  .view-toggle[aria-pressed="true"],.metric-toggle[aria-pressed="true"]{background:var(--accent);color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.16)}
+  .timeline-scroller{overflow:auto;border:1px solid var(--line);border-radius:8px}
+  .timeline-grid{display:grid;min-width:max-content;align-items:stretch}
+  .timeline-corner,.timeline-day,.timeline-person,.timeline-cell{min-height:38px;padding:6px 4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .timeline-corner,.timeline-day{position:sticky;top:0;z-index:2;background:var(--paper);color:var(--ink-3);font-size:10px;font-weight:650;text-align:center}
+  .timeline-corner{left:0;z-index:3;text-align:left;padding-left:10px}
+  .timeline-person{position:sticky;left:0;z-index:1;display:flex;align-items:center;gap:7px;background:var(--card);font-size:12px;font-weight:650;padding-left:10px;white-space:nowrap}
+  .timeline-cell{display:flex;align-items:center;justify-content:center;min-height:42px;background:var(--card);padding:3px}
+  .timeline-cell.empty{background:color-mix(in srgb,var(--paper) 55%,var(--card))}
+  .timeline-mark{display:flex;width:100%;height:30px;align-items:center;justify-content:center;border:2px solid var(--availability-color,var(--line-strong));border-radius:6px;background:var(--price-color,var(--paper));color:var(--mark-ink,var(--ink-2));font-size:10px;font-weight:700;font-variant-numeric:tabular-nums;cursor:help}
+  .timeline-mark.pending{border-style:dashed;background:var(--paper);color:var(--ink-3);font-size:9px}
+  .timeline-legend{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin:12px 0;color:var(--ink-2);font-size:11px}
+  .legend-ramp{width:120px;height:10px;border:1px solid var(--line-strong);border-radius:5px;background:linear-gradient(90deg,hsl(210 75% 91%),hsl(225 70% 34%))}
+  .availability-key{display:flex;align-items:center;gap:6px}.availability-dot{width:12px;height:12px;border:3px solid;border-radius:50%}
+  .chart-note{margin:7px 0 14px;color:var(--ink-3);font-size:12px}
+  [hidden]{display:none!important}
   .range-controls{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
   .range-controls label{display:grid;gap:6px;color:var(--ink-2);font-size:12px}
   .range-controls input{width:100%;accent-color:var(--accent)}
@@ -42,11 +61,22 @@
   <header>
     <p class="eyebrow">Ski trip this winter? 😝 &middot; group chat digest</p>
     <h1 id="page-title">February ski trip costs</h1>
-    <p class="sub">Compare per-person flight and accommodation estimates for weekend departures, with returns on any later date in February. The table is loaded from the committed trip database; rows prioritize longer holidays with fewer weekdays off.</p>
+    <p class="sub">Compare February trip options for Friday, Saturday and Sunday departures. Longer breaks with fewer weekdays off are favored. All displayed dates, availability, destinations and prices are loaded from the committed trip database.</p>
   </header>
 
   <main class="panel" id="trip-prices">
     <h2>Trip costs by person and location</h2>
+    <p class="control-label">View</p>
+    <div class="toggle-group" id="view-switch" role="group" aria-label="Choose a view">
+      <button class="view-toggle" type="button" data-view="timeline" aria-pressed="true">Timeline</button>
+      <button class="view-toggle" type="button" data-view="table" aria-pressed="false">Table</button>
+    </div>
+    <p class="control-label">Colour by price</p>
+    <div class="toggle-group" id="metric-switch" role="group" aria-label="Choose the price shown on the timeline">
+      <button class="metric-toggle" type="button" data-metric="flight" aria-pressed="false">Flight</button>
+      <button class="metric-toggle" type="button" data-metric="total" aria-pressed="false">Total</button>
+      <button class="metric-toggle" type="button" data-metric="accommodation" aria-pressed="true">Accommodation</button>
+    </div>
     <div class="filters" id="member-filters" role="group" aria-label="Filter by participant"></div>
     <p class="price-status">Choose one or more locations. All locations are selected initially.</p>
     <div class="filters" id="location-filters" role="group" aria-label="Filter by holiday location"></div>
@@ -54,13 +84,23 @@
       <label>Depart on or after <span class="range-readout" id="start-date-label"></span><input id="start-date-range" type="range"></label>
       <label>Return on or before <span class="range-readout" id="end-date-label"></span><input id="end-date-range" type="range"></label>
     </div>
-    <div class="tablewrap trip-table">
+    <section id="timeline-view" aria-label="February trip timeline">
+      <p class="chart-note" id="chart-note"></p>
+      <div class="timeline-scroller"><div id="timeline-grid" class="timeline-grid" role="table" aria-label="Trip dates by person"></div></div>
+      <div class="timeline-legend">
+        <span class="availability-key"><i class="availability-dot" style="border-color:#21834a"></i> higher availability</span>
+        <span class="availability-key"><i class="availability-dot" style="border-color:#d08a13"></i> mixed availability</span>
+        <span class="availability-key"><i class="availability-dot" style="border-color:#bd4646"></i> lower availability</span>
+        <span><i class="legend-ramp"></i> cell fill: lower → higher price</span>
+      </div>
+    </section>
+    <div id="table-view" class="tablewrap trip-table" hidden>
       <table>
         <thead><tr><th>Person / origin</th><th>Location / gateway</th><th>Depart</th><th>Return</th><th>Holiday days</th><th>Weekdays off</th><th>Availability</th><th id="accommodation-heading">Accommodation / person</th><th>Flight average / person</th><th>Flight best / person</th><th>Auxiliary / person</th><th>Priced subtotal / person</th></tr></thead>
         <tbody id="trip-rows"><tr><td colspan="12" class="price-status">Loading February trip data…</td></tr></tbody>
       </table>
     </div>
-    <div class="table-pagination"><button id="previous-page" type="button" disabled>Previous</button><span id="page-info">Loading…</span><button id="next-page" type="button" disabled>Next</button></div>
+    <div id="table-pagination" class="table-pagination" hidden><button id="previous-page" type="button" disabled>Previous</button><span id="page-info">Loading…</span><button id="next-page" type="button" disabled>Next</button></div>
     <p class="price-status" id="trip-updated"></p>
     <p class="price-status">Accommodation is the group estimate divided by the group size shown in its column heading. Flight fares are each person’s own round-trip ticket and are not divided by the group. The per-person subtotal adds accommodation and average flight fare; auxiliary costs are separate and included only when available. <a class="data-link" href="./prices.json" download="ski-holiday-february-prices.json">Download the complete trip database (JSON)</a>.</p>
   </main>
@@ -68,20 +108,19 @@
 <div id="tip" role="tooltip"></div>
 <script>
 (function(){
-  var rowsElement=document.getElementById('trip-rows');
-  var pageInfo=document.getElementById('page-info');
-  var previous=document.getElementById('previous-page');
-  var next=document.getElementById('next-page');
-  var startRange=document.getElementById('start-date-range');
-  var endRange=document.getElementById('end-date-range');
-  var page=0, pageSize=50, selectedPerson='all', selectedLocations=new Set();
-  var db, names=[], locations=[], dates=[], allRows=[];
+  var rowsElement=document.getElementById('trip-rows'),pageInfo=document.getElementById('page-info');
+  var previous=document.getElementById('previous-page'),next=document.getElementById('next-page');
+  var startRange=document.getElementById('start-date-range'),endRange=document.getElementById('end-date-range');
+  var page=0,pageSize=50,selectedPerson='all',selectedLocations=new Set(),selectedMetric='accommodation',selectedView='timeline';
+  var db,names=[],locations=[],dates=[],allRows=[];
+  var metricLabels={flight:'Flight average / person',total:'Priced total / person',accommodation:'Accommodation / person'};
 
   function dateLabel(iso){return new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',timeZone:'UTC'}).format(new Date(iso+'T00:00:00Z'));}
   function euro(value){return value==null||!Number.isFinite(Number(value))?'Pending':'€'+Math.round(Number(value)).toLocaleString('en-GB');}
+  function compactEuro(value){if(value==null||!Number.isFinite(Number(value)))return '—';var number=Math.round(Number(value));return number>=1000?'€'+(number/1000).toFixed(1).replace(/\.0$/,'')+'k':'€'+number;}
   function addCell(row,value,className){var cell=document.createElement('td');cell.textContent=value==null?'—':String(value);if(className)cell.className=className;row.appendChild(cell);}
   function setMessage(message){rowsElement.innerHTML='';var row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=12;cell.className='price-status';cell.textContent=message;row.appendChild(cell);rowsElement.appendChild(row);pageInfo.textContent='No rows';previous.disabled=true;next.disabled=true;}
-  function makeTile(label,pressed,onClick){var button=document.createElement('button');button.type='button';button.className='filter-tile';button.textContent=label;button.setAttribute('aria-pressed',pressed?'true':'false');button.addEventListener('click',onClick);return button;}
+  function makeTile(label,pressed,onClick,className){var button=document.createElement('button');button.type='button';button.className=className||'filter-tile';button.textContent=label;button.setAttribute('aria-pressed',pressed?'true':'false');button.addEventListener('click',onClick);return button;}
   function renderMemberFilters(){
     var group=document.getElementById('member-filters');group.replaceChildren();
     group.appendChild(makeTile('Everyone',selectedPerson==='all',function(){selectedPerson='all';page=0;renderMemberFilters();render();}));
@@ -94,45 +133,56 @@
       page=0;renderLocationFilters();render();
     }));});
   }
+  function renderToggles(){
+    document.querySelectorAll('[data-view]').forEach(function(button){button.setAttribute('aria-pressed',button.dataset.view===selectedView?'true':'false');});
+    document.querySelectorAll('[data-metric]').forEach(function(button){button.setAttribute('aria-pressed',button.dataset.metric===selectedMetric?'true':'false');});
+    document.getElementById('timeline-view').hidden=selectedView!=='timeline';
+    document.getElementById('table-view').hidden=selectedView!=='table';
+    document.getElementById('table-pagination').hidden=selectedView!=='table';
+  }
   function updateDateLabels(){
     document.getElementById('start-date-label').textContent=dateLabel(dates[Number(startRange.value)]);
     document.getElementById('end-date-label').textContent=dateLabel(dates[Number(endRange.value)]);
   }
-  function render(){
-    updateDateLabels();
-    var firstDate=dates[Number(startRange.value)],lastDate=dates[Number(endRange.value)];
-    allRows=[];
+  function priceForLocation(trip,location){
+    var flight=trip.flights&&trip.flights[location]||{};
+    var accommodation=trip.accommodation&&trip.accommodation.perPersonEur&&trip.accommodation.perPersonEur[location];
+    var auxiliary=trip.auxiliary&&trip.auxiliary.totalPerPersonEur;
+    if(selectedMetric==='flight')return flight.averageEur==null?null:Number(flight.averageEur);
+    if(selectedMetric==='accommodation')return accommodation==null?null:Number(accommodation);
+    return accommodation==null||flight.averageEur==null?null:Number(accommodation)+Number(flight.averageEur)+(auxiliary==null?0:Number(auxiliary));
+  }
+  function tripPrice(trip){
+    var values=Array.from(selectedLocations).map(function(location){return priceForLocation(trip,location);}).filter(Number.isFinite);
+    return values.length?values.reduce(function(sum,value){return sum+value;},0)/values.length:null;
+  }
+  function rowsForTable(){
+    var firstDate=dates[Number(startRange.value)],lastDate=dates[Number(endRange.value)],rows=[];
     names.filter(function(name){return selectedPerson==='all'||name===selectedPerson;}).forEach(function(name){
       var person=db.participants[name];
       Object.entries(person.trips||{}).forEach(function(entry){
-        var trip=entry[1];
-        if(trip.startDate<firstDate||trip.endDate>lastDate)return;
+        var trip=entry[1];if(trip.startDate<firstDate||trip.endDate>lastDate)return;
         selectedLocations.forEach(function(location){
           var flight=trip.flights&&trip.flights[location]||{};
           var accommodation=trip.accommodation&&trip.accommodation.perPersonEur&&trip.accommodation.perPersonEur[location];
           var auxiliary=trip.auxiliary&&trip.auxiliary.totalPerPersonEur;
-          var subtotal=accommodation!=null&&flight.averageEur!=null
-            ?Number(accommodation)+Number(flight.averageEur)+(auxiliary==null?0:Number(auxiliary)):null;
-          allRows.push({name:name,person:person,trip:trip,location:location,flight:flight,accommodation:accommodation,auxiliary:auxiliary,subtotal:subtotal});
+          var subtotal=accommodation!=null&&flight.averageEur!=null?Number(accommodation)+Number(flight.averageEur)+(auxiliary==null?0:Number(auxiliary)):null;
+          rows.push({name:name,person:person,trip:trip,location:location,flight:flight,accommodation:accommodation,auxiliary:auxiliary,subtotal:subtotal});
         });
       });
     });
-    allRows.sort(function(a,b){return Number(b.trip.holidayDays||0)-Number(a.trip.holidayDays||0)
-      ||Number(a.trip.weekdaysOff||0)-Number(b.trip.weekdaysOff||0)
-      ||a.trip.startDate.localeCompare(b.trip.startDate)
-      ||a.trip.endDate.localeCompare(b.trip.endDate)
-      ||a.name.localeCompare(b.name)
-      ||a.location.localeCompare(b.location);});
-
-    rowsElement.replaceChildren();
+    rows.sort(function(a,b){return Number(b.trip.holidayDays||0)-Number(a.trip.holidayDays||0)||Number(a.trip.weekdaysOff||0)-Number(b.trip.weekdaysOff||0)||a.trip.startDate.localeCompare(b.trip.startDate)||a.trip.endDate.localeCompare(b.trip.endDate)||a.name.localeCompare(b.name)||a.location.localeCompare(b.location);});
+    return rows;
+  }
+  function renderTable(){
+    allRows=rowsForTable();rowsElement.replaceChildren();
     if(!allRows.length){setMessage('No trips match these filters. Try widening the date range or selecting another location.');return;}
     var pageCount=Math.ceil(allRows.length/pageSize);page=Math.min(page,pageCount-1);
     allRows.slice(page*pageSize,(page+1)*pageSize).forEach(function(item){
       var trip=item.trip,flight=item.flight,row=document.createElement('tr');
       addCell(row,item.name+' · '+item.person.homeAirport.label+' ('+item.person.homeAirport.code+')','w');
       addCell(row,item.location+' ('+(flight.airportCode||db.destinations[item.location].airportCode)+')');
-      addCell(row,trip.startDate);addCell(row,trip.endDate);
-      addCell(row,trip.holidayDays);addCell(row,trip.weekdaysOff);
+      addCell(row,trip.startDate);addCell(row,trip.endDate);addCell(row,trip.holidayDays);addCell(row,trip.weekdaysOff);
       addCell(row,trip.availability?trip.availability.probability+'%'+(trip.availability.inferred?' · estimated':''):'Pending');
       addCell(row,euro(item.accommodation),'money');addCell(row,euro(flight.averageEur),'money');addCell(row,euro(flight.bestEur),'money');
       addCell(row,euro(item.auxiliary),'money');addCell(row,euro(item.subtotal),'money');rowsElement.appendChild(row);
@@ -140,34 +190,74 @@
     pageInfo.textContent='Rows '+(page*pageSize+1)+'–'+Math.min((page+1)*pageSize,allRows.length)+' of '+allRows.length;
     previous.disabled=page===0;next.disabled=(page+1)*pageSize>=allRows.length;
   }
+  function chooseTrip(person,startDate,lastDate){
+    var options=Object.values(person.trips||{}).filter(function(trip){return trip.startDate===startDate&&trip.endDate<=lastDate;});
+    options.sort(function(a,b){return Number(b.holidayDays||0)-Number(a.holidayDays||0)||Number(a.weekdaysOff||0)-Number(b.weekdaysOff||0)||a.endDate.localeCompare(b.endDate);});
+    return options[0]||null;
+  }
+  function availabilityColor(probability){if(probability>=67)return '#21834a';if(probability>=34)return '#d08a13';return '#bd4646';}
+  function priceFill(value,low,high){var ratio=high===low?.5:(value-low)/(high-low);return {background:'hsl(220 72% '+(91-55*ratio)+'%)',color:ratio>.58?'#fff':'#1b2733'};}
+  function renderTimeline(){
+    var chart=document.getElementById('timeline-grid');chart.replaceChildren();
+    chart.style.gridTemplateColumns='150px repeat('+dates.length+', minmax(34px, 1fr))';
+    var corner=document.createElement('div');corner.className='timeline-corner';corner.textContent='Person';corner.setAttribute('role','columnheader');chart.appendChild(corner);
+    dates.forEach(function(date){var day=document.createElement('div');day.className='timeline-day';day.textContent=String(Number(date.slice(-2)));day.title=date;day.setAttribute('role','columnheader');chart.appendChild(day);});
+    var visibleNames=names.filter(function(name){return selectedPerson==='all'||name===selectedPerson;}),lastDate=dates[Number(endRange.value)],firstDate=dates[Number(startRange.value)],points=[];
+    visibleNames.forEach(function(name){var person=db.participants[name];dates.forEach(function(date){if(date<firstDate||date>lastDate)return;var trip=chooseTrip(person,date,lastDate);if(trip&&selectedLocations.size)points.push({name:name,date:date,trip:trip,value:tripPrice(trip)});});});
+    var known=points.map(function(point){return point.value;}).filter(Number.isFinite),low=known.length?Math.min.apply(null,known):0,high=known.length?Math.max.apply(null,known):0;
+    var minLabel=document.getElementById('price-min'),maxLabel=document.getElementById('price-max');
+    minLabel.textContent=known.length?' '+compactEuro(low):' Pending';maxLabel.textContent=known.length?' '+compactEuro(high):' Pending';
+    visibleNames.forEach(function(name){
+      var person=db.participants[name],label=document.createElement('div');label.className='timeline-person';label.textContent=name;label.title=person.homeAirport.label+' ('+person.homeAirport.code+')';label.setAttribute('role','rowheader');chart.appendChild(label);
+      dates.forEach(function(date){
+        var cell=document.createElement('div');cell.className='timeline-cell';cell.setAttribute('role','cell');
+        if(date<firstDate||date>lastDate){cell.classList.add('empty');chart.appendChild(cell);return;}
+        var trip=chooseTrip(person,date,lastDate);
+        if(!trip||!selectedLocations.size){cell.classList.add('empty');chart.appendChild(cell);return;}
+        var value=tripPrice(trip),mark=document.createElement('div'),availability=trip.availability&&Number(trip.availability.probability);
+        mark.className='timeline-mark'+(value==null?' pending':'');mark.style.setProperty('--availability-color',availabilityColor(Number.isFinite(availability)?availability:50));
+        if(value!=null){var fill=priceFill(value,low,high);mark.style.setProperty('--price-color',fill.background);mark.style.setProperty('--mark-ink',fill.color);}
+        mark.textContent=compactEuro(value);
+        var destinations=Array.from(selectedLocations).join(', ');
+        var availText=Number.isFinite(availability)?availability+'%'+(trip.availability.inferred?' estimated':''):'unknown';
+        mark.title=name+' · '+trip.startDate+' to '+trip.endDate+' · '+trip.holidayDays+' holiday days · '+trip.weekdaysOff+' weekdays off · availability '+availText+' · '+metricLabels[selectedMetric]+': '+euro(value)+' · '+destinations;
+        mark.setAttribute('aria-label',mark.title);cell.appendChild(mark);chart.appendChild(cell);
+      });
+    });
+    var selected=Array.from(selectedLocations).length;
+    document.getElementById('chart-note').textContent=selected
+      ?'Each date cell shows the longest qualifying trip from that departure date, with fewer weekdays off breaking ties. Cell fill shows '+metricLabels[selectedMetric]+' averaged across '+selected+' selected location'+(selected===1?'':'s')+'; the border shows estimated availability. Hover a cell for its return date and details.'
+      :'Select at least one location to show trip-price cells on the timeline.';
+  }
+  function render(){
+    updateDateLabels();renderToggles();
+    renderTable();renderTimeline();
+  }
   function initialise(data){
     db=data;names=Object.keys(db.participants||{});locations=Object.keys(db.destinations||{});
     if(!names.length||!locations.length)throw new Error('The trip database has no participants or locations.');
     var first=new Date(db.dateRange.start+'T00:00:00Z'),last=new Date(db.dateRange.end+'T00:00:00Z');
     for(var current=new Date(first);current<=last;current.setUTCDate(current.getUTCDate()+1))dates.push(current.toISOString().slice(0,10));
     if(!dates.length)throw new Error('The trip database has an invalid date range.');
-    var groupSizes=Array.from(new Set(names.flatMap(function(name){return Object.values(db.participants[name].trips||{}).map(function(trip){return trip.accommodation&&trip.accommodation.groupSize;}).filter(Number.isFinite);})))
-      .sort(function(a,b){return a-b;});
-    document.getElementById('accommodation-heading').textContent=groupSizes.length===1
-      ?'Accommodation / person (group ÷ '+groupSizes[0]+' people)'
-      :'Accommodation / person (group share)';
+    var groupSizes=Array.from(new Set(names.flatMap(function(name){return Object.values(db.participants[name].trips||{}).map(function(trip){return trip.accommodation&&trip.accommodation.groupSize;}).filter(Number.isFinite);}))).sort(function(a,b){return a-b;});
+    document.getElementById('accommodation-heading').textContent=groupSizes.length===1?'Accommodation / person (group ÷ '+groupSizes[0]+' people)':'Accommodation / person (group share)';
     [startRange,endRange].forEach(function(input){input.min='0';input.max=String(dates.length-1);input.step='1';});
-    startRange.value='0';endRange.value=String(dates.length-1);
-    locations.forEach(function(location){selectedLocations.add(location);});
+    startRange.value='0';endRange.value=String(dates.length-1);locations.forEach(function(location){selectedLocations.add(location);});
     document.getElementById('page-title').textContent='Ski trip costs · '+dateLabel(db.dateRange.start)+'–'+dateLabel(db.dateRange.end)+' '+db.dateRange.start.slice(0,4);
     renderMemberFilters();renderLocationFilters();
+    document.querySelectorAll('[data-view]').forEach(function(button){button.addEventListener('click',function(){selectedView=button.dataset.view;render();});});
+    document.querySelectorAll('[data-metric]').forEach(function(button){button.addEventListener('click',function(){selectedMetric=button.dataset.metric;render();});});
     startRange.addEventListener('input',function(){if(Number(startRange.value)>Number(endRange.value))endRange.value=startRange.value;page=0;render();});
     endRange.addEventListener('input',function(){if(Number(endRange.value)<Number(startRange.value))startRange.value=endRange.value;page=0;render();});
-    previous.addEventListener('click',function(){page=Math.max(0,page-1);render();});
-    next.addEventListener('click',function(){page+=1;render();});
+    previous.addEventListener('click',function(){page=Math.max(0,page-1);renderTable();});next.addEventListener('click',function(){page+=1;renderTable();});
     render();
-    document.getElementById('trip-updated').textContent='Database updated: '+(db.updatedAt?new Date(db.updatedAt).toLocaleString():'flight prices have not been refreshed yet')+'. Flights with no observed offers remain pending.';
+    document.getElementById('trip-updated').textContent='Database updated: '+(db.updatedAt?new Date(db.updatedAt).toLocaleString():'flight prices have not been refreshed yet')+'. Flight fares without observed offers remain pending.';
   }
 
   fetch(new URL('./prices.json',window.location.href),{cache:'no-cache'})
     .then(function(response){if(!response.ok)throw new Error('Price data request failed (HTTP '+response.status+').');return response.json();})
     .then(initialise)
-    .catch(function(error){setMessage('Could not load the February trip database: '+error.message+' Reload the page to try again.');});
+    .catch(function(error){setMessage('Could not load the February trip database: '+error.message+' Reload the page to try again.');document.getElementById('timeline-grid').textContent=error.message;});
 })();
 </script>
 </body>
